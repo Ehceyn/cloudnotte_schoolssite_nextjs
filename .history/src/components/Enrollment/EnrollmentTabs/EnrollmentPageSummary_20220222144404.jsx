@@ -43,6 +43,7 @@ function EnrollmentPageSummary() {
             Admission status
           </Button>
           <Button3
+            style={styles.enrollment_landing_btn_3}
             customStyle="border"
             py="py-2"
             bg="bg-white text-[#8EA2BA]"
