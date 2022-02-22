@@ -1,0 +1,9 @@
+:root {
+  --home-sidebar-paragraph: #8ea2ba;
+  --home-sidebar-font-weight: 400;
+}
+
+.side-nav-paragraph {
+  color: var(--home-sidebar-paragraph);
+  font-weight: var(--home-sidebar-font-weight);
+}

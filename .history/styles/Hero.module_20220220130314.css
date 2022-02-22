@@ -1,0 +1,9 @@
+.hero_1_bg {
+  background: url(../../assets/images/hero_img_1.png) no-repeat center/cover;
+  height: 13rem;
+}
+@media screen and (max-width: 400px) {
+  .hero_1_bg {
+    height: 8rem;
+  }
+}
