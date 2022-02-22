@@ -36,10 +36,10 @@ function SchoolPersonalPageReview() {
               width={32}
               height={32}
               src="/assets/images/school-profile-img.png"
-              className="w-8 h-8 object-contain"
+              className="w-8 h-8 mr-4 object-contain"
               alt=""
             />
-            <div className="ml-4">
+            <div className="">
               <p className="font-bold">Ugochukwu Matthew</p>
               <p className="text-sm">Parent</p>
             </div>
@@ -76,7 +76,7 @@ function SchoolPersonalPageReview() {
               className="w-8 h-8 object-contain"
               alt=""
             />
-            <div className="ml-4">
+            <div className="">
               <p className="font-bold">Ugochukwu Matthew</p>
               <p className="text-sm">Parent</p>
             </div>
