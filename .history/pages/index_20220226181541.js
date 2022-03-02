@@ -11,6 +11,9 @@ import TakeEntranceModal from "../src/components/Modals/TakeEntranceModal";
 import ReviewSchoolModal from "../src/components/Modals/ReviewSchoolModal";
 import GetStudentDataModal from "../src/components/Modals/GetStudentDataModal";
 import SearchbarFixed from "../src/components/SearchbarFixed/SearchbarFixed";
+import { useQuery } from "@apollo/client";
+import { initializeApollo } from "../lib/apolloClient";
+import { GET_SCHOOLS } from "../graphql/user/queries/getSchools";
 
 function Home() {
   const [displayEntranceExamModal, setDisplayEntranceExamModal] =
@@ -39,9 +42,18 @@ function Home() {
     }
   }
 
+  // GET SCHOOLS FROM API
+  const { data, error, loading } = useQuery(GET_SCHOOLS);
+  if (loading) return <h2>Loading...</h2>;
+  if (error) return console.log(JSON.stringify(error, null, 2));
+
+  // SCHOOLS PASSED AS PROPS FROM NEXT SERVER
+  const schools = data;
+  console.log(schools, "here --------<-");
+
   return (
     <div>
-      <section className="">
+      <section className="2xl:w-[1536px] 2xl:max-w-[1536px] 2xl:px-auto h-full">
         <div className="w-full h-full flex justify-between relative  ">
           <div className="bg-white fixed  left-0 h-full w-1/4 border-r hidden md2:flex">
             <Sidebar />
@@ -53,7 +65,19 @@ function Home() {
               }
             />
             <SchoolsLocation />
-            <SchoolAdCard />
+            <SchoolAdCard
+              schools={schools}
+              // id={school.id}
+              // name={school.name}
+              // country={school.country}
+              // state={school.state}
+              // city={school.city}
+              // logoUrl={school.logoUrl}
+              // prefix={school.prefix}
+              // type={school.type}
+              // assetsUrl={school.assetsUrl}
+            />
+            ;
           </div>
           <div className="bg-white fixed right-0 h-full w-1/4  border-l hidden md2:flex">
             <RightBar />
@@ -86,5 +110,16 @@ function Home() {
     </div>
   );
 }
+
+export const getStaticProps = async () => {
+  const apolloClient = initializeApollo();
+  await apolloClient.query({
+    query: GET_SCHOOLS,
+  });
+
+  return {
+    props: { initializeApolloState: apolloClient.cache.extract() },
+  };
+};
 
 export default Home;
