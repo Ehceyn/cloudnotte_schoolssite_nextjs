@@ -3,20 +3,20 @@ let dataStore = [];
 function formReducer(state = formInitialState, action) {
   console.log(action);
   switch (action.type) {
-    case 'ADD_TO_FORM_DETAILS_STORE':
+    case "ADD_TO_FORM_DETAILS_STORE":
       let obj = action.item;
       dataStore.push(obj);
-      console.log(dataStore, 'The formstore');
+      console.log(dataStore, "The sdatebj");
       if (dataStore.length === 2) state = dataStore;
 
-      console.log(state, 'Added state');
+      console.log(state, "Added state");
 
       return {
         state,
       };
 
-    case 'REMOVE_FROM_FORM_DETAILS_STORE':
-      dataStore.pop();
+    case "REMOVE_FROM_FORM_DETAILS_STORE":
+      state[action.item.id] = "";
       return {
         state,
       };

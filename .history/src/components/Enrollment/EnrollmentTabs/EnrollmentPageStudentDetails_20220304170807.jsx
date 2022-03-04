@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { useFormik } from 'formik';
-import Image from 'next/image';
-import { Button2, Button3 } from '../EnrollmentLandingPage/Button';
-import { useEnrollmentTabsValue } from '../../../StateProviders/EnrollmentTabsProvider';
-import { useFormDetailsStateValue } from '../../../StateProviders/FormDetailsProvider';
-import * as Yup from 'yup';
-import axios from 'axios';
-import Loader from '../../Loader';
+import React, { useEffect, useState } from "react";
+import { useFormik } from "formik";
+import Image from "next/image";
+import { Button2, Button3 } from "../EnrollmentLandingPage/Button";
+import { useEnrollmentTabsValue } from "../../../StateProviders/EnrollmentTabsProvider";
+import { useFormDetailsStateValue } from "../../../StateProviders/FormDetailsProvider";
+import * as Yup from "yup";
+import axios from "axios";
+import Loader from "../../Loader";
 
 function EnrollmentPageStudentDetails({ display }) {
   const [tab, dispatch] = useEnrollmentTabsValue();
-  const [image, setImage] = useState({ preview: '', raw: '' });
+  const [image, setImage] = useState({ preview: "", raw: "" });
   const [formDetailsStore, formDetailsDispatch] = useFormDetailsStateValue();
   const [loaderState, setLoaderState] = useState(false);
 
@@ -26,37 +26,37 @@ function EnrollmentPageStudentDetails({ display }) {
   // Upload std_Passport to Cloudinary and get the url
   const handleImageUpload = async () => {
     const formData = new FormData();
-    formData.append('image', image.raw);
-    formData.append('upload_preset', 'xwjm1oaf');
+    formData.append("image", image.raw);
+    formData.append("upload_preset", "xwjm1oaf");
 
     // create a new instance without interceptors.
     // you could also create this in its own module and import from there
     const instance = axios.create();
 
     const data = new FormData();
-    data.append('file', image.raw);
-    data.append('upload_preset', 'xwjm1oaf');
-    data.append('cloud_name', 'zichygraphs');
+    data.append("file", image.raw);
+    data.append("upload_preset", "xwjm1oaf");
+    data.append("cloud_name", "zichygraphs");
 
     const res = await instance.post(
-      'https://api.cloudinary.com/v1_1/zichygraphs/upload/',
+      "https://api.cloudinary.com/v1_1/zichygraphs/upload/",
       data
     );
     // Assign the returned url to the formik std_Passport value and Push to Form details store
     formik.values.std_Passport = res.data.secure_url;
 
-    console.log(formik.values, 'Meet cloudinary');
+    console.log(formik.values, "Meet cloudinary");
     pushToStore(formik.values);
     setLoaderState(false);
     changeTab(3);
-    console.log(res.data.secure_url, 'Cloudinart');
+    console.log(res.data.secure_url, "Cloudinart");
   };
 
   // DISPATCH ENROLLMENT TAB STATE
   const changeTab = (id) => {
-    console.log('tab: ' + id);
+    console.log("tab: " + id);
     dispatch({
-      type: 'TOGGLE_ENROLLMENT_TAB',
+      type: "TOGGLE_ENROLLMENT_TAB",
       item: id,
     });
   };
@@ -64,24 +64,24 @@ function EnrollmentPageStudentDetails({ display }) {
   //  DISPATCH STUDENTS DETAILS TO FORM DETAILS STORE
   const pushToStore = (formdetails) => {
     formDetailsDispatch({
-      type: 'ADD_TO_FORM_DETAILS_STORE',
+      type: "ADD_TO_FORM_DETAILS_STORE",
       item: formdetails,
     });
   };
 
   // INITIAL FORM VALUES
   let initialValues = {
-    std_firstName: '',
-    std_middleName: '',
-    std_lastName: '',
-    std_phoneNumber: '',
-    std_email: '',
-    std_sex: '',
-    std_dob: '',
-    std_country: '',
-    std_state: '',
-    std_lga: '',
-    std_address: '',
+    std_firstName: "",
+    std_middleName: "",
+    std_lastName: "",
+    std_phoneNumber: "",
+    std_email: "",
+    std_sex: "",
+    std_dob: "",
+    std_country: "",
+    std_state: "",
+    std_lga: "",
+    std_address: "",
     std_Passport: null,
   };
 
@@ -93,32 +93,32 @@ function EnrollmentPageStudentDetails({ display }) {
 
   // FORMIK VALIDATION SCHEMA WITH YUP
   const FILE_SIZE = 1024 * 1024;
-  const SUPPORTED_FORMATS = ['image/jpg', 'image/jpeg', 'image/png'];
+  const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
   const validationSchema = Yup.object({
-    std_firstName: Yup.string().required('This field is required'),
-    std_middleName: Yup.string().required('This field is required'),
-    std_lastName: Yup.string().required('This field is required'),
-    std_phoneNumber: Yup.string().required('This field is required'),
+    std_firstName: Yup.string().required("This field is required"),
+    std_middleName: Yup.string().required("This field is required"),
+    std_lastName: Yup.string().required("This field is required"),
+    std_phoneNumber: Yup.string().required("This field is required"),
     std_email: Yup.string()
-      .email('Invalid Email')
-      .required('This field is required'),
-    std_sex: Yup.string().required('This field is required'),
-    std_dob: Yup.string().required('This field is required'),
-    std_country: Yup.string().required('This field is required'),
-    std_state: Yup.string().required('This field is required'),
-    std_lga: Yup.string().required('This field is required'),
-    std_address: Yup.string().required('This field is required'),
+      .email("Invalid Email")
+      .required("This field is required"),
+    std_sex: Yup.string().required("This field is required"),
+    std_dob: Yup.string().required("This field is required"),
+    std_country: Yup.string().required("This field is required"),
+    std_state: Yup.string().required("This field is required"),
+    std_lga: Yup.string().required("This field is required"),
+    std_address: Yup.string().required("This field is required"),
     std_Passport: Yup.mixed()
       .nullable()
       .required()
       .test(
-        'fileSize',
-        'File Size is too large',
+        "fileSize",
+        "File Size is too large",
         (value) => !value || (value && value.size <= FILE_SIZE)
       )
       .test(
-        'fileType',
-        'Unsupported File Format',
+        "fileType",
+        "Unsupported File Format",
         (value) => !value || (value && SUPPORTED_FORMATS.includes(value?.type))
       ),
   });
@@ -130,14 +130,14 @@ function EnrollmentPageStudentDetails({ display }) {
     validationSchema,
   });
 
-  console.log(formDetailsStore, 'The Store form data');
-  console.log(formik.values, 'The student form data');
-  console.log(formik, 'The  formik');
+  console.log(formDetailsStore, "The Store form data");
+  console.log(formik.values, "The student form data");
+  console.log(formik, "The  formik");
 
   return (
     <section
       className={`${
-        display === 2 ? 'flex' : 'hidden'
+        display === 2 ? "flex" : "hidden"
       } px-5 md:px-10 md2:px-28 md3:px-40 text-justify w-full mt-6 sm:mt-10 mb-14 mx-auto text-[0.8em] sm:text-base`}
     >
       <Loader display={loaderState} />
@@ -187,7 +187,7 @@ function EnrollmentPageStudentDetails({ display }) {
               required
               onChange={(e) => {
                 handleImageChange(e);
-                formik.setFieldValue('std_Passport', e.target.files[0]);
+                formik.setFieldValue("std_Passport", e.target.files[0]);
               }}
             />
             <label htmlFor="std_Passport">
@@ -412,8 +412,8 @@ function EnrollmentPageStudentDetails({ display }) {
                 py="py-3 px-1"
                 bg={`${
                   formik.isValid
-                    ? 'bg-[#5F9AF2] text-[#E7F0FB]'
-                    : 'cursor-not-allowed bg-[#293b57] text-[#476697]'
+                    ? "bg-[#5F9AF2] text-[#E7F0FB]"
+                    : "cursor-not-allowed bg-[#293b57] text-[#476697]"
                 }`}
               >
                 Proceed

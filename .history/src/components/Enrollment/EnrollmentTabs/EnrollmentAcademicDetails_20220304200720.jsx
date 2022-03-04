@@ -248,7 +248,7 @@ function EnrollmentAcademicDetails({ onEnroll, display }) {
                   ></textarea>
                 </div>
               </div>
-              <div className="flex flex-col items-center w-full">
+              <div className="flex flex-col items-center w-full" ref={uploads}>
                 <p className="text-base font-medium mb-8">Documents required</p>
                 <div className=" w-full bg-[#F8FBFF] px-10 py-14">
                   {fileRequired.map((eachFile, index) => {

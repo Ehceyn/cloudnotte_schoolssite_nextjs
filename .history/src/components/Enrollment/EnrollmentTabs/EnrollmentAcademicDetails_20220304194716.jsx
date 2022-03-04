@@ -4,9 +4,6 @@ import { useFormik } from 'formik';
 import { Button2, Button4 } from '../EnrollmentLandingPage/Button';
 import { useEnrollmentTabsValue } from '../../../StateProviders/EnrollmentTabsProvider';
 import { useFormDetailsStateValue } from '../../../StateProviders/FormDetailsProvider';
-import * as Yup from 'yup';
-import axios from 'axios';
-import Loader from '../../Loader';
 
 function EnrollmentAcademicDetails({ onEnroll, display }) {
   const [fee, setFee] = useState('Please select a class');
@@ -43,8 +40,14 @@ function EnrollmentAcademicDetails({ onEnroll, display }) {
     prevSchool: '',
     reason: '',
     health: '',
-    // uploads: [''],
+    uploads: [''],
   };
+
+  // USING FORMIK PACKAGE FOR FORM HANDLING
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+  });
 
   // FORMIK VALIDATION SCHEMA WITH YUP
   const FILE_SIZE = 1024 * 1024;
@@ -54,25 +57,19 @@ function EnrollmentAcademicDetails({ onEnroll, display }) {
     prevSchool: Yup.string().required('This field is required'),
     health: Yup.string().required('This field is required'),
     reason: Yup.string().required('This field is required'),
-    // uploads: Yup.mixed()
-    //   .nullable()
-    //   .required()
-    //   .test(
-    //     'fileSize',
-    //     'File Size is too large',
-    //     (value) => !value || (value && value.size <= FILE_SIZE)
-    //   )
-    //   .test(
-    //     'fileType',
-    //     'Unsupported File Format',
-    //     (value) => !value || (value && SUPPORTED_FORMATS.includes(value?.type))
-    //   ),
-  });
-
-  // USING FORMIK PACKAGE FOR FORM HANDLING
-  const formik = useFormik({
-    initialValues,
-    validationSchema,
+    uploads: Yup.mixed()
+      .nullable()
+      .required()
+      .test(
+        'fileSize',
+        'File Size is too large',
+        (value) => !value || (value && value.size <= FILE_SIZE)
+      )
+      .test(
+        'fileType',
+        'Unsupported File Format',
+        (value) => !value || (value && SUPPORTED_FORMATS.includes(value?.type))
+      ),
   });
 
   // SCHOOL FEES BASED ON CLASS
@@ -248,7 +245,7 @@ function EnrollmentAcademicDetails({ onEnroll, display }) {
                   ></textarea>
                 </div>
               </div>
-              <div className="flex flex-col items-center w-full">
+              <div className="flex flex-col items-center w-full" ref={uploads}>
                 <p className="text-base font-medium mb-8">Documents required</p>
                 <div className=" w-full bg-[#F8FBFF] px-10 py-14">
                   {fileRequired.map((eachFile, index) => {

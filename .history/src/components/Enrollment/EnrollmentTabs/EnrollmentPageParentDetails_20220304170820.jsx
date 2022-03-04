@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { useFormik } from 'formik';
-import Image from 'next/image';
-import { Button2, Button3 } from '../EnrollmentLandingPage/Button';
-import { useEnrollmentTabsValue } from '../../../StateProviders/EnrollmentTabsProvider';
-import { useFormDetailsStateValue } from '../../../StateProviders/FormDetailsProvider';
-import * as Yup from 'yup';
-import axios from 'axios';
-import Loader from '../../Loader';
+import React, { useEffect, useState } from "react";
+import { useFormik } from "formik";
+import Image from "next/image";
+import { Button2, Button4 } from "../EnrollmentLandingPage/Button";
+import { useEnrollmentTabsValue } from "../../../StateProviders/EnrollmentTabsProvider";
+import { useFormDetailsStateValue } from "../../../StateProviders/FormDetailsProvider";
+import * as Yup from "yup";
+import axios from "axios";
+import Loader from "../../Loader";
 
-function EnrollmentPageStudentDetails({ display }) {
+function EnrollmentPageParentDetails({ display }) {
   const [tab, dispatch] = useEnrollmentTabsValue();
-  const [image, setImage] = useState({ preview: '', raw: '' });
+  const [image, setImage] = useState({ preview: "", raw: "" });
   const [formDetailsStore, formDetailsDispatch] = useFormDetailsStateValue();
   const [loaderState, setLoaderState] = useState(false);
 
@@ -23,40 +23,40 @@ function EnrollmentPageStudentDetails({ display }) {
     }
   };
 
-  // Upload std_Passport to Cloudinary and get the url
+  // Upload sprt_Passport to Cloudinary and get the url
   const handleImageUpload = async () => {
     const formData = new FormData();
-    formData.append('image', image.raw);
-    formData.append('upload_preset', 'xwjm1oaf');
+    formData.append("image", image.raw);
+    formData.append("upload_preset", "xwjm1oaf");
 
     // create a new instance without interceptors.
     // you could also create this in its own module and import from there
     const instance = axios.create();
 
     const data = new FormData();
-    data.append('file', image.raw);
-    data.append('upload_preset', 'xwjm1oaf');
-    data.append('cloud_name', 'zichygraphs');
+    data.append("file", image.raw);
+    data.append("upload_preset", "xwjm1oaf");
+    data.append("cloud_name", "zichygraphs");
 
     const res = await instance.post(
-      'https://api.cloudinary.com/v1_1/zichygraphs/upload/',
+      "https://api.cloudinary.com/v1_1/zichygraphs/upload/",
       data
     );
     // Assign the returned url to the formik std_Passport value and Push to Form details store
-    formik.values.std_Passport = res.data.secure_url;
+    formik.values.prt_Passport = res.data.secure_url;
 
-    console.log(formik.values, 'Meet cloudinary');
+    console.log(formik.values, "Meet cloudinary");
     pushToStore(formik.values);
     setLoaderState(false);
-    changeTab(3);
-    console.log(res.data.secure_url, 'Cloudinart');
+    changeTab(4);
+    console.log(res.data.secure_url, "Cloudinart");
   };
 
   // DISPATCH ENROLLMENT TAB STATE
   const changeTab = (id) => {
-    console.log('tab: ' + id);
+    console.log("tab: " + id);
     dispatch({
-      type: 'TOGGLE_ENROLLMENT_TAB',
+      type: "TOGGLE_ENROLLMENT_TAB",
       item: id,
     });
   };
@@ -64,25 +64,25 @@ function EnrollmentPageStudentDetails({ display }) {
   //  DISPATCH STUDENTS DETAILS TO FORM DETAILS STORE
   const pushToStore = (formdetails) => {
     formDetailsDispatch({
-      type: 'ADD_TO_FORM_DETAILS_STORE',
+      type: "ADD_TO_FORM_DETAILS_STORE",
       item: formdetails,
     });
   };
 
   // INITIAL FORM VALUES
   let initialValues = {
-    std_firstName: '',
-    std_middleName: '',
-    std_lastName: '',
-    std_phoneNumber: '',
-    std_email: '',
-    std_sex: '',
-    std_dob: '',
-    std_country: '',
-    std_state: '',
-    std_lga: '',
-    std_address: '',
-    std_Passport: null,
+    prt_firstName: "",
+    prt_middleName: "",
+    prt_lastName: "",
+    prt_phoneNumber: "",
+    prt_email: "",
+    prt_relationship: "",
+    prt_occupation: "",
+    prt_country: "",
+    prt_state: "",
+    prt_lga: "",
+    prt_address: "",
+    prt_Passport: null,
   };
 
   // FORMIK ONSUBMIT
@@ -93,32 +93,32 @@ function EnrollmentPageStudentDetails({ display }) {
 
   // FORMIK VALIDATION SCHEMA WITH YUP
   const FILE_SIZE = 1024 * 1024;
-  const SUPPORTED_FORMATS = ['image/jpg', 'image/jpeg', 'image/png'];
+  const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
   const validationSchema = Yup.object({
-    std_firstName: Yup.string().required('This field is required'),
-    std_middleName: Yup.string().required('This field is required'),
-    std_lastName: Yup.string().required('This field is required'),
-    std_phoneNumber: Yup.string().required('This field is required'),
-    std_email: Yup.string()
-      .email('Invalid Email')
-      .required('This field is required'),
-    std_sex: Yup.string().required('This field is required'),
-    std_dob: Yup.string().required('This field is required'),
-    std_country: Yup.string().required('This field is required'),
-    std_state: Yup.string().required('This field is required'),
-    std_lga: Yup.string().required('This field is required'),
-    std_address: Yup.string().required('This field is required'),
-    std_Passport: Yup.mixed()
+    prt_firstName: Yup.string().required("This field is required"),
+    prt_middleName: Yup.string().required("This field is required"),
+    prt_lastName: Yup.string().required("This field is required"),
+    prt_phoneNumber: Yup.string().required("This field is required"),
+    prt_email: Yup.string()
+      .email("Invalid Email")
+      .required("This field is required"),
+    prt_relationship: Yup.string().required("This field is required"),
+    prt_occupation: Yup.string().required("This field is required"),
+    prt_country: Yup.string().required("This field is required"),
+    prt_state: Yup.string().required("This field is required"),
+    prt_lga: Yup.string().required("This field is required"),
+    prt_address: Yup.string().required("This field is required"),
+    prt_Passport: Yup.mixed()
       .nullable()
       .required()
       .test(
-        'fileSize',
-        'File Size is too large',
+        "fileSize",
+        "File Size is too large",
         (value) => !value || (value && value.size <= FILE_SIZE)
       )
       .test(
-        'fileType',
-        'Unsupported File Format',
+        "fileType",
+        "Unsupported File Format",
         (value) => !value || (value && SUPPORTED_FORMATS.includes(value?.type))
       ),
   });
@@ -130,25 +130,21 @@ function EnrollmentPageStudentDetails({ display }) {
     validationSchema,
   });
 
-  console.log(formDetailsStore, 'The Store form data');
-  console.log(formik.values, 'The student form data');
-  console.log(formik, 'The  formik');
+  console.log(formDetailsStore, "The Store form data");
+  console.log(formik.values, "The Parent form data");
+  console.log(formik, "The  formik");
 
   return (
     <section
       className={`${
-        display === 2 ? 'flex' : 'hidden'
+        display === 3 ? "flex" : "hidden"
       } px-5 md:px-10 md2:px-28 md3:px-40 text-justify w-full mt-6 sm:mt-10 mb-14 mx-auto text-[0.8em] sm:text-base`}
     >
       <Loader display={loaderState} />
+
       <div className="w-full bg-white">
-        <p className="font-bold mb-3">Student&apos;s details</p>
-        {/* <p className="text-xs sm:text-sm font-medium ">
-          Do you have a CloudNotte Student ID/Username? <span>Click here</span>
-        </p>
-        <p className="text-xs font-normal sm:font-medium mb-5">
-          This won&apos;t require you entering your information again.
-        </p> */}
+        <p className="font-bold mb-3">Parents&apos;s details</p>
+
         <form
           className="flex flex-col sm:flex-row w-full"
           onSubmit={(e) => {
@@ -157,7 +153,7 @@ function EnrollmentPageStudentDetails({ display }) {
           }}
         >
           <div className="flex flex-col items-center justify-center sm:justify-start mr-0 mt-5 sm:mr-10 sm:mt-7  w-full  sm:w-[200px] mb-7 sm:mb-0">
-            <label htmlFor="std_Passport">
+            <label htmlFor="parentPassport">
               {image.preview ? (
                 <Image
                   width={100}
@@ -165,7 +161,7 @@ function EnrollmentPageStudentDetails({ display }) {
                   src={image.preview}
                   objectFit="contain"
                   className="w-[100px] h-[100px] mb-3 sm:w-[150px] sm:h-[150px] cursor-pointer object-contain bg-gray-400 rounded-[50%] sm:border"
-                  alt="std_Passport"
+                  alt="parentPassport"
                 />
               ) : (
                 <Image
@@ -181,21 +177,21 @@ function EnrollmentPageStudentDetails({ display }) {
             {/* IMAGE INPUT */}
             <input
               type="file"
-              id="std_Passport"
-              name="std_Passport"
+              id="parentPassport"
+              name="parentPassport"
               className="hidden"
               required
               onChange={(e) => {
                 handleImageChange(e);
-                formik.setFieldValue('std_Passport', e.target.files[0]);
+                formik.setFieldValue("prt_Passport", e.target.files[0]);
               }}
             />
-            <label htmlFor="std_Passport">
+            <label htmlFor="parentPassport">
               <span className="cursor-pointer">Upload Passport</span>
             </label>
-            {formik.errors.std_Passport && (
+            {formik.errors.prt_Passport && (
               <p className="text-xs bg-red-600 rounded-md px-2 py-2 text-white">
-                {formik.errors.std_Passport}
+                {formik.errors.prt_Passport}
               </p>
             )}
           </div>
@@ -204,31 +200,31 @@ function EnrollmentPageStudentDetails({ display }) {
               <div className="mb-6 w-full sm:w-1/2 mr-0 sm:mr-10">
                 <input
                   type="text"
-                  id="std_firstName"
-                  name="std_firstName"
+                  id="prt_firstName"
+                  name="prt_firstName"
                   className="shadow-sm h-12 pl-7 border border-[#CFDBEA] text-gray-900 text-sm rounded-[5px] outline-none focus:ring-[#5f9af2] focus:border-[#5f9af2] block w-full p-2.5 bg-[#F8FBFF]   "
                   placeholder="First name"
                   onChange={formik.handleChange}
-                  value={formik.values.std_firstName}
+                  value={formik.values.prt_firstName}
                   required
                   onBlur={formik.handleBlur}
                 />
-                {formik.touched.std_firstName &&
-                  formik.errors.std_firstName && (
+                {formik.touched.prt_firstName &&
+                  formik.errors.prt_firstName && (
                     <p className="text-xs text-red-600">
-                      {formik.errors.std_firstName}
+                      {formik.errors.prt_firstName}
                     </p>
                   )}
               </div>
               <div className="mb-6 w-full sm:w-1/2">
                 <input
                   type="text"
-                  id="std_middleName"
-                  name="std_middleName"
+                  id="prt_middleName"
+                  name="prt_middleName"
                   className="shadow-sm h-12 pl-7 border border-[#CFDBEA] text-gray-900 text-sm rounded-[5px] outline-none focus:ring-[#5f9af2] focus:border-[#5f9af2] block w-full p-2.5 bg-[#F8FBFF]   "
                   placeholder="Middle name"
                   onChange={formik.handleChange}
-                  value={formik.values.std_middleName}
+                  value={formik.values.prt_middleName}
                 />
               </div>
             </div>
@@ -236,37 +232,37 @@ function EnrollmentPageStudentDetails({ display }) {
               <div className="mb-6 w-full sm:w-1/2 mr-0 sm:mr-10">
                 <input
                   type="text"
-                  id="std_lastName"
-                  name="std_lastName"
+                  id="prt_lastName"
+                  name="prt_lastName"
                   className="shadow-sm h-12 pl-7 border border-[#CFDBEA] text-gray-900 text-sm rounded-[5px] outline-none focus:ring-[#5f9af2] focus:border-[#5f9af2] block w-full p-2.5 bg-[#F8FBFF]   "
                   placeholder="Last name"
                   onChange={formik.handleChange}
-                  value={formik.values.std_lastName}
+                  value={formik.values.prt_lastName}
                   required
                   onBlur={formik.handleBlur}
                 />
-                {formik.touched.std_lastName && formik.errors.std_lastName && (
+                {formik.touched.prt_lastName && formik.errors.prt_lastName && (
                   <p className="text-xs text-red-600">
-                    {formik.errors.std_lastName}
+                    {formik.errors.prt_lastName}
                   </p>
                 )}
               </div>
               <div className=" w-full mb-6 sm:w-1/2">
                 <input
                   type="tel"
-                  id="std_phoneNumber"
-                  name="std_phoneNumber"
+                  id="prt_phoneNumber"
+                  name="prt_phoneNumber"
                   className="shadow-sm h-12 pl-7 border border-[#CFDBEA] text-gray-900 text-sm rounded-[5px] outline-none focus:ring-[#5f9af2] focus:border-[#5f9af2] block w-full p-2.5 bg-[#F8FBFF]   "
                   placeholder="Phone number"
                   onChange={formik.handleChange}
-                  value={formik.values.std_phoneNumber}
+                  value={formik.values.prt_phoneNumber}
                   required
                   onBlur={formik.handleBlur}
                 />
-                {formik.touched.std_phoneNumber &&
-                  formik.errors.std_phoneNumber && (
+                {formik.touched.prt_phoneNumber &&
+                  formik.errors.prt_phoneNumber && (
                     <p className="text-xs text-red-600">
-                      {formik.errors.std_phoneNumber}
+                      {formik.errors.prt_phoneNumber}
                     </p>
                   )}
               </div>
@@ -275,75 +271,78 @@ function EnrollmentPageStudentDetails({ display }) {
             <div className="flex flex-col sm:flex-row items-center justify-between">
               <div className="mb-6 w-full sm:w-1/2 mr-0 sm:mr-10">
                 <input
-                  type="std_email"
-                  id="std_email"
-                  name="std_email"
+                  type="prt_email"
+                  id="prt_email"
+                  name="prt_email"
                   className="shadow-sm h-12 pl-7 border border-[#CFDBEA] text-gray-900 text-sm rounded-[5px] outline-none focus:ring-[#5f9af2] focus:border-[#5f9af2] block w-full p-2.5 bg-[#F8FBFF]   "
                   placeholder="Email address"
                   onChange={formik.handleChange}
-                  value={formik.values.std_email}
+                  value={formik.values.prt_email}
                   required
                   onBlur={formik.handleBlur}
                 />
-                {formik.touched.std_email && formik.errors.std_email && (
+                {formik.touched.prt_email && formik.errors.prt_email && (
                   <p className="text-xs text-red-600">
-                    {formik.errors.std_email}
+                    {formik.errors.prt_email}
                   </p>
                 )}
               </div>
               <div className="mb-6 w-full sm:w-1/2">
-                <select
-                  id="std_sex"
-                  name="std_sex"
-                  className="shadow-sm h-12 pl-7 border border-[#CFDBEA] text-gray-900 text-sm rounded-[5px] outline-none focus:ring-[#5f9af2] focus:border-[#5f9af2] block w-full p-2.5 bg-[#F8FBFF] "
+                <input
+                  type="text"
+                  id="prt_relationship"
+                  name="prt_relationship"
+                  className="shadow-sm h-12 pl-7 border border-[#CFDBEA] text-gray-900 text-sm rounded-[5px] outline-none focus:ring-[#5f9af2] focus:border-[#5f9af2] block w-full p-2.5 bg-[#F8FBFF]   "
+                  placeholder="Relationship"
                   onChange={formik.handleChange}
-                  value={formik.values.std_sex}
+                  value={formik.values.prt_relationship}
                   required
                   onBlur={formik.handleBlur}
-                >
-                  <option selected="selected">Male</option>
-                  <option>Female</option> <option>Other</option>
-                </select>
+                />
+                {formik.touched.prt_relationship &&
+                  formik.errors.prt_relationship && (
+                    <p className="text-xs text-red-600">
+                      {formik.errors.prt_relationship}
+                    </p>
+                  )}
               </div>
-              {formik.touched.std_sex && formik.errors.std_sex && (
-                <p className="text-xs text-red-600">{formik.errors.std_sex}</p>
-              )}
             </div>
 
             <div className="flex flex-col sm:flex-row items-center justify-between">
               <div className="mb-6 w-full sm:w-1/2 mr-0 sm:mr-10">
                 <input
                   type="text"
-                  id="std_dob"
-                  name="std_dob"
+                  id="prt_occupation"
+                  name="prt_occupation"
                   className="shadow-sm h-12 pl-7 border border-[#CFDBEA] text-gray-900 text-sm rounded-[5px] outline-none focus:ring-[#5f9af2] focus:border-[#5f9af2] block w-full p-2.5 bg-[#F8FBFF]   "
-                  placeholder="Date of birth"
+                  placeholder="Occupation"
                   onChange={formik.handleChange}
-                  value={formik.values.std_dob}
+                  value={formik.values.prt_occupation}
                   required
                   onBlur={formik.handleBlur}
                 />
-                {formik.touched.std_dob && formik.errors.std_dob && (
-                  <p className="text-xs text-red-600">
-                    {formik.errors.std_dob}
-                  </p>
-                )}
+                {formik.touched.prt_occupation &&
+                  formik.errors.prt_occupation && (
+                    <p className="text-xs text-red-600">
+                      {formik.errors.prt_occupation}
+                    </p>
+                  )}
               </div>
               <div className="mb-6 w-full sm:w-1/2">
                 <input
                   type="name"
-                  id="std_country"
-                  name="std_country"
+                  id="prt_country"
+                  name="prt_country"
                   className="shadow-sm h-12 pl-7 border border-[#CFDBEA] text-gray-900 text-sm rounded-[5px] outline-none focus:ring-[#5f9af2] focus:border-[#5f9af2] block w-full p-2.5 bg-[#F8FBFF]   "
                   placeholder="Country"
                   onChange={formik.handleChange}
-                  value={formik.values.std_country}
+                  value={formik.values.prt_country}
                   required
                   onBlur={formik.handleBlur}
                 />
-                {formik.touched.std_country && formik.errors.std_country && (
+                {formik.touched.prt_country && formik.errors.prt_country && (
                   <p className="text-xs text-red-600">
-                    {formik.errors.std_country}
+                    {formik.errors.prt_country}
                   </p>
                 )}
               </div>
@@ -353,36 +352,36 @@ function EnrollmentPageStudentDetails({ display }) {
               <div className="mb-6 w-full sm:w-1/2 mr-0 sm:mr-10">
                 <input
                   type="text"
-                  id="std_state"
-                  name="std_state"
+                  id="prt_state"
+                  name="prt_state"
                   className="shadow-sm h-12 pl-7 border border-[#CFDBEA] text-gray-900 text-sm rounded-[5px] outline-none focus:ring-[#5f9af2] focus:border-[#5f9af2] block w-full p-2.5 bg-[#F8FBFF]   "
                   placeholder="State"
                   onChange={formik.handleChange}
-                  value={formik.values.std_state}
+                  value={formik.values.prt_state}
                   required
                   onBlur={formik.handleBlur}
                 />
-                {formik.touched.std_state && formik.errors.std_state && (
+                {formik.touched.prt_state && formik.errors.prt_state && (
                   <p className="text-xs text-red-600">
-                    {formik.errors.std_state}
+                    {formik.errors.prt_state}
                   </p>
                 )}
               </div>
               <div className="mb-6 w-full sm:w-1/2">
                 <input
                   type="text"
-                  id="std_lga"
-                  name="std_lga"
+                  id="prt_lga"
+                  name="prt_lga"
                   className="shadow-sm h-12 pl-7 border border-[#CFDBEA] text-gray-900 text-sm rounded-[5px] outline-none focus:ring-[#5f9af2] focus:border-[#5f9af2] block w-full p-2.5 bg-[#F8FBFF]   "
                   placeholder="LGA"
                   onChange={formik.handleChange}
-                  value={formik.values.std_lga}
+                  value={formik.values.prt_lga}
                   required
                   onBlur={formik.handleBlur}
                 />
-                {formik.touched.std_lga && formik.errors.std_lga && (
+                {formik.touched.prt_lga && formik.errors.prt_lga && (
                   <p className="text-xs text-red-600">
-                    {formik.errors.std_lga}
+                    {formik.errors.prt_lga}
                   </p>
                 )}
               </div>
@@ -390,34 +389,50 @@ function EnrollmentPageStudentDetails({ display }) {
             <div className="mb-6 w-full">
               <textarea
                 type="text"
-                id="std_address"
-                name="std_address"
+                id="prt_address"
+                name="prt_address"
                 className="shadow-sm pl-7 border border-[#CFDBEA] text-gray-900 text-sm rounded-[5px] outline-none focus:ring-[#5f9af2] focus:border-[#5f9af2] block w-full p-2.5 bg-[#F8FBFF]   "
                 placeholder="Address"
                 onChange={formik.handleChange}
-                value={formik.values.std_address}
+                value={formik.values.prt_address}
                 required
                 onBlur={formik.handleBlur}
                 rows="3"
               ></textarea>
-              {formik.touched.std_address && formik.errors.std_address && (
+              {formik.touched.prt_address && formik.errors.prt_address && (
                 <p className="text-xs text-red-600">
-                  {formik.errors.std_address}
+                  {formik.errors.prt_address}
                 </p>
               )}
             </div>
-            <div className="w-full flex justify-end">
-              <Button2
-                customStyle="w-full sm:w-[250px]"
-                py="py-3 px-1"
-                bg={`${
-                  formik.isValid
-                    ? 'bg-[#5F9AF2] text-[#E7F0FB]'
-                    : 'cursor-not-allowed bg-[#293b57] text-[#476697]'
-                }`}
+            <div className="w-full flex justify-between">
+              <div
+                onClick={() => {
+                  changeTab(2);
+                }}
               >
-                Proceed
-              </Button2>
+                <Button4
+                  customStyle="w-full border mr-10 xs:mr-0"
+                  py="py-3 px-3"
+                  bg={`bg-[#fff] text-[#8EA2BA]
+                 `}
+                >
+                  Previous
+                </Button4>
+              </div>
+              <div>
+                <Button2
+                  customStyle="w-[200px]"
+                  py="py-3 px-1"
+                  bg={`${
+                    formik.isValid
+                      ? "bg-[#5F9AF2] text-[#E7F0FB]"
+                      : "cursor-not-allowed bg-[#293b57] text-[#476697]"
+                  }`}
+                >
+                  Proceed
+                </Button2>
+              </div>
             </div>
           </div>
         </form>
@@ -426,4 +441,4 @@ function EnrollmentPageStudentDetails({ display }) {
   );
 }
 
-export default EnrollmentPageStudentDetails;
+export default EnrollmentPageParentDetails;

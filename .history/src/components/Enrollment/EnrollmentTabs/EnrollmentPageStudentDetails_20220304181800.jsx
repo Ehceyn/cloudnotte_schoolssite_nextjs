@@ -69,6 +69,13 @@ function EnrollmentPageStudentDetails({ display }) {
     });
   };
 
+  // REMOVE FROM FORM DETAILS STORE
+  const removeFromStore = () => {
+    formDetailsDispatch({
+      type: 'REMOVE_FROM_FORM_DETAILS_STORE',
+    });
+  };
+
   // INITIAL FORM VALUES
   let initialValues = {
     std_firstName: '',

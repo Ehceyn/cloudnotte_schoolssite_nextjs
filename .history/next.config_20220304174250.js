@@ -6,7 +6,7 @@ const withImages = require('next-images');
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['res.cloudinary.com', 'cloudnotte.com', 'www.pngitem.com'],
+    domains: ['res.cloudinary.com'],
   },
 };
 
