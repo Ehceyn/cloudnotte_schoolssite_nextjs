@@ -1,9 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  images: {
-    domains: ['res.cloudinary.com', 'cloudnotte.com', 'www.pngitem.com'],
-  },
 };
 
 const withCSS = require('@zeit/next-css');
@@ -38,6 +35,12 @@ module.exports = {
     });
 
     return config;
+  },
+};
+
+module.exports = {
+  images: {
+    domains: ['res.cloudinary.com', 'cloudnotte.com', 'www.pngitem.com'],
   },
 };
 
