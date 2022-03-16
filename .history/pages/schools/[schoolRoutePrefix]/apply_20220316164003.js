@@ -19,7 +19,7 @@ import { GET_SINGLE_SCHOOL } from "../../../graphql/user/queries/getSingleSchool
 import { GET_SCHOOLS } from "../../../graphql/user/queries/getSchools";
 import { FormDetailsProvider } from "../../../src/StateProviders/FormDetailsProvider";
 import { DocUploadProvider } from "../../../src/StateProviders/DocUploadProvider";
-// import EntranceExamStage from "../../../src/components/AdmissionStatus/AdmissionStatusInformation/AdmissionStatusInformationUpdateTabs/EntranceExamStage";
+import EntranceExamStage from "../../../src/components/AdmissionStatus/AdmissionStatusInformation/AdmissionStatusInformationUpdateTabs/EntranceExamStage";
 import { EntrancePageProvider } from "../../../src/StateProviders/EntrancePageProvider";
 
 function EnrollmentPage({
@@ -50,26 +50,36 @@ function EnrollmentPage({
         initialState={formInitialState}
         reducer={formReducer}
       >
-        <DocUploadProvider initialState={docInitialState} reducer={docReducer}>
-          <EnrollmentTabsProvider initialState={initialState} reducer={reducer}>
-            <EnrollmentLandingPage
-              id={id}
-              name={name}
-              country={country}
-              state={state}
-              type={type}
-              categories={categories}
-              motto={motto}
-              logoUrl={logoUrl}
-            />
-            <EnrollmentTabs
-              admissionProgrammes={admissionProgrammes}
-              schoolId={id}
-              prefix={prefix}
-              name={name}
-            />
-          </EnrollmentTabsProvider>
-        </DocUploadProvider>
+        <EntrancePageProvider
+          initialState={entrancePageInitialState}
+          reducer={entrancePageReducer}
+        >
+          <DocUploadProvider
+            initialState={docInitialState}
+            reducer={docReducer}
+          >
+            <EnrollmentTabsProvider
+              initialState={initialState}
+              reducer={reducer}
+            >
+              <EnrollmentLandingPage
+                id={id}
+                name={name}
+                country={country}
+                state={state}
+                type={type}
+                categories={categories}
+                motto={motto}
+                logoUrl={logoUrl}
+              />
+              <EnrollmentTabs
+                admissionProgrammes={admissionProgrammes}
+                schoolId={id}
+              />
+            </EnrollmentTabsProvider>
+            <EntranceExamStage />
+          </DocUploadProvider>
+        </EntrancePageProvider>
       </FormDetailsProvider>
     </>
   );

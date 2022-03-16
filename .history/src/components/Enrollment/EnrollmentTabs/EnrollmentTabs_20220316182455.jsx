@@ -5,7 +5,7 @@ import EnrollmentPageStudentDetails from "./EnrollmentPageStudentDetails";
 import EnrollmentPageSummary from "./EnrollmentPageSummary";
 import { useEnrollmentTabsValue } from "../../../StateProviders/EnrollmentTabsProvider";
 
-function EnrollmentTabs({ admissionProgrammes, schoolId, prefix, name }) {
+function EnrollmentTabs({ admissionProgrammes, schoolId, prefix }) {
   const [tab] = useEnrollmentTabsValue();
 
   return (
@@ -18,7 +18,6 @@ function EnrollmentTabs({ admissionProgrammes, schoolId, prefix, name }) {
           admissionProgrammes={admissionProgrammes}
           schoolId={schoolId}
           prefix={prefix}
-          name={name}
           display={tab}
         />
       </div>

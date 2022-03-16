@@ -242,7 +242,7 @@ function EnrollmentAcademicDetails({
             // Check if there is an application fee, submit if true else redirect to payment portal
 
             console.log(formDetailsStore.state, "Here i am");
-            let formdata = formDetailsStore.state;
+            let data = formDetailsStore.state;
             console.log(data, "our data");
             let docData = docUploadStore?.state;
             let myObj = {
@@ -255,13 +255,13 @@ function EnrollmentAcademicDetails({
               programmeId: "",
               documents: [],
             };
-            Object.keys(formdata[0]).forEach((key) => {
+            Object.keys(data[0]).forEach((key) => {
               if (key !== "Passport") {
                 if (key !== "dateOfBirth") {
-                  myObj.studentDetails[key] = formdata[0][key];
+                  myObj.studentDetails[key] = data[0][key];
                 } else {
                   // format the date of birth
-                  const unformattedDate = formdata[0][key];
+                  const unformattedDate = data[0][key];
                   const formattedDate =
                     unformattedDate.split("/").reverse().join("-") +
                     "T00:00:00Z";
@@ -271,17 +271,16 @@ function EnrollmentAcademicDetails({
                 }
               }
             });
-            Object.keys(formdata[1]).forEach((key) => {
+            Object.keys(data[1]).forEach((key) => {
               if (key !== "Passport") {
-                myObj.parentDetails[key] = formdata[1][key];
+                myObj.parentDetails[key] = data[1][key];
               }
             });
             myObj.schoolId = schoolId;
-            myObj.healthIssues = formdata[2].healthIssues;
-            myObj.previousSchoolName = formdata[2].previousSchoolName;
-            myObj.previousSchoolLeaveReason =
-              formdata[2].previousSchoolLeaveReason;
-            myObj.programmeId = formdata[2].programmeId;
+            myObj.healthIssues = data[2].healthIssues;
+            myObj.previousSchoolName = data[2].previousSchoolName;
+            myObj.previousSchoolLeaveReason = data[2].previousSchoolLeaveReason;
+            myObj.programmeId = data[2].programmeId;
             myObj.documents = docData;
 
             submitApplicationToDB({
@@ -293,7 +292,6 @@ function EnrollmentAcademicDetails({
                 myObj,
                 data?.createNewAdmissionApplication.applicationNumber
               );
-              console.log(data, "uni data");
               formik.resetForm();
             } else {
               router.push(

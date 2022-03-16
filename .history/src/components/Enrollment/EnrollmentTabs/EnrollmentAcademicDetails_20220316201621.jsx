@@ -17,7 +17,6 @@ function EnrollmentAcademicDetails({
   display,
   schoolId,
   prefix,
-  name,
 }) {
   const router = useRouter();
   const [fee, setFee] = useState(
@@ -64,20 +63,6 @@ function EnrollmentAcademicDetails({
 
   console.log(docUploadStore, "docUploadStore? response");
 
-  // Flutterwave Script tag
-  useEffect(() => {
-    const script = document.createElement("script");
-
-    script.src = "https://checkout.flutterwave.com/v3.js";
-    script.async = true;
-
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
   // DISPATCH ENROLLMENT TAB STATE
   const changeTab = (id) => {
     console.log("tab: " + id);
@@ -114,11 +99,11 @@ function EnrollmentAcademicDetails({
     "Welome bro"
   );
 
-  // if (data) {
-  //   router.push(
-  //     `/schools/${prefix}/${data?.createNewAdmissionApplication.applicationNumber}`
-  //   );
-  // }
+  if (data) {
+    router.push(
+      `/schools/${prefix}/${data?.createNewAdmissionApplication.applicationNumber}`
+    );
+  }
 
   // INITIAL FORM VALUES
   let initialValues = {
@@ -180,42 +165,27 @@ function EnrollmentAcademicDetails({
   console.log(formik, "The  formik");
 
   // Flutter wave Payment
-  function makePayment(details, id) {
+  function makePayment() {
     FlutterwaveCheckout({
       public_key: "FLWPUBK_TEST-241406ed25076dcda77bf464e54a4985-X",
-      tx_ref: new Date().getTime(),
-      amount: fee,
+      tx_ref: "titanic-48981487343MDI0NzMx",
+      amount: 54600,
       currency: "NGN",
       payment_options: "card, banktransfer, ussd",
-      // redirect_url: `https://localhost:3000/schools/${prefix}/${data?.createNewAdmissionApplication.applicationNumber}`,
+      redirect_url: "https://glaciers.titanic.com/handle-flutterwave-payment",
       meta: {
-        applicationJsonPayload: JSON.stringify(details),
-        schoolId: details.schoolId,
-        admissionProgramme: details.programmeId,
-        userFullName:
-          details.studentDetails.firstName +
-          " " +
-          details.studentDetails.lastName,
+        consumer_id: 23,
+        consumer_mac: "92a3-912ba-1192a",
       },
       customer: {
-        email: details.parentDetails.email,
-        phone_number: details.parentDetails.email,
-        name: details.studentDetails.email,
+        email: "rose@unsinkableship.com",
+        phone_number: "08102909304",
+        name: "Rose DeWitt Bukater",
       },
       customizations: {
-        title: name,
-        description: `Payment for Application to ${details.selectClass}`,
-        logo: "https://res.cloudinary.com/ugomatt/image/upload/v1647277984/cloudnotte_icon_soqc6y.png",
-      },
-
-      callback: function (payment) {
-        console.log(payment.id);
-        router.push(`/schools/${prefix}/${id}`);
-      },
-      onclose: function (incomplete) {
-        if (incomplete === true) {
-          alert("Payment cancelled");
-        }
+        title: "The Titanic Store",
+        description: "Payment for an awesome cruise",
+        logo: "https://www.logolynx.com/images/logolynx/22/2239ca38f5505fbfce7e55bbc0604386.jpeg",
       },
     });
   }
@@ -242,7 +212,7 @@ function EnrollmentAcademicDetails({
             // Check if there is an application fee, submit if true else redirect to payment portal
 
             console.log(formDetailsStore.state, "Here i am");
-            let formdata = formDetailsStore.state;
+            let data = formDetailsStore.state;
             console.log(data, "our data");
             let docData = docUploadStore?.state;
             let myObj = {
@@ -255,13 +225,13 @@ function EnrollmentAcademicDetails({
               programmeId: "",
               documents: [],
             };
-            Object.keys(formdata[0]).forEach((key) => {
+            Object.keys(data[0]).forEach((key) => {
               if (key !== "Passport") {
                 if (key !== "dateOfBirth") {
-                  myObj.studentDetails[key] = formdata[0][key];
+                  myObj.studentDetails[key] = data[0][key];
                 } else {
                   // format the date of birth
-                  const unformattedDate = formdata[0][key];
+                  const unformattedDate = data[0][key];
                   const formattedDate =
                     unformattedDate.split("/").reverse().join("-") +
                     "T00:00:00Z";
@@ -271,34 +241,26 @@ function EnrollmentAcademicDetails({
                 }
               }
             });
-            Object.keys(formdata[1]).forEach((key) => {
+            Object.keys(data[1]).forEach((key) => {
               if (key !== "Passport") {
-                myObj.parentDetails[key] = formdata[1][key];
+                myObj.parentDetails[key] = data[1][key];
               }
             });
             myObj.schoolId = schoolId;
-            myObj.healthIssues = formdata[2].healthIssues;
-            myObj.previousSchoolName = formdata[2].previousSchoolName;
-            myObj.previousSchoolLeaveReason =
-              formdata[2].previousSchoolLeaveReason;
-            myObj.programmeId = formdata[2].programmeId;
+            myObj.healthIssues = data[2].healthIssues;
+            myObj.previousSchoolName = data[2].previousSchoolName;
+            myObj.previousSchoolLeaveReason = data[2].previousSchoolLeaveReason;
+            myObj.programmeId = data[2].programmeId;
             myObj.documents = docData;
 
-            submitApplicationToDB({
-              variables: { submitVar: myObj },
-            });
             // CALL THE CREATE_NEW_ADMISSION_APPLICATION MUTATION
             if (fee > 0) {
-              makePayment(
-                myObj,
-                data?.createNewAdmissionApplication.applicationNumber
-              );
-              console.log(data, "uni data");
+              submitApplicationToDB({
+                variables: { submitVar: myObj },
+              });
               formik.resetForm();
             } else {
-              router.push(
-                `/schools/${prefix}/${data?.createNewAdmissionApplication.applicationNumber}`
-              );
+              console.log("No fee");
             }
           }}
         >

@@ -50,26 +50,36 @@ function EnrollmentPage({
         initialState={formInitialState}
         reducer={formReducer}
       >
-        <DocUploadProvider initialState={docInitialState} reducer={docReducer}>
-          <EnrollmentTabsProvider initialState={initialState} reducer={reducer}>
-            <EnrollmentLandingPage
-              id={id}
-              name={name}
-              country={country}
-              state={state}
-              type={type}
-              categories={categories}
-              motto={motto}
-              logoUrl={logoUrl}
-            />
-            <EnrollmentTabs
-              admissionProgrammes={admissionProgrammes}
-              schoolId={id}
-              prefix={prefix}
-              name={name}
-            />
-          </EnrollmentTabsProvider>
-        </DocUploadProvider>
+        <EntrancePageProvider
+          initialState={entrancePageInitialState}
+          reducer={entrancePageReducer}
+        >
+          <DocUploadProvider
+            initialState={docInitialState}
+            reducer={docReducer}
+          >
+            <EnrollmentTabsProvider
+              initialState={initialState}
+              reducer={reducer}
+            >
+              <EnrollmentLandingPage
+                id={id}
+                name={name}
+                country={country}
+                state={state}
+                type={type}
+                categories={categories}
+                motto={motto}
+                logoUrl={logoUrl}
+              />
+              <EnrollmentTabs
+                admissionProgrammes={admissionProgrammes}
+                schoolId={id}
+              />
+              {/* <EntranceExamStage /> */}
+            </EnrollmentTabsProvider>
+          </DocUploadProvider>
+        </EntrancePageProvider>
       </FormDetailsProvider>
     </>
   );

@@ -10,16 +10,9 @@ import Loader from "../../Loader";
 import { useMutation } from "@apollo/client";
 import { CREATE_NEW_ADMISSION_APPLICATION } from "../../../../graphql/user/mutations/createNewAdmissionApplication";
 import { useDocUploadStateValue } from "../../../StateProviders/DocUploadProvider";
-import { useRouter } from "next/router";
+import { useEntrancePageStateValue } from "../../../StateProviders/EntrancePageProvider";
 
-function EnrollmentAcademicDetails({
-  admissionProgrammes,
-  display,
-  schoolId,
-  prefix,
-  name,
-}) {
-  const router = useRouter();
+function EnrollmentAcademicDetails({ admissionProgrammes, display, schoolId }) {
   const [fee, setFee] = useState(
     "Choose a programme to see documents required"
   );
@@ -27,6 +20,7 @@ function EnrollmentAcademicDetails({
   const [loaderState, setLoaderState] = useState(false);
   const [formDetailsStore, formDetailsDispatch] = useFormDetailsStateValue();
   const [docUploadStore, docUploadDispatch] = useDocUploadStateValue();
+  const [entrancePageStore, entrancePageDispatch] = useEntrancePageStateValue();
   const [allDocs, setAllDocs] = useState();
   const [docForUpload, setDocForUpload] = useState();
   const [docForUploadName, setDocForUploadName] = useState();
@@ -64,20 +58,6 @@ function EnrollmentAcademicDetails({
 
   console.log(docUploadStore, "docUploadStore? response");
 
-  // Flutterwave Script tag
-  useEffect(() => {
-    const script = document.createElement("script");
-
-    script.src = "https://checkout.flutterwave.com/v3.js";
-    script.async = true;
-
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
   // DISPATCH ENROLLMENT TAB STATE
   const changeTab = (id) => {
     console.log("tab: " + id);
@@ -110,14 +90,15 @@ function EnrollmentAcademicDetails({
   // }
   if (error) console.log(JSON.stringify(error, null, 2));
   console.log(
-    data?.createNewAdmissionApplication.applicationNumber,
+    data.createNewAdmissionApplication.applicationNumber,
     "Welome bro"
   );
 
   // if (data) {
-  //   router.push(
-  //     `/schools/${prefix}/${data?.createNewAdmissionApplication.applicationNumber}`
-  //   );
+  //   entrancePageDispatch({
+  //     type: "ADD_TO_ENTRANCE_PAGE_STORE",
+  //     item: data,
+  //   });
   // }
 
   // INITIAL FORM VALUES
@@ -179,47 +160,6 @@ function EnrollmentAcademicDetails({
   console.log(formik.values, "The Parent form data");
   console.log(formik, "The  formik");
 
-  // Flutter wave Payment
-  function makePayment(details, id) {
-    FlutterwaveCheckout({
-      public_key: "FLWPUBK_TEST-241406ed25076dcda77bf464e54a4985-X",
-      tx_ref: new Date().getTime(),
-      amount: fee,
-      currency: "NGN",
-      payment_options: "card, banktransfer, ussd",
-      // redirect_url: `https://localhost:3000/schools/${prefix}/${data?.createNewAdmissionApplication.applicationNumber}`,
-      meta: {
-        applicationJsonPayload: JSON.stringify(details),
-        schoolId: details.schoolId,
-        admissionProgramme: details.programmeId,
-        userFullName:
-          details.studentDetails.firstName +
-          " " +
-          details.studentDetails.lastName,
-      },
-      customer: {
-        email: details.parentDetails.email,
-        phone_number: details.parentDetails.email,
-        name: details.studentDetails.email,
-      },
-      customizations: {
-        title: name,
-        description: `Payment for Application to ${details.selectClass}`,
-        logo: "https://res.cloudinary.com/ugomatt/image/upload/v1647277984/cloudnotte_icon_soqc6y.png",
-      },
-
-      callback: function (payment) {
-        console.log(payment.id);
-        router.push(`/schools/${prefix}/${id}`);
-      },
-      onclose: function (incomplete) {
-        if (incomplete === true) {
-          alert("Payment cancelled");
-        }
-      },
-    });
-  }
-
   return (
     <section
       className={`${
@@ -242,7 +182,7 @@ function EnrollmentAcademicDetails({
             // Check if there is an application fee, submit if true else redirect to payment portal
 
             console.log(formDetailsStore.state, "Here i am");
-            let formdata = formDetailsStore.state;
+            let data = formDetailsStore.state;
             console.log(data, "our data");
             let docData = docUploadStore?.state;
             let myObj = {
@@ -255,13 +195,13 @@ function EnrollmentAcademicDetails({
               programmeId: "",
               documents: [],
             };
-            Object.keys(formdata[0]).forEach((key) => {
+            Object.keys(data[0]).forEach((key) => {
               if (key !== "Passport") {
                 if (key !== "dateOfBirth") {
-                  myObj.studentDetails[key] = formdata[0][key];
+                  myObj.studentDetails[key] = data[0][key];
                 } else {
                   // format the date of birth
-                  const unformattedDate = formdata[0][key];
+                  const unformattedDate = data[0][key];
                   const formattedDate =
                     unformattedDate.split("/").reverse().join("-") +
                     "T00:00:00Z";
@@ -271,34 +211,26 @@ function EnrollmentAcademicDetails({
                 }
               }
             });
-            Object.keys(formdata[1]).forEach((key) => {
+            Object.keys(data[1]).forEach((key) => {
               if (key !== "Passport") {
-                myObj.parentDetails[key] = formdata[1][key];
+                myObj.parentDetails[key] = data[1][key];
               }
             });
             myObj.schoolId = schoolId;
-            myObj.healthIssues = formdata[2].healthIssues;
-            myObj.previousSchoolName = formdata[2].previousSchoolName;
-            myObj.previousSchoolLeaveReason =
-              formdata[2].previousSchoolLeaveReason;
-            myObj.programmeId = formdata[2].programmeId;
+            myObj.healthIssues = data[2].healthIssues;
+            myObj.previousSchoolName = data[2].previousSchoolName;
+            myObj.previousSchoolLeaveReason = data[2].previousSchoolLeaveReason;
+            myObj.programmeId = data[2].programmeId;
             myObj.documents = docData;
 
-            submitApplicationToDB({
-              variables: { submitVar: myObj },
-            });
             // CALL THE CREATE_NEW_ADMISSION_APPLICATION MUTATION
             if (fee > 0) {
-              makePayment(
-                myObj,
-                data?.createNewAdmissionApplication.applicationNumber
-              );
-              console.log(data, "uni data");
+              submitApplicationToDB({
+                variables: { submitVar: myObj },
+              });
               formik.resetForm();
             } else {
-              router.push(
-                `/schools/${prefix}/${data?.createNewAdmissionApplication.applicationNumber}`
-              );
+              console.log("No fee");
             }
           }}
         >

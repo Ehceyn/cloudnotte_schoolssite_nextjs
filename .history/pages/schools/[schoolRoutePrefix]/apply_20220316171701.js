@@ -52,22 +52,26 @@ function EnrollmentPage({
       >
         <DocUploadProvider initialState={docInitialState} reducer={docReducer}>
           <EnrollmentTabsProvider initialState={initialState} reducer={reducer}>
-            <EnrollmentLandingPage
-              id={id}
-              name={name}
-              country={country}
-              state={state}
-              type={type}
-              categories={categories}
-              motto={motto}
-              logoUrl={logoUrl}
-            />
-            <EnrollmentTabs
-              admissionProgrammes={admissionProgrammes}
-              schoolId={id}
-              prefix={prefix}
-              name={name}
-            />
+            <EntrancePageProvider
+              initialState={entrancePageInitialState}
+              reducer={entrancePageReducer}
+            >
+              <EnrollmentLandingPage
+                id={id}
+                name={name}
+                country={country}
+                state={state}
+                type={type}
+                categories={categories}
+                motto={motto}
+                logoUrl={logoUrl}
+              />
+              <EnrollmentTabs
+                admissionProgrammes={admissionProgrammes}
+                schoolId={id}
+              />
+              {/* <EntranceExamStage /> */}
+            </EntrancePageProvider>
           </EnrollmentTabsProvider>
         </DocUploadProvider>
       </FormDetailsProvider>

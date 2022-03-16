@@ -1,5 +1,5 @@
 import React from "react";
-// import AdmissionStatusSchoolHead from "./AdmissionStatusSchoolHead";
+import AdmissionStatusSchoolHead from "./AdmissionStatusSchoolHead";
 
 function AdmissionStatusLandingPage({ data }) {
   console.log("my data ===>", data);
@@ -25,7 +25,7 @@ function AdmissionStatusLandingPage({ data }) {
             Print Admission Slip
           </p>
         </div>
-        {/* <AdmissionStatusSchoolHead data={data} /> */}
+        <AdmissionStatusSchoolHead data={data} />
       </section>
     </>
   );

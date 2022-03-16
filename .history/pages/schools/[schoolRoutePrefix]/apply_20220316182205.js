@@ -66,7 +66,6 @@ function EnrollmentPage({
               admissionProgrammes={admissionProgrammes}
               schoolId={id}
               prefix={prefix}
-              name={name}
             />
           </EnrollmentTabsProvider>
         </DocUploadProvider>
