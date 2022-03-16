@@ -116,7 +116,7 @@ function EnrollmentAcademicDetails({
 
   // if (data) {
   //   router.push(
-  //     `/schools/applicationSuccess/${prefix}/${data?.createNewAdmissionApplication.applicationNumber}`
+  //     `/schools/${prefix}/${data?.createNewAdmissionApplication.applicationNumber}`
   //   );
   // }
 
@@ -209,7 +209,7 @@ function EnrollmentAcademicDetails({
 
       callback: function (payment) {
         console.log(payment.id);
-        router.push(`/schools/applicationSuccess/${id}`);
+        router.push(`/schools/${id}`);
       },
       onclose: function (incomplete) {
         if (incomplete === true) {
@@ -296,7 +296,7 @@ function EnrollmentAcademicDetails({
               formik.resetForm();
             } else {
               router.push(
-                `/schools/applicationSuccess/${data?.createNewAdmissionApplication.applicationNumber}`
+                `/schools/${data?.createNewAdmissionApplication.applicationNumber}`
               );
             }
           }}

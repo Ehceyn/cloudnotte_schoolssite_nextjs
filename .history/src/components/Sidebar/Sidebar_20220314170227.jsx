@@ -9,7 +9,7 @@ function Sidebar(props) {
       <div className="">
         <article className=" pt-10 pl-9 pb-5 ">
           <Image
-            src="https://res.cloudinary.com/ugomatt/image/upload/v1647277984/cloudnotte_icon_soqc6y.png"
+            src="/assets/images/small-logo.png"
             width={80}
             height={80}
             alt=""
