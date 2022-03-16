@@ -6,7 +6,7 @@ function docUpload(state = docInitialState, action) {
     case "ADD_TO_DOC_STORE":
       let obj = action.item;
       dataStore.push(obj);
-      console.log(dataStore, "The formstore");
+      console.log(dataStore, "The docstore");
       state = dataStore;
 
       console.log(state, "Added DOC");

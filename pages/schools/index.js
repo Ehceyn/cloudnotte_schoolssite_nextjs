@@ -97,6 +97,10 @@ function Home({ data }) {
                   logoUrl={school.logoUrl}
                   prefix={school.prefix}
                   type={school.type}
+                  isSmartSchool={school.isSmartSchool}
+                  longDescription={school.admissionInfo.longDescription}
+                  shortDescription={school.admissionInfo.shortDescription}
+                  assetsUrl={school.admissionInfo.assetsUrl}
                 />
               );
             })}
@@ -106,7 +110,7 @@ function Home({ data }) {
           <RegisterSchoolPage display={displayRegisterSchoolPage} />
 
           <div className="bg-white fixed right-0 h-full w-1/4  border-l hidden md2:flex">
-            <RightBar />
+            <RightBar schools={schools.getSchools} />
           </div>
         </div>
         <BottomNavbar
@@ -122,6 +126,7 @@ function Home({ data }) {
           onDisplayRegisterSchoolPage={() => setDisplayRegisterSchoolPage(true)}
           onDisplayHomePage={() => setDisplayRegisterSchoolPage(false)}
         />
+
         <SearchbarFixed display={searchbarFixed} />
 
         {/* ========================================== MODALS ===================================== */}

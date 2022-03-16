@@ -3,7 +3,7 @@ import Button from "../Home/Button";
 import Image from "next/image";
 import styles from "../../../styles/Home.module.css";
 
-function RightBar() {
+function RightBar({ schools }) {
   return (
     <>
       <div className={styles.scrollbar}>
@@ -35,63 +35,31 @@ function RightBar() {
           <div>
             <p className="font-bold">Top Tech Schools</p>
           </div>
-          <div className=" w-full my-3 h-fit items-start bg-white flex cursor-pointer">
-            <article className="mr-3">
-              <Image
-                src="/assets/images/top-tech-schools.png"
-                alt=""
-                width={60}
-                height={60}
-              />
-            </article>
-            <article className="">
-              <p className="font-semibold">Royal college schools</p>
-              <p>Port Harcourt - Nigeria</p>
-            </article>
-          </div>
-
-          <div className=" w-full my-3 h-fit items-start bg-white flex cursor-pointer">
-            <article className="mr-3">
-              <Image
-                src="/assets/images/top-tech-schools2.png"
-                alt=""
-                width={60}
-                height={60}
-              />
-            </article>
-            <article className="">
-              <p className="font-semibold">Royal college schools</p>
-              <p>Port Harcourt - Nigeria</p>
-            </article>
-          </div>
-          <div className=" w-full my-3 h-fit items-start bg-white flex cursor-pointer">
-            <article className="mr-3">
-              <Image
-                src="/assets/images/top-tech-schools.png"
-                alt=""
-                width={60}
-                height={60}
-              />
-            </article>
-            <article className="">
-              <p className="font-semibold">Royal college schools</p>
-              <p>Port Harcourt - Nigeria</p>
-            </article>
-          </div>
-          <div className=" w-full my-3 h-fit items-start bg-white flex cursor-pointer">
-            <article className="mr-3">
-              <Image
-                src="/assets/images/top-tech-schools2.png"
-                alt=""
-                width={60}
-                height={60}
-              />
-            </article>
-            <article className="">
-              <p className="font-semibold">Royal college schools</p>
-              <p>Port Harcourt - Nigeria</p>
-            </article>
-          </div>
+          {schools
+            ?.filter((i) => i.isSmartSchool)
+            .map((smartSchool) => {
+              <div className=" w-full my-3 h-fit items-start bg-white flex cursor-pointer">
+                <article className="mr-3">
+                  <Image
+                    src={
+                      smartSchool.logoUrl
+                        ? smartSchool.logoUrl
+                        : "/assets/images/top-tech-schools.png"
+                    }
+                    alt=""
+                    width={60}
+                    height={60}
+                    className="bg-gray-500"
+                  />
+                </article>
+                <article className="">
+                  <p className="font-semibold">{smartSchool.name}</p>
+                  <p>
+                    {smartSchool.state} - {smartSchool.country}
+                  </p>
+                </article>
+              </div>;
+            })}
         </article>
         {/* <article className="bg-white pl-8 pr-8 pb-5 w-full capitalize flex flex-col justify-center">
           <Button

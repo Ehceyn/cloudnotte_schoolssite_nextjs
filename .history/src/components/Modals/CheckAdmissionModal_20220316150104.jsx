@@ -64,8 +64,8 @@ function CheckAdmissionModal(props) {
         </div>
 
         <Link
-          href="/schools/admission_status/[admissionId]"
-          as={`/schools/admission_status/${input.admissionNo}`}
+          href="/admission_status/[admissionId]"
+          as={`/admission_status/${input.admissionNo}`}
           passHref
         >
           <article

@@ -217,7 +217,6 @@ function EnrollmentAcademicDetails({ admissionProgrammes, display, schoolId }) {
                 variables: { submitVar: myObj },
               });
               formik.resetForm();
-              window.location.href = "/admission/";
             } else {
               console.log("No fee");
             }

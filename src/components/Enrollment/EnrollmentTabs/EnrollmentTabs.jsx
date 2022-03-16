@@ -7,31 +7,6 @@ import { useEnrollmentTabsValue } from "../../../StateProviders/EnrollmentTabsPr
 
 function EnrollmentTabs({ admissionProgrammes, schoolId }) {
   const [tab] = useEnrollmentTabsValue();
-  // const [mountedTab, setMountedTab] = useState(1);
-
-  const changeMounted = (tab) => {
-    console.log("tabb: " + tab);
-    switch (tab) {
-      case 1:
-        setMountedTab(1);
-        break;
-      case 2:
-        setMountedTab(2);
-        break;
-      case 3:
-        setMountedTab(3);
-        break;
-      case 4:
-        setMountedTab(4);
-        break;
-      default:
-        setMountedTab(1);
-    }
-  };
-
-  // useEffect(() => {
-  //   changeMounted(tab);
-  // }, [tab]);
 
   return (
     <>

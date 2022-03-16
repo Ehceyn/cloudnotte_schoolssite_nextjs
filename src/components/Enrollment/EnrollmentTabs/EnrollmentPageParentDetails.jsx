@@ -31,7 +31,7 @@ function EnrollmentPageParentDetails({ display }) {
           { headers }
         )
         .then((res) => {
-          formik.setFieldValue("PassportUrl", res.data.url);
+          formik.setFieldValue("passportUrl", res.data.url);
           formik.setFieldValue("Passport", image.raw);
           console.log(formik, "The url response");
         });
@@ -84,7 +84,7 @@ function EnrollmentPageParentDetails({ display }) {
     state: "",
     lga: "",
     address: "",
-    PassportUrl: null,
+    passportUrl: null,
   };
 
   // FORMIK ONSUBMIT

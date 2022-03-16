@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import { SchoolPersonalPageTabsProvider } from "../../src/StateProviders/SchoolPersonalPageTabsProvider";
 import reducer, {
   initialState,
@@ -14,7 +15,6 @@ import { BsFillPlayFill } from "react-icons/bs";
 import { initializeApollo } from "../../lib/apolloClient";
 import { GET_SCHOOLS } from "../../graphql/user/queries/getSchools";
 import { GET_SINGLE_SCHOOL } from "../../graphql/user/queries/getSingleSchool";
-import { useQuery } from "@apollo/client";
 
 function SchoolsPersonalPage({
   data: {
@@ -32,6 +32,7 @@ function SchoolsPersonalPage({
       categories,
       motto,
       logoUrl,
+      admissionInfo: { longDescription, anthemUrl, assetsUrl, status },
     },
   },
 }) {
@@ -63,12 +64,16 @@ function SchoolsPersonalPage({
                 categories={categories}
                 motto={motto}
                 logoUrl={logoUrl}
+                assetsUrl={assetsUrl}
+                anthemUrl={anthemUrl}
+                status={status}
               />
               <section>
                 <div className="bg-white h-full md:px-14 pt-10">
                   <SchoolPersonalPageTabs
                     onCallReiviewSchoolModal={() => {
                       console.log("onCallReiviewSchoolModal");
+                      longDescription = { longDescription };
                       setDisplayReviewSchoolModal(!displayReviewSchoolModal);
                     }}
                   />
@@ -80,16 +85,22 @@ function SchoolsPersonalPage({
               >
                 <article className="bg-[#FFF] border border-[#E7F0FB] pl-0 pr-0 py-3 sm:py-5 w-full capitalize h-fit flex justify-between">
                   <div className=" w-full flex items-center justify-between px-5 md:px-14 ">
-                    <div className="w-full cursor-pointer">
-                      <CardButton
-                        py=" xs:h-[70px] py-2 xs:py-8 w-full "
-                        px="xs:text-base sm:text-lg text-[13px] px-2 xs:px-14"
-                        customStyle="bg-[#5f9af2] text-white"
-                      >
-                        <GiGraduateCap className="w-5 h-5 mr-1" />
-                        Enroll For Admission
-                      </CardButton>
-                    </div>{" "}
+                    <Link
+                      href="/schools/[schoolRoutePrefix]/apply"
+                      as={`/schools/${prefix}/apply`}
+                      passHref
+                    >
+                      <div className="w-full cursor-pointer">
+                        <CardButton
+                          py=" xs:h-[70px] py-2 xs:py-8 w-full "
+                          px="xs:text-base sm:text-lg text-[13px] px-2 xs:px-14"
+                          customStyle="bg-[#5f9af2] text-white"
+                        >
+                          <GiGraduateCap className="w-5 h-5 mr-1" />
+                          Enroll For Admission
+                        </CardButton>
+                      </div>
+                    </Link>
                     <article className="border rounded-sm px-1 sm:px-2 py-1 sm:py-2 ml-2 h-fit">
                       <IoIosCall className="w-7 h-7 sm:w-14 sm:h-14 fill-[#f44336]" />
                     </article>

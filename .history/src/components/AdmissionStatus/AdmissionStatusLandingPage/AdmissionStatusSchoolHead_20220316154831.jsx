@@ -10,15 +10,15 @@ function AdmissionStatusSchoolHead({ data }) {
           width={150}
           height={150}
           src={
-            data.school.logoUrl
-              ? data.school.logoUrl
+            data.studentDetails.passportUrl
+              ? data.studentDetails.passportUrl
               : "/assets/images/school-profile-img.png"
           }
           className="w-[60px] h-[60px] sm:w-[150px] sm:h-[150px] object-contain bg-gray-400 rounded-[50%] sm:border-8 border-white"
           alt=""
         />
         <p className="text-center text-2xl font-bold mt-2">
-          {data.school.name}
+          {data.studentDetails.firstName}
         </p>
         <p className="text-xs md:text-sm flex">
           {Array(5)
@@ -36,7 +36,7 @@ function AdmissionStatusSchoolHead({ data }) {
             ))}
         </p>
         <p className=" sm:text-[0.9em] md:text-[1.2em]">
-          {data.school.state}, {data.school.country}
+          {data.state}, {data.country}
         </p>
       </div>
     )

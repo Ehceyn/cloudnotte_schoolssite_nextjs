@@ -24,6 +24,10 @@ function SchoolsPersonalLandingPage({
   categories,
   motto,
   logoUrl,
+  assetsUrl,
+  longDescription,
+  anthemUrl,
+  status,
 }) {
   const [navbarFixed, setNavbarFixed] = useState(false);
 
@@ -61,60 +65,23 @@ function SchoolsPersonalLandingPage({
         <div>
           <div className="max-h-[800px] shadow-sm">
             <Slider {...settings}>
-              <div>
-                <Image
-                  width={1500}
-                  height={800}
-                  src="/assets/images/school-ad-img-1.png"
-                  className="w-full max-h-[800px] aspect-video sm:rounded-br-md sm:rounded-bl-lg "
-                  alt=""
-                />
-              </div>
-              <div>
-                <Image
-                  width={1500}
-                  height={800}
-                  src="/assets/images/school-ad-img-1.png"
-                  className="w-full max-h-[800px] aspect-video sm:rounded-br-md sm:rounded-bl-lg"
-                  alt=""
-                />
-              </div>
-              <div>
-                <Image
-                  width={1500}
-                  height={800}
-                  src="/assets/images/school-ad-img-1.png"
-                  className="w-full max-h-[800px] aspect-video sm:rounded-br-md sm:rounded-bl-lg"
-                  alt=""
-                />
-              </div>
-              <div>
-                <Image
-                  width={1500}
-                  height={800}
-                  src="/assets/images/school-ad-img-1.png"
-                  className="w-full max-h-[800px] aspect-video sm:rounded-br-md sm:rounded-bl-lg"
-                  alt=""
-                />
-              </div>
-              <div>
-                <Image
-                  width={1500}
-                  height={800}
-                  src="/assets/images/school-ad-img-1.png"
-                  className="w-full max-h-[800px] aspect-video sm:rounded-br-md sm:rounded-bl-lg"
-                  alt=""
-                />
-              </div>
-              <div>
-                <Image
-                  width={1500}
-                  height={800}
-                  src="/assets/images/school-ad-img-1.png"
-                  className="w-full max-h-[800px] aspect-video sm:rounded-br-md sm:rounded-bl-lg"
-                  alt=""
-                />
-              </div>
+              {assetsUrl.map((asset, index) => {
+                return (
+                  <div key={index}>
+                    <Image
+                      width={1500}
+                      height={700}
+                      src={
+                        asset !== ""
+                          ? asset
+                          : `/assets/images/school-ad-img-1.png`
+                      }
+                      className="w-full max-h-[800px] aspect-video sm:rounded-br-md sm:rounded-bl-lg "
+                      alt=""
+                    />
+                  </div>
+                );
+              })}
             </Slider>
           </div>
           <div className="flex justify-between mb-5 sm:mb-0 h-fit items-center">
@@ -124,7 +91,7 @@ function SchoolsPersonalLandingPage({
                   src={logoUrl}
                   height={100}
                   width={100}
-                  className="w-[60px] h-[60px] sm:w-[150px]  sm:h-[150px] object-contain bg-gray-800 rounded-[50%] sm:-translate-y-12 border-white md:border-8 sm:border object-contain"
+                  className="w-[76px] h-[70px] sm:w-[150px]  sm:h-[150px] object-contain bg-gray-800 rounded-[50%] sm:-translate-y-12 border-white md:border-8 sm:border"
                   alt=""
                 />
               </article>
@@ -154,9 +121,20 @@ function SchoolsPersonalLandingPage({
               </article>
             </div>
             <article className="self-start  py-6">
-              <Link href="/enrollment_page" passHref>
+              <Link
+                href="/schools/[schoolRoutePrefix]/apply"
+                as={`/schools/${prefix}/apply`}
+                passHref
+              >
                 <div className="hidden md3:block">
-                  <Button1 py="py-4" bg="bg-[#5f9af2]">
+                  <Button1
+                    py="py-4"
+                    bg={`${
+                      status === "ACTIVE"
+                        ? "cursor-pointer"
+                        : "cursor-not-allowed"
+                    } bg-[#5f9af2]`}
+                  >
                     <GiGraduateCap className="w-7 h-7 mr-1" />
                     Enroll for Admission
                   </Button1>

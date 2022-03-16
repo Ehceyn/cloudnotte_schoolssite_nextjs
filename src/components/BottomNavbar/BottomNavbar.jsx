@@ -1,8 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import vector_side_bar_home from "/assets/icons/Vector-home-icon.svg";
-// import vector_side_bar_add from "/assets/icons/Vector-add-icon.svg";
-// import vector_side_bar_admission from "/assets/icons/Vector-admit-status-icon.svg";
-// import vector_side_bar_trending from "/assets/icons/Vector-trending-icon.svg";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -126,7 +122,7 @@ function BottomNavbar(props) {
           </div>
         </div>
       </div>
-      {/* MORE NAVITEMS DIV */}
+      {/* ===================== MORE NAVITEMS DIV ======================== */}
       <div
         className={`bg-[#F8FBFF] border border-[#E7F0FB] ${
           moreNavItems ? "block" : "hidden"

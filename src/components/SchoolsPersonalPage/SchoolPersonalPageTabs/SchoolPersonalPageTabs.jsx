@@ -4,15 +4,17 @@ import SchoolPersonalPageContact from "./SchoolPersonalPageContact";
 import SchoolPersonalPageHome from "./SchoolPersonalPageHome";
 import SchoolPersonalPageReview from "./SchoolPersonalPageReview";
 
-function SchoolPersonalPageTabs({ onCallReviewSchoolModal }) {
-  const [tab] = useSchoolPersonalPageTabsValue();
+function SchoolPersonalPageTabs(props) {
+  const [tab, _] = useSchoolPersonalPageTabsValue();
   const [mountedTab, setMountedTab] = useState(<SchoolPersonalPageHome />);
 
   const changeMounted = (tab) => {
     console.log("tabb: " + tab);
     switch (tab) {
       case 1:
-        setMountedTab(<SchoolPersonalPageHome />);
+        setMountedTab(
+          <SchoolPersonalPageHome longDescription={props.longDescription} />
+        );
         break;
       case 2:
         setMountedTab(<SchoolPersonalPageContact />);
@@ -20,7 +22,7 @@ function SchoolPersonalPageTabs({ onCallReviewSchoolModal }) {
       case 3:
         setMountedTab(
           <SchoolPersonalPageReview
-            onCallReviewSchoolModal={onCallReviewSchoolModal}
+            onCallReviewSchoolModal={props.onCallReviewSchoolModal}
           />
         );
         break;

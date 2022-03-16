@@ -2,21 +2,28 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['res.cloudinary.com', 'cloudnotte.com', 'www.pngitem.com'],
+    domains: [
+      "res.cloudinary.com",
+      "cloudnotte.com",
+      "www.pngitem.com",
+      "cdn.pixabay.com",
+      "static.vecteezy.com",
+      "cloudnotte-cdn.fra1.cdn.digitaloceanspaces.com",
+    ],
   },
 };
 
-const withCSS = require('@zeit/next-css');
+const withCSS = require("@zeit/next-css");
 
 module.exports = withCSS({
   webpack: function (config) {
     config.module.rules.push({
       test: /\.(eot|woff|woff2|ttf|svg|png|jpg|gif)$/,
       use: {
-        loader: 'url-loader',
+        loader: "url-loader",
         options: {
           limit: 100000,
-          name: '[name].[ext]',
+          name: "[name].[ext]",
         },
       },
     });
@@ -34,7 +41,7 @@ module.exports = {
         // { and: [/\.(js|ts)x?$/] }
       },
 
-      use: ['@svgr/webpack'],
+      use: ["@svgr/webpack"],
     });
 
     return config;

@@ -31,7 +31,7 @@ function EnrollmentPageStudentDetails({ display }) {
           { headers }
         )
         .then((res) => {
-          formik.setFieldValue("PassportUrl", res.data.url);
+          formik.setFieldValue("passportUrl", res.data.url);
           formik.setFieldValue("Passport", image.raw);
 
           console.log(formik, "The url response");
@@ -78,7 +78,7 @@ function EnrollmentPageStudentDetails({ display }) {
     state: "",
     lga: "",
     address: "",
-    PassportUrl: null,
+    passportUrl: null,
   };
 
   // FORMIK ONSUBMIT
@@ -305,7 +305,7 @@ function EnrollmentPageStudentDetails({ display }) {
             <div className="flex flex-col sm:flex-row items-center justify-between">
               <div className="mb-6 w-full sm:w-1/2 mr-0 sm:mr-10">
                 <input
-                  type="text"
+                  type="date"
                   id="dateOfBirth"
                   name="dateOfBirth"
                   className="shadow-sm h-12 pl-7 border border-[#CFDBEA] text-gray-900 text-sm rounded-[5px] outline-none focus:ring-[#5f9af2] focus:border-[#5f9af2] block w-full p-2.5 bg-[#F8FBFF]   "

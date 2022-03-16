@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-function AdmissionStatusInformationProfile() {
+function AdmissionStatusInformationProfile({ data }) {
   return (
     <>
       <section className="w-full flex  flex-col">
@@ -9,12 +9,19 @@ function AdmissionStatusInformationProfile() {
           <Image
             width={120}
             height={120}
-            src="/assets/images/school-profile-img.png"
+            src={
+              data.studentDetails.passportUrl !== "" &&
+              data.studentDetails.passportUrl.includes("http") === true
+                ? data.studentDetails.passportUrl
+                : "/assets/images/school-profile-img.png"
+            }
             className="w-[60px] h-[60px] sm:w-[120px] sm:h-[120px] object-contain bg-gray-400 rounded-[50%] sm:border ]"
             alt=""
           />
-          <p className="font-bold text-base">Ugochukwu Matthew</p>
-          <p className="font-normal text-base">Female</p>
+          <p className="font-bold text-base mt-2">
+            {data.studentDetails.firstName} {data.studentDetails.lastName}
+          </p>
+          <p className="font-normal text-base">{data.studentDetails.gender}</p>
         </div>
         <hr />
       </section>

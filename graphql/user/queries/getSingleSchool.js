@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const GET_SINGLE_SCHOOL = gql`
   query GetSingleSchool($schoolPrefix: String!) {
@@ -16,6 +16,14 @@ export const GET_SINGLE_SCHOOL = gql`
       categories
       motto
       logoUrl
+      admissionInfo {
+        longDescription
+        shortDescription
+        anthemUrl
+        assetsUrl
+        status
+      }
+      isSmartSchool
       admissionProgrammes {
         id
         name

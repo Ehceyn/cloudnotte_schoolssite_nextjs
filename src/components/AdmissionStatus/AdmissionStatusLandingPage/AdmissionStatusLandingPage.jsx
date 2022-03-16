@@ -1,7 +1,8 @@
 import React from "react";
 import AdmissionStatusSchoolHead from "./AdmissionStatusSchoolHead";
 
-function AdmissionStatusLandingPage() {
+function AdmissionStatusLandingPage({ data }) {
+  console.log("my data ===>", data);
   return (
     <>
       <section className="w-full flex mt-8 flex-col">
@@ -24,7 +25,7 @@ function AdmissionStatusLandingPage() {
             Print Admission Slip
           </p>
         </div>
-        <AdmissionStatusSchoolHead />
+        <AdmissionStatusSchoolHead data={data} />
       </section>
     </>
   );

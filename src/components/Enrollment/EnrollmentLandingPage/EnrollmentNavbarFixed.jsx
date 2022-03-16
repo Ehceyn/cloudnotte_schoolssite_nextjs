@@ -3,7 +3,7 @@ import Button from "./Button";
 
 import { useEnrollmentTabsValue } from "../../../StateProviders/EnrollmentTabsProvider";
 
-function EnrollmentNavbarFixed(props) {
+function EnrollmentNavbarFixed({ display }) {
   const [show, setShow] = useState(false);
   const [scrollPos, setScrollPos] = useState(0);
 
@@ -39,7 +39,7 @@ function EnrollmentNavbarFixed(props) {
     <section className="">
       <div
         className={`fixed z-20 top-0 left-0 right-0 transition-all duration-500 mt-0 items-center justify-center w-full py-2 sm:py-4 px-auto border-b bg-[#5F9AF2] ${
-          props.display === false ? "hidden" : "flex"
+          display === false ? "hidden" : "flex"
         } ${show ? "null" : " -translate-y-full"}`}
       >
         {" "}
@@ -49,9 +49,6 @@ function EnrollmentNavbarFixed(props) {
               className={`hidden text-[#E7F0FB] font-medium mr-2 sm:mr-7 cursor-pointer text-[0.65em] sm:text-base ${
                 tab === 1 ? "font-bold" : "font-medium"
               }`}
-              onClick={() => {
-                changeTab(1);
-              }}
             >
               Summary
             </p>
@@ -59,9 +56,6 @@ function EnrollmentNavbarFixed(props) {
               className={`text-[#E7F0FB] font-medium mr-2 sm:mr-7 cursor-pointer text-[0.65em] sm:text-base ${
                 tab === 2 ? "font-bold" : "font-medium"
               }`}
-              onClick={() => {
-                changeTab(2);
-              }}
             >
               Student&apos;s details
             </p>
@@ -69,9 +63,6 @@ function EnrollmentNavbarFixed(props) {
               className={`text-[#E7F0FB] font-medium mr-2 sm:mr-7 cursor-pointer text-[0.65em] sm:text-base ${
                 tab === 3 ? "font-bold" : "font-medium"
               }`}
-              onClick={() => {
-                changeTab(3);
-              }}
             >
               Parent&apos;s details
             </p>
@@ -79,9 +70,6 @@ function EnrollmentNavbarFixed(props) {
               className={`text-[#E7F0FB] font-medium mr-2 sm:mr-7 cursor-pointer text-[0.65em] sm:text-base ${
                 tab === 4 ? "font-bold" : "font-medium"
               }`}
-              onClick={() => {
-                changeTab(4);
-              }}
             >
               Academic details
             </p>

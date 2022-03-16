@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const GET_SCHOOLS = gql`
   query {
@@ -8,9 +8,18 @@ export const GET_SCHOOLS = gql`
       country
       state
       city
+      phoneNumber
       logoUrl
       prefix
       type
+      admissionInfo {
+        longDescription
+        shortDescription
+        anthemUrl
+        assetsUrl
+        status
+      }
+      isSmartSchool
     }
   }
 `;
