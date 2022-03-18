@@ -103,29 +103,11 @@ function EnrollmentAcademicDetails({
   };
   // Submit application to DB
   const [submitApplicationToDB, { data, loading, error }] = useMutation(
-    CREATE_NEW_ADMISSION_APPLICATION,
-    {
-      onCompleted: (data) => {
-        // CALL THE CREATE_NEW_ADMISSION_APPLICATION MUTATION
-        if (fee > 0) {
-          makePayment(
-            myObj,
-            data?.createNewAdmissionApplication.applicationNumber
-          );
-          console.log(data, "uni data");
-          formik.resetForm();
-        } else {
-          router.push(
-            `/schools/applicationSuccess/${data?.createNewAdmissionApplication.applicationNumber}`
-          );
-        }
-      },
-      onError: (error) => {
-        console.log(error);
-      },
-    }
+    CREATE_NEW_ADMISSION_APPLICATION
   );
-
+  // if (loading) {
+  //   setLoaderState(true);
+  // }
   if (error) console.log(JSON.stringify(error, null, 2));
   console.log(
     data?.createNewAdmissionApplication.applicationNumber,
@@ -198,7 +180,7 @@ function EnrollmentAcademicDetails({
   console.log(formik, "The  formik");
 
   // Flutter wave Payment
-  function makePayment(details, id) {
+  function makePayment(details) {
     FlutterwaveCheckout({
       public_key: "FLWPUBK_TEST-241406ed25076dcda77bf464e54a4985-X",
       tx_ref: new Date().getTime(),
@@ -227,7 +209,9 @@ function EnrollmentAcademicDetails({
 
       callback: function (payment) {
         console.log(payment.id);
-        router.push(`/schools/applicationSuccess/${id}`);
+        router.push(
+          `/schools/applicationSuccess/${data?.createNewAdmissionApplication.applicationNumber}`
+        );
       },
       onclose: function (incomplete) {
         if (incomplete === true) {
@@ -304,6 +288,16 @@ function EnrollmentAcademicDetails({
             submitApplicationToDB({
               variables: { submitVar: myObj },
             });
+            // CALL THE CREATE_NEW_ADMISSION_APPLICATION MUTATION
+            if (fee > 0) {
+              makePayment(myObj);
+              console.log(data, "uni data");
+              formik.resetForm();
+            } else {
+              router.push(
+                `/schools/applicationSuccess/${data?.createNewAdmissionApplication.applicationNumber}`
+              );
+            }
           }}
         >
           <div className="w-full">

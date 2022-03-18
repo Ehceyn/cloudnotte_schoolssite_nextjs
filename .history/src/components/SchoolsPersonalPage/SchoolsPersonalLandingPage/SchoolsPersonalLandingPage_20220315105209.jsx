@@ -102,7 +102,7 @@ function SchoolsPersonalLandingPage({
                 <p className=" sm:text-[0.9em] md:text-[1.2em]">
                   {state}, {country}
                 </p>
-                {/* <article className="flex text-xs md:text-sm">
+                <article className="flex text-xs md:text-sm">
                   {Array(5)
                     .fill()
                     .map((_, index) => (
@@ -117,7 +117,7 @@ function SchoolsPersonalLandingPage({
                       </p>
                     ))}
                 </article>
-                <p className=" text-base ">10,000 people loves our school</p> */}
+                <p className=" text-base ">10,000 people loves our school</p>
               </article>
             </div>
             <article className="self-start  py-6">
@@ -141,12 +141,12 @@ function SchoolsPersonalLandingPage({
                 </div>
               </Link>
 
-              {/* <div className="flex-col items-center w-fit h-fit mr-5 sm:mr-12 md2:mr-4 flex md3:hidden">
+              <div className="flex-col items-center w-fit h-fit mr-5 sm:mr-12 md2:mr-4 flex md3:hidden">
                 <BsFillSuitHeartFill className="w-5 h-5 sm:w-7 sm:h-7 fill-[#f44336]" />
                 <p className="text-base font-medium mt-2 text-[#f44336]">
                   Love
                 </p>
-              </div> */}
+              </div>
             </article>
           </div>
           <hr className="" />
@@ -155,7 +155,7 @@ function SchoolsPersonalLandingPage({
           </div>
         </div>
       </section>
-      <SchoolLandingPageNavbarFixed display={navbarFixed} prefix={prefix} />
+      <SchoolLandingPageNavbarFixed display={navbarFixed} />
     </>
   );
 }

@@ -41,7 +41,7 @@ function Navbar() {
             >
               Contact us
             </p>
-            {/* <p
+            <p
               className={`text-base font-medium cursor-pointer mr-2 sm:mr-6 ${
                 tab === 3 ? "font-bold" : "font-medium"
               }`}
@@ -50,7 +50,7 @@ function Navbar() {
               }}
             >
               Reviews
-            </p> */}
+            </p>
             <p
               className={`text-base cursor-pointer font-medium
               `}

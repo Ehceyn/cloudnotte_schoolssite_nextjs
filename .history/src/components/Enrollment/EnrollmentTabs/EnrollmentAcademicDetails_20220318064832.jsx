@@ -102,35 +102,10 @@ function EnrollmentAcademicDetails({
     });
   };
   // Submit application to DB
-  const [submitApplicationToDB, { data, loading, error }] = useMutation(
-    CREATE_NEW_ADMISSION_APPLICATION,
-    {
-      onCompleted: (data) => {
-        // CALL THE CREATE_NEW_ADMISSION_APPLICATION MUTATION
-        if (fee > 0) {
-          makePayment(
-            myObj,
-            data?.createNewAdmissionApplication.applicationNumber
-          );
-          console.log(data, "uni data");
-          formik.resetForm();
-        } else {
-          router.push(
-            `/schools/applicationSuccess/${data?.createNewAdmissionApplication.applicationNumber}`
-          );
-        }
-      },
-      onError: (error) => {
-        console.log(error);
-      },
-    }
-  );
-
-  if (error) console.log(JSON.stringify(error, null, 2));
-  console.log(
-    data?.createNewAdmissionApplication.applicationNumber,
-    "Welome bro"
-  );
+  const [submitApplicationToDB] = useMutation(CREATE_NEW_ADMISSION_APPLICATION);
+  // if (loading) {
+  //   setLoaderState(true);
+  // }
 
   // if (data) {
   //   router.push(
@@ -260,7 +235,7 @@ function EnrollmentAcademicDetails({
 
             console.log(formDetailsStore.state, "Here i am");
             let formdata = formDetailsStore.state;
-            console.log(data, "our data");
+            console.log(formdata, "our data");
             let docData = docUploadStore?.state;
             let myObj = {
               parentDetails: {},
@@ -301,9 +276,47 @@ function EnrollmentAcademicDetails({
             myObj.programmeId = formdata[2].programmeId;
             myObj.documents = docData;
 
-            submitApplicationToDB({
-              variables: { submitVar: myObj },
-            });
+            runMutation;
+            const runMutation = async () => {
+              try {
+                const { data, loading, error } = await submitApplicationToDB({
+                  variables: { submitVar: myObj },
+                });
+
+                // results will be an array of execution result objects (i.e. { data, error })
+                // Do whatever here with the results
+                if (error) console.log(JSON.stringify(error, null, 2));
+                console.log(
+                  data?.createNewAdmissionApplication.applicationNumber,
+                  "Welome bro"
+                );
+
+                // router.push(
+                //   `/schools/applicationSuccess/${data?.createNewAdmissionApplication.applicationNumber}`
+                // );
+              } catch (e) {
+                // Handle any errors as appropriate
+                console.log(e, "see err");
+              }
+            };
+            // CALL THE CREATE_NEW_ADMISSION_APPLICATION MUTATION
+            // if (fee > 0) {
+            //   makePayment(
+            //     myObj,
+            //     data?.createNewAdmissionApplication.applicationNumber
+            //   );
+            //   console.log(data, "uni data");
+            //   formik.resetForm();
+            // } else {
+            //   console.log(
+            //     data?.createNewAdmissionApplication.applicationNumber,
+            //     "oga"
+            //   );
+
+            //   router.push(
+            //     `/schools/applicationSuccess/${data?.createNewAdmissionApplication.applicationNumber}`
+            //   );
+            // }
           }}
         >
           <div className="w-full">

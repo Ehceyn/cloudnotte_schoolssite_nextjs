@@ -91,6 +91,7 @@ function SchoolLandingPageNavbarFixed(props) {
                 as={`/schools/${props.prefix}/apply`}
                 passHref
               >
+                {" "}
                 <div className="hidden md3:block mr-3">
                   <Button1 customStyle="" py="py-3" bg="bg-[#5f9af2]">
                     <GiGraduateCap className="w-7 h-7 mr-1" />

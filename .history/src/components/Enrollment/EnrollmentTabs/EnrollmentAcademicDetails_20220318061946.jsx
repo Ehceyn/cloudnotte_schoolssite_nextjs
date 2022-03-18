@@ -103,29 +103,11 @@ function EnrollmentAcademicDetails({
   };
   // Submit application to DB
   const [submitApplicationToDB, { data, loading, error }] = useMutation(
-    CREATE_NEW_ADMISSION_APPLICATION,
-    {
-      onCompleted: (data) => {
-        // CALL THE CREATE_NEW_ADMISSION_APPLICATION MUTATION
-        if (fee > 0) {
-          makePayment(
-            myObj,
-            data?.createNewAdmissionApplication.applicationNumber
-          );
-          console.log(data, "uni data");
-          formik.resetForm();
-        } else {
-          router.push(
-            `/schools/applicationSuccess/${data?.createNewAdmissionApplication.applicationNumber}`
-          );
-        }
-      },
-      onError: (error) => {
-        console.log(error);
-      },
-    }
+    CREATE_NEW_ADMISSION_APPLICATION
   );
-
+  // if (loading) {
+  //   setLoaderState(true);
+  // }
   if (error) console.log(JSON.stringify(error, null, 2));
   console.log(
     data?.createNewAdmissionApplication.applicationNumber,
@@ -304,6 +286,19 @@ function EnrollmentAcademicDetails({
             submitApplicationToDB({
               variables: { submitVar: myObj },
             });
+            // CALL THE CREATE_NEW_ADMISSION_APPLICATION MUTATION
+            if (fee > 0) {
+              makePayment(
+                myObj,
+                data?.createNewAdmissionApplication.applicationNumber
+              );
+              console.log(data, "uni data");
+              formik.resetForm();
+            } else {
+              router.push(
+                `/schools/applicationSuccess/${data?.createNewAdmissionApplication.applicationNumber}`
+              );
+            }
           }}
         >
           <div className="w-full">

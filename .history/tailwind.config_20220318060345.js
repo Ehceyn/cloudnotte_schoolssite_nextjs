@@ -2,6 +2,14 @@ module.exports = {
   content: ["./pages/**/*.{js,ts,jsx,tsx}", "./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {},
+  },
+  plugins: [require("@tailwindcss/forms")],
+};
+
+module.exports = {
+  content: ["./pages/**/*.{js,ts,jsx,tsx}", "./src/**/*.{js,jsx,ts,tsx}"],
+  theme: {
+    extend: {},
     screens: {
       xs: "460px",
       // => @media (min-width: 460px) { ... }

@@ -67,7 +67,7 @@ function SchoolLandingPageNavbarFixed(props) {
             >
               Contact us
             </p>
-            {/* <p
+            <p
               className={`text-base font-medium cursor-pointer mr-2 sm:mr-6 ${
                 tab === 3 ? "font-bold" : "font-medium"
               }`}
@@ -76,7 +76,7 @@ function SchoolLandingPageNavbarFixed(props) {
               }}
             >
               Reviews
-            </p> */}
+            </p>
             <p
               className={`text-base cursor-pointer font-medium
               `}
@@ -86,11 +86,7 @@ function SchoolLandingPageNavbarFixed(props) {
           </article>
           <article className=" w-fit justify-between hidden md2:flex ">
             <div>
-              <Link
-                href="/schools/[schoolRoutePrefix]/apply"
-                as={`/schools/${props.prefix}/apply`}
-                passHref
-              >
+              <Link href="/my_school_page/enrollment_page/1" passHref>
                 <div className="hidden md3:block mr-3">
                   <Button1 customStyle="" py="py-3" bg="bg-[#5f9af2]">
                     <GiGraduateCap className="w-7 h-7 mr-1" />

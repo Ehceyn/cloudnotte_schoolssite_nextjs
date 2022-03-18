@@ -141,12 +141,12 @@ function SchoolsPersonalLandingPage({
                 </div>
               </Link>
 
-              {/* <div className="flex-col items-center w-fit h-fit mr-5 sm:mr-12 md2:mr-4 flex md3:hidden">
+              <div className="flex-col items-center w-fit h-fit mr-5 sm:mr-12 md2:mr-4 flex md3:hidden">
                 <BsFillSuitHeartFill className="w-5 h-5 sm:w-7 sm:h-7 fill-[#f44336]" />
                 <p className="text-base font-medium mt-2 text-[#f44336]">
                   Love
                 </p>
-              </div> */}
+              </div>
             </article>
           </div>
           <hr className="" />

@@ -125,7 +125,9 @@ function EnrollmentAcademicDetails({
       },
     }
   );
-
+  // if (loading) {
+  //   setLoaderState(true);
+  // }
   if (error) console.log(JSON.stringify(error, null, 2));
   console.log(
     data?.createNewAdmissionApplication.applicationNumber,

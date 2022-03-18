@@ -41,7 +41,7 @@ function Navbar() {
             >
               Contact us
             </p>
-            {/* <p
+            <p
               className={`text-base font-medium cursor-pointer mr-2 sm:mr-6 ${
                 tab === 3 ? "font-bold" : "font-medium"
               }`}
@@ -50,7 +50,7 @@ function Navbar() {
               }}
             >
               Reviews
-            </p> */}
+            </p>
             <p
               className={`text-base cursor-pointer font-medium
               `}
@@ -59,7 +59,7 @@ function Navbar() {
             </p>
           </article>
           <article className=" justify-between hidden md2:flex ">
-            {/* <div>
+            <div>
               <Button2
                 bg="bg-[#f44336]"
                 color="text-[#E7F0FB]"
@@ -68,7 +68,7 @@ function Navbar() {
               >
                 <BsFillSuitHeartFill className="w-5 h-5 " />
               </Button2>
-            </div> */}
+            </div>
             <div>
               <Button2
                 customStyle=""
