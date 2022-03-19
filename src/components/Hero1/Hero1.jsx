@@ -4,6 +4,9 @@ import styles from "../../../styles/Hero.module.css";
 
 function Hero_1(props) {
   const [displaySearchResultsDiv, setDisplaySearchResultsDiv] = useState(false);
+  const [input, setInput] = useState({
+    searchInputs: "",
+  });
 
   return (
     <>
@@ -25,9 +28,14 @@ function Hero_1(props) {
               className={`placeholder:text-slate-400 flex shrink bg-white w-[80vw] sm:w-[70vw] md:w-[40vw] border border-slate-300 focus:ring-[transparent]  focus:rounded-t-3xl focus:rounded-b-none rounded-full  py-2 pl-9 pr-3 shadow-sm focus:outline-none sm:text-sm`}
               placeholder="Search a school (Enter a keyword)"
               type="text"
-              name="search"
+              name="searchInputs"
               onFocus={() => setDisplaySearchResultsDiv(true)}
               onBlur={() => setDisplaySearchResultsDiv(false)}
+              onChange={(e) => {
+                console.log(input, "input me");
+
+                setInput({ ...input, [e.target.name]: e.target.value });
+              }}
             />
 
             {/* SEARCH RESULTS DIV */}
@@ -85,3 +93,27 @@ function Hero_1(props) {
 }
 
 export default Hero_1;
+
+export async function getServerSideProps({ params }) {
+  // Fetch data from external API
+
+  const apolloClient = initializeApollo();
+  // const applicationNumber = params.applicationSuccess;
+
+  const { data, loading, error } = await apolloClient.query({
+    query: GET_SCHOOLS,
+    variables: { afterId: "", limit: 100, filter: { input.searchInputs } },
+  });
+  if (error) return console.log(JSON.stringify(error, null, 2));
+
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+
+  // Pass data to the page via props
+  return {
+    props: { initializeApolloState: apolloClient.cache.extract(), data },
+  };
+}
