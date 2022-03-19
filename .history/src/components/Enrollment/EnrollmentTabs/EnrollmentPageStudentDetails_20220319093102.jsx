@@ -200,9 +200,7 @@ function EnrollmentPageStudentDetails({ display }) {
               }}
             />
             <label htmlFor="Passport">
-              <span className="cursor-pointer">
-                {uploadError === "" ? "Upload Passport" : uploadError}
-              </span>
+              <span className="cursor-pointer">Upload Passport</span>
             </label>
             {formik.errors.Passport && (
               <p className="text-xs bg-red-600 rounded-md px-2 py-2 text-white">

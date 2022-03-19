@@ -1,24 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import Image from "next/image";
-import { Button2, Button3 } from "../EnrollmentLandingPage/Button";
+import { Button2, Button4 } from "../EnrollmentLandingPage/Button";
 import { useEnrollmentTabsValue } from "../../../StateProviders/EnrollmentTabsProvider";
 import { useFormDetailsStateValue } from "../../../StateProviders/FormDetailsProvider";
 import * as Yup from "yup";
 import axios from "axios";
 import Loader from "../../Loader";
-import styles from "../../../../styles/MiniLoader.module.css";
 
-function EnrollmentPageStudentDetails({ display }) {
+function EnrollmentPageParentDetails({ display }) {
   const [tab, dispatch] = useEnrollmentTabsValue();
   const [image, setImage] = useState({ preview: "", raw: "" });
   const [formDetailsStore, formDetailsDispatch] = useFormDetailsStateValue();
   const [loaderState, setLoaderState] = useState(false);
   const [uploadError, setUploadError] = useState("");
-
-  // UPLOAD STUDENT PSSPORT ONCHANGE
+  // UPLOAD PASSPORT ON IMAGE CHANGE
   useEffect(() => {
-    console.log(image, "docfor upload");
+    console.log(image, "PArent Passport upload");
     const headers = {
       "Content-Type": "multipart/form-data",
     };
@@ -27,6 +25,7 @@ function EnrollmentPageStudentDetails({ display }) {
     if (image.raw !== "" && formik.errors.Passport !== "") {
       const instance = axios.create();
       setLoaderState(true);
+
       instance
         .post(
           "https://cloudnotte-api.herokuapp.com/api/rest/upload/file",
@@ -37,6 +36,7 @@ function EnrollmentPageStudentDetails({ display }) {
           formik.setFieldValue("passportUrl", res.data.url);
           formik.setFieldValue("Passport", image.raw);
           setLoaderState(false);
+
           console.log(formik, "The url response");
         })
         .catch((err) => {
@@ -74,6 +74,13 @@ function EnrollmentPageStudentDetails({ display }) {
     });
   };
 
+  // REMOVE FROM FORM DETAILS STORE
+  const removeFromStore = () => {
+    formDetailsDispatch({
+      type: "REMOVE_FROM_FORM_DETAILS_STORE",
+    });
+  };
+
   // INITIAL FORM VALUES
   let initialValues = {
     firstName: "",
@@ -81,8 +88,8 @@ function EnrollmentPageStudentDetails({ display }) {
     lastName: "",
     phoneNumber: "",
     email: "",
-    gender: "",
-    dateOfBirth: "",
+    relationship: "",
+    occupation: "",
     country: "",
     state: "",
     lga: "",
@@ -93,7 +100,7 @@ function EnrollmentPageStudentDetails({ display }) {
   // FORMIK ONSUBMIT
   const onSubmit = (values) => {
     pushToStore(values);
-    changeTab(3);
+    changeTab(4);
   };
 
   // FORMIK VALIDATION SCHEMA WITH YUP
@@ -107,8 +114,8 @@ function EnrollmentPageStudentDetails({ display }) {
     email: Yup.string()
       .email("Invalid Email")
       .required("This field is required"),
-    gender: Yup.string().required("This field is required"),
-    dateOfBirth: Yup.string().required("This field is required"),
+    relationship: Yup.string().required("This field is required"),
+    occupation: Yup.string().required("This field is required"),
     country: Yup.string().required("This field is required"),
     state: Yup.string().required("This field is required"),
     lga: Yup.string().required("This field is required"),
@@ -119,8 +126,9 @@ function EnrollmentPageStudentDetails({ display }) {
       .test(
         "fileSize",
         "File Size is too large",
-        (value) => !value || (value && value.size <= FILE_SIZE)
+        (value) => value && value.size <= FILE_SIZE
       )
+
       .test(
         "fileType",
         "Unsupported File Format",
@@ -136,23 +144,20 @@ function EnrollmentPageStudentDetails({ display }) {
   });
 
   console.log(formDetailsStore, "The Store form data");
-  console.log(formik.values, "The student form data");
+  console.log(formik.values, "The Parent form data");
   console.log(formik, "The  formik");
 
   return (
     <section
       className={`${
-        display === 2 ? "flex" : "hidden"
+        display === 3 ? "flex" : "hidden"
       } px-5 md:px-10 md2:px-28 md3:px-40 text-justify w-full mt-6 sm:mt-10 mb-14 mx-auto text-[0.8em] sm:text-base`}
     >
+      <Loader display={loaderState} />
+
       <div className="w-full bg-white">
-        <h2 className="font-bold mb-3">Student&apos;s details</h2>
-        {/* <p className="text-xs sm:text-sm font-medium ">
-          Do you have a CloudNotte Student ID/Username? <span>Click here</span>
-        </p>
-        <p className="text-xs font-normal sm:font-medium mb-5">
-          This won&apos;t require you entering your information again.
-        </p> */}
+        <h2 className="font-bold mb-3">Parents&apos;s details</h2>
+
         <form
           className="flex flex-col sm:flex-row w-full"
           onSubmit={(e) => {
@@ -161,20 +166,15 @@ function EnrollmentPageStudentDetails({ display }) {
           }}
         >
           <div className="flex flex-col items-center justify-center sm:justify-start mr-0 mt-5 sm:mr-10 sm:mt-7  w-full  sm:w-[200px] mb-7 sm:mb-0">
-            <label
-              htmlFor="Passport"
-              className={` relative ${
-                loaderState ? styles.mini_loader_inner : null
-              }  `}
-            >
+            <label htmlFor="parentPassport">
               {image.preview ? (
                 <Image
                   width={100}
                   height={100}
                   src={image.preview}
                   objectFit="contain"
-                  className="w-[100px] h-[100px] sm:w-[150px] sm:h-[150px] cursor-pointer object-contain bg-gray-400 rounded-[50%] sm:border"
-                  alt="Passport"
+                  className="w-[100px] h-[100px] mb-3 sm:w-[150px] sm:h-[150px] cursor-pointer object-contain bg-gray-400 rounded-[50%] sm:border"
+                  alt="parentPassport"
                 />
               ) : (
                 <Image
@@ -182,7 +182,7 @@ function EnrollmentPageStudentDetails({ display }) {
                   height={100}
                   src="/assets/images/school-profile-img.png"
                   objectFit="contain"
-                  className="w-[100px] h-[100px] sm:w-[150px] sm:h-[150px] cursor-pointer object-contain bg-gray-400 rounded-[50%] sm:border"
+                  className="w-[100px] h-[100px] mb-3 sm:w-[150px] sm:h-[150px] cursor-pointer object-contain bg-gray-400 rounded-[50%] sm:border"
                   alt=""
                 />
               )}
@@ -190,19 +190,18 @@ function EnrollmentPageStudentDetails({ display }) {
             {/* IMAGE INPUT */}
             <input
               type="file"
-              id="Passport"
-              name="Passport"
+              id="parentPassport"
+              name="parentPassport"
               className="hidden"
               accept="image/png,image/jpg,image/jpeg"
               required
               onChange={(e) => {
                 handleImageChange(e);
+                console.log(e.target.files[0], "The file");
               }}
             />
-            <label htmlFor="Passport">
-              <span className="cursor-pointer">
-                {uploadError === "" ? "Upload Passport" : uploadError}
-              </span>
+            <label htmlFor="parentPassport">
+              <span className="cursor-pointer">Upload Passport</span>
             </label>
             {formik.errors.Passport && (
               <p className="text-xs bg-red-600 rounded-md px-2 py-2 text-white">
@@ -299,40 +298,41 @@ function EnrollmentPageStudentDetails({ display }) {
                 )}
               </div>
               <div className="mb-6 w-full sm:w-1/2">
-                <select
-                  id="gender"
-                  name="gender"
-                  className="shadow-sm h-12 pl-7 border border-[#CFDBEA] text-gray-900 text-sm rounded-[5px] outline-none focus:ring-[#5f9af2] focus:border-[#5f9af2] block w-full p-2.5 bg-[#F8FBFF] "
+                <input
+                  type="text"
+                  id="relationship"
+                  name="relationship"
+                  className="shadow-sm h-12 pl-7 border border-[#CFDBEA] text-gray-900 text-sm rounded-[5px] outline-none focus:ring-[#5f9af2] focus:border-[#5f9af2] block w-full p-2.5 bg-[#F8FBFF]   "
+                  placeholder="Relationship"
                   onChange={formik.handleChange}
-                  value={formik.values.gender}
+                  value={formik.values.relationship}
                   required
                   onBlur={formik.handleBlur}
-                >
-                  <option selected="selected">Male</option>
-                  <option>Female</option> <option>Other</option>
-                </select>
+                />
+                {formik.touched.relationship && formik.errors.relationship && (
+                  <p className="text-xs text-red-600">
+                    {formik.errors.relationship}
+                  </p>
+                )}
               </div>
-              {formik.touched.gender && formik.errors.gender && (
-                <p className="text-xs text-red-600">{formik.errors.gender}</p>
-              )}
             </div>
 
             <div className="flex flex-col sm:flex-row items-center justify-between">
               <div className="mb-6 w-full sm:w-1/2 mr-0 sm:mr-10">
                 <input
-                  type="date"
-                  id="dateOfBirth"
-                  name="dateOfBirth"
+                  type="text"
+                  id="occupation"
+                  name="occupation"
                   className="shadow-sm h-12 pl-7 border border-[#CFDBEA] text-gray-900 text-sm rounded-[5px] outline-none focus:ring-[#5f9af2] focus:border-[#5f9af2] block w-full p-2.5 bg-[#F8FBFF]   "
-                  placeholder="Date of birth"
+                  placeholder="Occupation"
                   onChange={formik.handleChange}
-                  value={formik.values.dateOfBirth}
+                  value={formik.values.occupation}
                   required
                   onBlur={formik.handleBlur}
                 />
-                {formik.touched.dateOfBirth && formik.errors.dateOfBirth && (
+                {formik.touched.occupation && formik.errors.occupation && (
                   <p className="text-xs text-red-600">
-                    {formik.errors.dateOfBirth}
+                    {formik.errors.occupation}
                   </p>
                 )}
               </div>
@@ -407,18 +407,35 @@ function EnrollmentPageStudentDetails({ display }) {
                 <p className="text-xs text-red-600">{formik.errors.address}</p>
               )}
             </div>
-            <div className="w-full flex justify-end">
-              <Button2
-                customStyle="w-full sm:w-[250px]"
-                py="py-3 px-1"
-                bg={`${
-                  formik.isValid
-                    ? "bg-[#5F9AF2] text-[#E7F0FB]"
-                    : "cursor-not-allowed bg-[#293b57] text-[#476697]"
-                }`}
+            <div className="w-full flex justify-between">
+              <div
+                onClick={() => {
+                  changeTab(2);
+                  removeFromStore();
+                }}
               >
-                Proceed
-              </Button2>
+                <Button4
+                  customStyle="w-full border mr-10 xs:mr-0"
+                  py="py-3 px-3"
+                  bg={`bg-[#fff] text-[#8EA2BA]
+                 `}
+                >
+                  Previous
+                </Button4>
+              </div>
+              <div>
+                <Button2
+                  customStyle="w-[200px]"
+                  py="py-3 px-1"
+                  bg={`${
+                    formik.isValid
+                      ? "bg-[#5F9AF2] text-[#E7F0FB]"
+                      : "cursor-not-allowed bg-[#293b57] text-[#476697]"
+                  }`}
+                >
+                  Proceed
+                </Button2>
+              </div>
             </div>
           </div>
         </form>
@@ -427,4 +444,4 @@ function EnrollmentPageStudentDetails({ display }) {
   );
 }
 
-export default EnrollmentPageStudentDetails;
+export default EnrollmentPageParentDetails;

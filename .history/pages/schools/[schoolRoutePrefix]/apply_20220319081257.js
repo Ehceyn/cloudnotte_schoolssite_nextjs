@@ -42,7 +42,7 @@ function EnrollmentPage({
 
   return (
     <>
-      <SEO title={`Apply for admission into ${name.toUpperCase()}`} />
+      <SEO title={`Apply for admission into ${name.charAt(0).toUpperCase()}`} />
       <FormDetailsProvider
         initialState={formInitialState}
         reducer={formReducer}

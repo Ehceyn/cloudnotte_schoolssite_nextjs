@@ -145,6 +145,7 @@ function EnrollmentPageStudentDetails({ display }) {
         display === 2 ? "flex" : "hidden"
       } px-5 md:px-10 md2:px-28 md3:px-40 text-justify w-full mt-6 sm:mt-10 mb-14 mx-auto text-[0.8em] sm:text-base`}
     >
+      <Loader display={loaderState} />
       <div className="w-full bg-white">
         <h2 className="font-bold mb-3">Student&apos;s details</h2>
         {/* <p className="text-xs sm:text-sm font-medium ">
@@ -200,9 +201,7 @@ function EnrollmentPageStudentDetails({ display }) {
               }}
             />
             <label htmlFor="Passport">
-              <span className="cursor-pointer">
-                {uploadError === "" ? "Upload Passport" : uploadError}
-              </span>
+              <span className="cursor-pointer">Upload Passport</span>
             </label>
             {formik.errors.Passport && (
               <p className="text-xs bg-red-600 rounded-md px-2 py-2 text-white">

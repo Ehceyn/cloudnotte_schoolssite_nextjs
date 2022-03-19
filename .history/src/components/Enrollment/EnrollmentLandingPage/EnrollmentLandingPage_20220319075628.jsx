@@ -51,7 +51,7 @@ function EnrollmentLandingPage({
             />
             <article className=" pl-4 sm:leading-7 md:leading-9 ">
               <div className="flex items-center">
-                <h2 className=" sm:text-[1.5em] md:text-[2.0em] font-bold mr-3 capitalize">
+                <h2 className=" sm:text-[1.5em] md:text-[2.0em] font-semibold mr-3 capitalize">
                   {name}
                 </h2>
                 {/* <p className="text-xs md:text-sm hidden sm:flex">
@@ -89,7 +89,7 @@ function EnrollmentLandingPage({
                   ))}
               </p> */}
               <div className=" md:text-base flex">
-                <p className="text-[0.9em] md:text-base font-semibold">
+                <p className="text-[0.9em] md:text-base font-bold">
                   Application Fee:&nbsp;
                 </p>
                 <p>Required</p>

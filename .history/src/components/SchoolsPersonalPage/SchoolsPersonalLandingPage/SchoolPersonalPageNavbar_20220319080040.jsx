@@ -23,7 +23,7 @@ function Navbar({ phoneNumber, anthemUrl }) {
           <article className="capitalize flex w-full sm:w-fit justify-between">
             <p
               className={`text-base cursor-pointer mr-2 sm:mr-6 ${
-                tab === 1 ? "font-[700]" : "font-medium"
+                tab === 1 ? "font-bold" : "font-medium"
               }`}
               onClick={() => {
                 changeTab(1);
@@ -33,7 +33,7 @@ function Navbar({ phoneNumber, anthemUrl }) {
             </p>
             <p
               className={`text-base cursor-pointer mr-2 sm:mr-6 ${
-                tab === 2 ? "font-[700]" : "font-medium"
+                tab === 2 ? "font-bold" : "font-medium"
               }`}
               onClick={() => {
                 changeTab(2);
@@ -43,7 +43,7 @@ function Navbar({ phoneNumber, anthemUrl }) {
             </p>
             {/* <p
               className={`text-base font-medium cursor-pointer mr-2 sm:mr-6 ${
-                tab === 3 ? "font-[700]" : "font-medium"
+                tab === 3 ? "font-bold" : "font-medium"
               }`}
               onClick={() => {
                 changeTab(3);

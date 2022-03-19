@@ -7,14 +7,12 @@ import { useFormDetailsStateValue } from "../../../StateProviders/FormDetailsPro
 import * as Yup from "yup";
 import axios from "axios";
 import Loader from "../../Loader";
-import styles from "../../../../styles/MiniLoader.module.css";
 
 function EnrollmentPageStudentDetails({ display }) {
   const [tab, dispatch] = useEnrollmentTabsValue();
   const [image, setImage] = useState({ preview: "", raw: "" });
   const [formDetailsStore, formDetailsDispatch] = useFormDetailsStateValue();
   const [loaderState, setLoaderState] = useState(false);
-  const [uploadError, setUploadError] = useState("");
 
   // UPLOAD STUDENT PSSPORT ONCHANGE
   useEffect(() => {
@@ -26,7 +24,6 @@ function EnrollmentPageStudentDetails({ display }) {
     data.append("file", image.raw);
     if (image.raw !== "" && formik.errors.Passport !== "") {
       const instance = axios.create();
-      setLoaderState(true);
       instance
         .post(
           "https://cloudnotte-api.herokuapp.com/api/rest/upload/file",
@@ -36,14 +33,8 @@ function EnrollmentPageStudentDetails({ display }) {
         .then((res) => {
           formik.setFieldValue("passportUrl", res.data.url);
           formik.setFieldValue("Passport", image.raw);
-          setLoaderState(false);
+
           console.log(formik, "The url response");
-        })
-        .catch((err) => {
-          console.log(err);
-          setUploadError(
-            "Error uploading image check your internet connection"
-          );
         });
     }
   }, [image]);
@@ -145,6 +136,7 @@ function EnrollmentPageStudentDetails({ display }) {
         display === 2 ? "flex" : "hidden"
       } px-5 md:px-10 md2:px-28 md3:px-40 text-justify w-full mt-6 sm:mt-10 mb-14 mx-auto text-[0.8em] sm:text-base`}
     >
+      <Loader display={loaderState} />
       <div className="w-full bg-white">
         <h2 className="font-bold mb-3">Student&apos;s details</h2>
         {/* <p className="text-xs sm:text-sm font-medium ">
@@ -163,9 +155,8 @@ function EnrollmentPageStudentDetails({ display }) {
           <div className="flex flex-col items-center justify-center sm:justify-start mr-0 mt-5 sm:mr-10 sm:mt-7  w-full  sm:w-[200px] mb-7 sm:mb-0">
             <label
               htmlFor="Passport"
-              className={` relative ${
-                loaderState ? styles.mini_loader_inner : null
-              }  `}
+              className={`relative after:bg-[#00000071] after:absolute after:inset-0 after:rounded-full after:w-full after:h-full after:z-10 after:flex after:items-center after:justify-center
+`}
             >
               {image.preview ? (
                 <Image
@@ -200,9 +191,7 @@ function EnrollmentPageStudentDetails({ display }) {
               }}
             />
             <label htmlFor="Passport">
-              <span className="cursor-pointer">
-                {uploadError === "" ? "Upload Passport" : uploadError}
-              </span>
+              <span className="cursor-pointer">Upload Passport</span>
             </label>
             {formik.errors.Passport && (
               <p className="text-xs bg-red-600 rounded-md px-2 py-2 text-white">

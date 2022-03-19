@@ -11,11 +11,16 @@ import formReducer, {
 import docReducer, {
   docInitialState,
 } from "../../../src/Reducers/DocUploadReducer";
+import entrancePageReducer, {
+  entrancePageInitialState,
+} from "../../../src/Reducers/EntrancePageReducer";
 import { initializeApollo } from "../../../lib/apolloClient";
 import { GET_SINGLE_SCHOOL } from "../../../graphql/user/queries/getSingleSchool";
 import { GET_SCHOOLS } from "../../../graphql/user/queries/getSchools";
 import { FormDetailsProvider } from "../../../src/StateProviders/FormDetailsProvider";
 import { DocUploadProvider } from "../../../src/StateProviders/DocUploadProvider";
+// import EntranceExamStage from "../../../src/components/AdmissionStatus/AdmissionStatusInformation/AdmissionStatusInformationUpdateTabs/EntranceExamStage";
+import { EntrancePageProvider } from "../../../src/StateProviders/EntrancePageProvider";
 import SEO from "../../../src/components/SEO";
 
 function EnrollmentPage({
@@ -42,7 +47,7 @@ function EnrollmentPage({
 
   return (
     <>
-      <SEO title={`Apply for admission into ${name.toUpperCase()}`} />
+      <SEO title={`Apply for admission into ${name.charAt(0).toUpperCase()}`} />
       <FormDetailsProvider
         initialState={formInitialState}
         reducer={formReducer}

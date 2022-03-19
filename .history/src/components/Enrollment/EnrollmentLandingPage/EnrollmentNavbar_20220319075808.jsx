@@ -18,28 +18,28 @@ function EnrollmentNavbar() {
         <article className="flex w-full justify-between sm:justify-start">
           <p
             className={`text-[#E7F0FB] hidden font-medium mr-2 sm:mr-7 cursor-pointer text-[0.65em] sm:text-base ${
-              tab === 1 ? "font-[700]" : "font-medium"
+              tab === 1 ? "font-[600]" : "font-medium"
             }`}
           >
             Summary
           </p>
           <p
             className={`text-[#E7F0FB] font-medium mr-2 sm:mr-7 cursor-pointer text-[0.65em] sm:text-base ${
-              tab === 2 ? "font-[700]" : "font-medium"
+              tab === 2 ? "font-bold" : "font-medium"
             }`}
           >
             Student&apos;s details
           </p>
           <p
             className={`text-[#E7F0FB] font-medium mr-2 sm:mr-7 cursor-pointer text-[0.65em] sm:text-base ${
-              tab === 3 ? "font-[700]" : "font-medium"
+              tab === 3 ? "font-bold" : "font-medium"
             }`}
           >
             Parent&apos;s details
           </p>
           <p
             className={`text-[#E7F0FB] font-medium mr-2 sm:mr-7 cursor-pointer text-[0.65em] sm:text-base ${
-              tab === 4 ? "font-[700]" : "font-medium"
+              tab === 4 ? "font-bold" : "font-medium"
             }`}
           >
             Academic details

@@ -1,0 +1,59 @@
+module.exports = {
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  theme: {
+    extend: {},
+    screens: {
+      xs: "460px",
+      // => @media (min-width: 460px) { ... }
+      sm: "640px",
+      // => @media (min-width: 640px) { ... }
+
+      md: "768px",
+      // => @media (min-width: 768px) { ... }
+
+      md2: "1000px",
+      // => @media (min-width: 900px) { ... }
+
+      md3: "1124px",
+      // => @media (min-width: 1034px) { ... }
+
+      lg: "1024px",
+      // => @media (min-width: 1024px) { ... }
+
+      xl: "1280px",
+      // => @media (min-width: 1280px) { ... }
+
+      "2xl": "1536px",
+      // => @media (min-width: 1536px) { ... }
+    },
+  },
+  plugins: [
+    plugin(({ addVariant, e }) => {
+      addVariant("before", ({ modifySelectors, separator }) => {
+        modifySelectors(({ className }) => {
+          return `.${e(`before${separator}${className}`)}::before`;
+        });
+      });
+      addVariant("after", ({ modifySelectors, separator }) => {
+        modifySelectors(({ className }) => {
+          return `.${e(`after${separator}${className}`)}::after`;
+        });
+      });
+    }),
+    plugin(({ addUtilities }) => {
+      const contentUtilities = {
+        ".content": {
+          content: "attr(data-content)",
+        },
+        ".content-before": {
+          content: "attr(data-before)",
+        },
+        ".content-after": {
+          content: "attr(data-after)",
+        },
+      };
+
+      addUtilities(contentUtilities, ["before", "after"]);
+    }),
+  ],
+};

@@ -39,7 +39,7 @@ function EnrollmentPageSummary({ display, name, admissionProgrammes, email }) {
       <br />
       <p>
         Please note that receipt of this application does not guarantee you
-        admission in {name}. Do not apply for admission again if you have
+        admission in {name}. If do not apply for admission again if you have
         applied before. Please contact us at {email} if you need more
         information to continue with the application process.
       </p>

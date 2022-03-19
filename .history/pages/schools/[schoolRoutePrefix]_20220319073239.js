@@ -51,7 +51,7 @@ function SchoolsPersonalPage({
 
   return (
     <>
-      <SEO title={`${name.toUpperCase()}, ${state},${country}`} />
+      <SEO title={`${name.charAt(0).toUpperCase()}, ${state},${country}`} />
       <section>
         <SchoolPersonalPageTabsProvider
           initialState={initialState}
