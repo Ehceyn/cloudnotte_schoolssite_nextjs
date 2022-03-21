@@ -1,8 +1,6 @@
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import { useLazyQuery } from "@apollo/client";
-import { GET_SEARCH_SCHOOLS } from "../../../graphql/user/queries/getSearchSchools";
+// import search_icon from "/assets/icons/search-icon.svg";
 
 function SearchbarFixed(props) {
   const [show, setShow] = useState(false);
@@ -81,12 +79,12 @@ function SearchbarFixed(props) {
             className="placeholder:text-slate-400 flex bg-white w-full border border-slate-300 focus:rounded-t-3xl focus:rounded-b-none rounded-full py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-[#F5F6F7] focus:ring-[#F5F6F7] focus:ring-1 sm:text-sm"
             placeholder="Search a school (Enter a keyword)"
             type="text"
-            name="searchInputs"
+            name="search"
             onFocus={() => setDisplaySearchResultsDiv(true)}
             onBlur={() =>
               setTimeout(() => {
                 setDisplaySearchResultsDiv(false);
-              }, 200)
+              })
             }
             onChange={handleChange}
             value={input.searchInputs}

@@ -86,7 +86,7 @@ function SearchbarFixed(props) {
             onBlur={() =>
               setTimeout(() => {
                 setDisplaySearchResultsDiv(false);
-              }, 200)
+              }, 1000)
             }
             onChange={handleChange}
             value={input.searchInputs}

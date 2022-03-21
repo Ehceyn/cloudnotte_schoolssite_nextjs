@@ -66,7 +66,7 @@ function Hero_1(props) {
               onBlur={() =>
                 setTimeout(() => {
                   setDisplaySearchResultsDiv(false);
-                })
+                }, 10)
               }
               onChange={handleChange}
               value={input.searchInputs}
