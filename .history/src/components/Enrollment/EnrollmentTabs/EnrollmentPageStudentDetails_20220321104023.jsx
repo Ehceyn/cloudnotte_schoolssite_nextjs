@@ -17,8 +17,25 @@ function EnrollmentPageStudentDetails({ display }) {
   const [formDetailsStore, formDetailsDispatch] = useFormDetailsStateValue();
   const [loaderState, setLoaderState] = useState(false);
   const [uploadMessage, setUploadMessage] = useState("");
+  const [allCountries, setAllCountries] = useState(countries);
   const [selectedCountry, setSelectedCountry] = useState();
+  const [allStates, setAllStates] = useState(states);
+  const [selectedStates, setSelectedStates] = useState();
   console.log(countries, "countries");
+  function handleCountryChange() {
+    console.log(selectedCountry, "selected");
+    // setSelectedStates(
+    //   allStates.filter((i) => i.country_name === selectedCountry)
+    // );
+    console.log(
+      allStates.filter((i) => i.country_name === selectedCountry),
+      "the selected"
+    );
+  }
+
+  useEffect(() => {
+    handleCountryChange();
+  }, [selectedCountry]);
 
   //  Populate the country, state dropdown
 
@@ -363,7 +380,7 @@ function EnrollmentPageStudentDetails({ display }) {
                   onBlur={formik.handleBlur}
                 >
                   <option selected="selected">Country</option>
-                  {countries.map((country) => {
+                  {allCountries.map((country) => {
                     return <option key={country.name}>{country.name}</option>;
                   })}
                 </select>
@@ -387,16 +404,11 @@ function EnrollmentPageStudentDetails({ display }) {
                   required
                   onBlur={formik.handleBlur}
                 >
-                  <option selected="selected">State</option>
-                  {states
-                    .filter((i) => i.country_name === selectedCountry)
-                    ?.map((state) => {
-                      return (
-                        <option key={state.id + state.name}>
-                          {state.name}
-                        </option>
-                      );
-                    })}
+                  <option disabled="disabled" selected="selected">
+                    State
+                  </option>
+                  <option>Female</option> <option>Other</option>{" "}
+                  <option>Other</option>
                 </select>
                 {formik.touched.state && formik.errors.state && (
                   <p className="text-xs text-red-600">{formik.errors.state}</p>

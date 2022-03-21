@@ -187,7 +187,7 @@ export const getStaticProps = async (context) => {
 
   const { data, loading, error } = await apolloClient.query({
     query: GET_SINGLE_SCHOOL,
-    variables: { schoolPrefix: schoolRoutePrefix },
+    // variables: { schoolPrefix: schoolRoutePrefix },
   });
 
   return {
@@ -201,7 +201,6 @@ export async function getStaticPaths() {
 
   const { loading, error, data } = await apolloClient.query({
     query: GET_SCHOOLS,
-    variables: { afterId: "", limit: 100, filter: "" },
   });
 
   // if (loading) return { paths: [], fallback: true };

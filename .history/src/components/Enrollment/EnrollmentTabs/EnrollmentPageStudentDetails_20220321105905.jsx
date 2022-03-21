@@ -18,7 +18,19 @@ function EnrollmentPageStudentDetails({ display }) {
   const [loaderState, setLoaderState] = useState(false);
   const [uploadMessage, setUploadMessage] = useState("");
   const [selectedCountry, setSelectedCountry] = useState();
+  const [selectedStates, setSelectedStates] = useState();
   console.log(countries, "countries");
+  function handleCountryChange() {
+    console.log(selectedCountry, "selected");
+    // const theStates = states.filter((i) => i.country_name === selectedCountry);
+
+    // setSelectedStates(theStates);
+    // console.log(selectedStates && selectedStates, "the selected");
+  }
+
+  useEffect(() => {
+    handleCountryChange();
+  }, [selectedCountry]);
 
   //  Populate the country, state dropdown
 

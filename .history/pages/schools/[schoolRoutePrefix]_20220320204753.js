@@ -201,7 +201,6 @@ export async function getStaticPaths() {
 
   const { loading, error, data } = await apolloClient.query({
     query: GET_SCHOOLS,
-    variables: { afterId: "", limit: 100, filter: "" },
   });
 
   // if (loading) return { paths: [], fallback: true };

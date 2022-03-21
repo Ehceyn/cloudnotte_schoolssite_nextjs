@@ -8,8 +8,6 @@ import * as Yup from "yup";
 import axios from "axios";
 import Loader from "../../Loader";
 import styles from "../../../../styles/MiniLoader.module.css";
-import { countries } from "../../../exApi/countries";
-import { states } from "../../../exApi/states";
 
 function EnrollmentPageStudentDetails({ display }) {
   const [tab, dispatch] = useEnrollmentTabsValue();
@@ -17,10 +15,24 @@ function EnrollmentPageStudentDetails({ display }) {
   const [formDetailsStore, formDetailsDispatch] = useFormDetailsStateValue();
   const [loaderState, setLoaderState] = useState(false);
   const [uploadMessage, setUploadMessage] = useState("");
+  const [countries, setCountries] = useState();
   const [selectedCountry, setSelectedCountry] = useState();
-  console.log(countries, "countries");
+  const [selectedState, setSelectedState] = useState();
+  const [selectedCity, setSelectedCity] = useState();
 
   //  Populate the country, state dropdown
+  const availableState = data.countries.find((c) => c.name === selectedCountry);
+  const availableCities = availableState?.states?.find(
+    (s) => s.name === selectedState
+  );
+
+  useEffect(() => {
+    const instance = axios.create();
+    instance.get("https://restcountries.com/v3.1/all").then((res) => {
+      const data = res.data;
+      setCountries(data);
+    });
+  });
 
   // UPLOAD STUDENT PSSPORT ONCHANGE
   useEffect(() => {
@@ -354,18 +366,16 @@ function EnrollmentPageStudentDetails({ display }) {
                   id="country"
                   name="country"
                   className="shadow-sm h-12 pl-7 border border-[#CFDBEA] text-gray-900 text-sm rounded-[5px] outline-none focus:ring-[#5f9af2] focus:border-[#5f9af2] block w-full p-2.5 bg-[#F8FBFF] "
-                  onChange={(e) => {
-                    formik.handleChange(e);
-                    setSelectedCountry(e.target.value);
-                  }}
+                  onChange={formik.handleChange}
                   value={formik.values.country}
                   required
                   onBlur={formik.handleBlur}
                 >
-                  <option selected="selected">Country</option>
-                  {countries.map((country) => {
-                    return <option key={country.name}>{country.name}</option>;
-                  })}
+                  <option selected="selected" disabled>
+                    Country
+                  </option>
+                  <option>Female</option> <option>Other</option>{" "}
+                  <option>Other</option>
                 </select>
 
                 {formik.touched.country && formik.errors.country && (
@@ -387,16 +397,11 @@ function EnrollmentPageStudentDetails({ display }) {
                   required
                   onBlur={formik.handleBlur}
                 >
-                  <option selected="selected">State</option>
-                  {states
-                    .filter((i) => i.country_name === selectedCountry)
-                    ?.map((state) => {
-                      return (
-                        <option key={state.id + state.name}>
-                          {state.name}
-                        </option>
-                      );
-                    })}
+                  <option selected="selected" disabled>
+                    State
+                  </option>
+                  <option>Female</option> <option>Other</option>{" "}
+                  <option>Other</option>
                 </select>
                 {formik.touched.state && formik.errors.state && (
                   <p className="text-xs text-red-600">{formik.errors.state}</p>
