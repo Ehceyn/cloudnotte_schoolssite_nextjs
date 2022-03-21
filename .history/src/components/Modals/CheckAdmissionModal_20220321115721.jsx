@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { MdPersonOutline } from "react-icons/md";
 import Button from "./Button";
+import Link from "next/link";
 
-function TakeEntranceModal(props) {
+function CheckAdmissionModal(props) {
   const [input, setInput] = useState({
     admissionNo: "",
   });
@@ -21,10 +22,10 @@ function TakeEntranceModal(props) {
 
   return (
     <section
-      className={`w-full h-screen bg-[#00000065] fixed top-0 bottom-0 z-30 items-center  justify-center ${
+      className={`w-full h-screen bg-[#00000065] fixed top-0 bottom-0 z-30 flex items-center  justify-center ${
         props.display ? "flex" : "hidden"
       } `}
-      onClick={props.onCallEntranceExamModal}
+      onClick={props.onCallCheckAdmissionModal}
     >
       <div
         className="w-fit h-fit border rounded-2xl bg-white px-6 py-6 "
@@ -41,11 +42,11 @@ function TakeEntranceModal(props) {
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth={2}
-              d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+              strokeWidth={1}
+              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
             />
           </svg>
-          <p className="font-bold">Take Entrance Exam</p>
+          <p className="font-bold">Check Admission Status</p>
         </article>
         <div className="flex justify-center items-center mb-6">
           <article className="relative">
@@ -61,35 +62,38 @@ function TakeEntranceModal(props) {
             />
             <input
               type="text"
-              id="entranceNo"
-              className="shadow-sm h-12 pl-12 border border-[#CFDBEA] text-base text-gray-900 rounded-full outline-none focus:ring-[#5f9af2] focus:border-[#5f9af2] block w-[260px]  xs:w-[320px] p-2.5 bg-[#F8FBFF]"
-              placeholder="Enter your admission number"
-              required
+              id="admissionNo"
+              name="admissionNo"
               onChange={handleChange}
-              value={input.admissionNo}
+              // value={input.admissionNo}
+              className="shadow-sm h-12 pl-12 border border-[#CFDBEA] text-base text-gray-900 rounded-full outline-none focus:ring-[#5f9af2] focus:border-[#5f9af2] block w-[260px]  xs:w-[320px] p-2.5 bg-[#F8FBFF]"
+              placeholder="Enter your admission number here"
+              required
             />
           </article>
         </div>
-        <article className="w-full flex items-center justify-center">
-          <a
-            href={`https://cloudnotte.com/admission/${input.admissionNo}/cbt
-`}
-            target="_blank"
-            rel="noopener noreferrer"
+
+        <Link
+          href="/schools/admission_status/[admissionId]"
+          as={`/schools/admission_status/${input.admissionNo}`}
+          passHref
+        >
+          <article
+            className="w-full flex items-center justify-center "
+            onClick={() => setInput({ admissionNo: "" })}
           >
             <Button
               borderRaduis="rounded-full"
               px="px-5 w-full xs:w-[200px]"
               py="py-3"
             >
-              {" "}
-              Take Entance Exam{" "}
+              Check Status
             </Button>
-          </a>
-        </article>
+          </article>
+        </Link>
       </div>
     </section>
   );
 }
 
-export default TakeEntranceModal;
+export default CheckAdmissionModal;

@@ -97,7 +97,7 @@ function SchoolAdCard({
                       <Image
                         loading="lazy"
                         src={
-                          asset !== undefined
+                          asset !== ""
                             ? asset
                             : `/assets/images/school-ad-img-1.png`
                         }

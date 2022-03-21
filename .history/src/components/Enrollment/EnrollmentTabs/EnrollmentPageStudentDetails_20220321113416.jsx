@@ -49,9 +49,9 @@ function EnrollmentPageStudentDetails({ display }) {
           console.log(formik, "The url response");
         })
         .catch((err) => {
-          console.log(err, "werr");
+          console.log(err);
           setUploadMessage(
-            `Error uploading image check your internet connection`
+            `Error ${err} uploading image check your internet connection`
           );
         });
     }

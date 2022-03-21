@@ -22,7 +22,7 @@ function AdmittedStage({ data }) {
       <div className="flex flex-col items-center mb-5">
         <article className="flex">
           <p className="font-bold">Username:&nbsp;</p>
-          <p>{data.student?.userName}</p>
+          <p>"{data.student.userName}"</p>
         </article>
         <article className="flex">
           <p className="font-bold">Password:&nbsp;</p>

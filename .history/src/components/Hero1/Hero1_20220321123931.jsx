@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import styles from "../../../styles/Hero.module.css";
 import { useLazyQuery } from "@apollo/client";
 import { GET_SEARCH_SCHOOLS } from "../../../graphql/user/queries/getSearchSchools";
@@ -28,7 +27,7 @@ function Hero_1(props) {
   const [getSearchSchools, { data, loading, error }] = useLazyQuery(
     GET_SEARCH_SCHOOLS,
     {
-      variables: { afterId: "", limit: 20, filter: input.searchInputs },
+      variables: { afterId: "", limit: 100, filter: input.searchInputs },
     }
   );
   if (loading) {
@@ -61,11 +60,7 @@ function Hero_1(props) {
               type="text"
               name="searchInputs"
               onFocus={() => setDisplaySearchResultsDiv(true)}
-              onBlur={() =>
-                setTimeout(() => {
-                  setDisplaySearchResultsDiv(false);
-                })
-              }
+              onBlur={() => setDisplaySearchResultsDiv(false)}
               onChange={handleChange}
               value={input.searchInputs}
             />
@@ -76,41 +71,17 @@ function Hero_1(props) {
                 displaySearchResultsDiv ? null : "hidden"
               } shadow-sm h-fit px-5 py-1 bg-white rounded-b-3xl`}
             >
-              {loading && (
-                <p className="text-xs text-center">loading results</p>
-              )}
-              {data?.getSchools.map((school) => {
-                return (
-                  <div key={school.id}>
-                    <Link
-                      href="/schools/[schoolRoutePrefix]"
-                      as={`/schools/${school.prefix}`}
-                      passHref
-                    >
-                      <article className="flex py-3 items-center cursor-pointer">
-                        <Image
-                          src={
-                            school.logoUrl
-                              ? school.logoUrl
-                              : `/assets/images/school-profile-img.png`
-                          }
-                          width={30}
-                          height={30}
-                          objectFit="contain"
-                          className="w-5 h-5"
-                          alt=""
-                        />
-                        <article className="ml-2">
-                          <h3>{school.name}</h3>
-                          <p className="text-xs">
-                            {school.city}, {school.state}, {school.country}
-                          </p>
-                        </article>
-                      </article>
-                    </Link>
-                  </div>
-                );
-              })}
+              <article className="flex py-3 items-center cursor-pointer">
+                <Image
+                  src="/assets/images/school-profile-img.png"
+                  width={30}
+                  height={30}
+                  objectFit="contain"
+                  className="w-5 h-5"
+                  alt=""
+                />
+                <p className="ml-2">Learners international school</p>
+              </article>{" "}
             </div>
           </label>
         </div>

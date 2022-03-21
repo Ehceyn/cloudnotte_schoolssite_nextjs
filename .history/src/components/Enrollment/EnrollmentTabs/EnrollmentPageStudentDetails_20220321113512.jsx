@@ -51,7 +51,7 @@ function EnrollmentPageStudentDetails({ display }) {
         .catch((err) => {
           console.log(err, "werr");
           setUploadMessage(
-            `Error uploading image check your internet connection`
+            `Error ${err} uploading image check your internet connection`
           );
         });
     }

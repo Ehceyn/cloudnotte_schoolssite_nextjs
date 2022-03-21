@@ -28,7 +28,7 @@ function Hero_1(props) {
   const [getSearchSchools, { data, loading, error }] = useLazyQuery(
     GET_SEARCH_SCHOOLS,
     {
-      variables: { afterId: "", limit: 20, filter: input.searchInputs },
+      variables: { afterId: "", limit: 100, filter: input.searchInputs },
     }
   );
   if (loading) {
@@ -61,11 +61,7 @@ function Hero_1(props) {
               type="text"
               name="searchInputs"
               onFocus={() => setDisplaySearchResultsDiv(true)}
-              onBlur={() =>
-                setTimeout(() => {
-                  setDisplaySearchResultsDiv(false);
-                })
-              }
+              onBlur={() => setDisplaySearchResultsDiv(false)}
               onChange={handleChange}
               value={input.searchInputs}
             />
