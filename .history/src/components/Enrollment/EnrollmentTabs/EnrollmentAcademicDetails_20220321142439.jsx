@@ -257,7 +257,7 @@ function EnrollmentAcademicDetails({
 
       callback: function (payment) {
         console.log(payment.id);
-        setDisplayMessageModal(true);
+        props.onCallMessageModal;
         setFormSubmitStatus("success");
       },
       onclose: function (incomplete) {

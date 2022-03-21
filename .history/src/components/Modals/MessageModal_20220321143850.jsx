@@ -12,7 +12,7 @@ function MessageModal(props) {
       } `}
     >
       <div
-        className="w-80 h-84 xs:w-96 xs:h-96 border rounded-2xl bg-white px-6 py-6 flex flex-col justify-center items-center"
+        className="w-84 h-84 xs:w-96 xs:h-96 border rounded-2xl bg-white px-6 py-6 flex flex-col justify-center items-center"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex flex-col sm:flex-row justify-center items-center mb-1">

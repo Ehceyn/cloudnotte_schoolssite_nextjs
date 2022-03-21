@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button2 } from "./Button";
+import Button from "./Button";
 import { useRouter } from "next/router";
 
 function MessageModal(props) {
@@ -12,7 +12,7 @@ function MessageModal(props) {
       } `}
     >
       <div
-        className="w-80 h-84 xs:w-96 xs:h-96 border rounded-2xl bg-white px-6 py-6 flex flex-col justify-center items-center"
+        className="w-96 h-96 border rounded-2xl bg-white px-6 py-6 flex flex-col justify-center items-center"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex flex-col sm:flex-row justify-center items-center mb-1">
@@ -59,7 +59,7 @@ function MessageModal(props) {
             : "Please check your internet connection"}
         </p>
 
-        <article
+        {/* <article
           className="w-full flex items-center justify-center mt-6"
           onClick={() => {
             props.status === "success"
@@ -67,11 +67,15 @@ function MessageModal(props) {
               : props.onCallMessageModal;
           }}
         >
-          <Button2 borderRaduis="rounded-full" px="px-5 w-[200px]" py="py-3">
+          <Button
+            borderRaduis="rounded-full"
+            px="px-5 w-full sm:w-[200px]"
+            py="py-3"
+          >
             {" "}
             OK
-          </Button2>
-        </article>
+          </Button>
+        </article> */}
       </div>
     </section>
   );

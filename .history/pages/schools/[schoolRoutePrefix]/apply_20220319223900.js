@@ -68,7 +68,6 @@ function EnrollmentPage({
               email={email}
               phoneNumber={phoneNumber}
               admissionSubAccountId={admissionSubAccountId}
-              logoUrl={logoUrl}
             />
           </EnrollmentTabsProvider>
         </DocUploadProvider>
