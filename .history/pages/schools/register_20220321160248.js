@@ -51,7 +51,7 @@ function Home({ data }) {
 
   return (
     <div>
-      <SEO title="Register School" />
+      <SEO title="Home" />
       <section className="2xl:w-[1536px] 2xl:max-w-[1536px] 2xl:px-auto h-full">
         <div className="w-full h-full flex justify-between relative  ">
           <div className="bg-white fixed  left-0 h-full w-1/4 border-r hidden md2:flex">

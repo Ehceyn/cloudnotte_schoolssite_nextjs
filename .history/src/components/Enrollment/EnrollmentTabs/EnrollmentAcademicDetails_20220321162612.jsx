@@ -26,7 +26,7 @@ function EnrollmentAcademicDetails({
   // Initialize the next router
   const router = useRouter();
   const [fee, setFee] = useState(
-    "Choose a programme to see documents required"
+    "Choose a programme to see documents required /"
   );
   const [tab, dispatch] = useEnrollmentTabsValue();
   const [formDetailsStore, formDetailsDispatch] = useFormDetailsStateValue();
@@ -34,7 +34,6 @@ function EnrollmentAcademicDetails({
   const [allDocs, setAllDocs] = useState();
   const [docForUpload, setDocForUpload] = useState();
   const [classId, setClassId] = useState();
-  const [classIdName, setClassIdName] = useState();
   const [docForUploadName, setDocForUploadName] = useState();
   const [docForUploadIndex, setDocForUploadIndex] = useState();
   const [formSubmitMessage, setFormSubmitMessage] = useState();
@@ -202,7 +201,6 @@ function EnrollmentAcademicDetails({
     setFee(applicationFees(e.target.value));
     requiredDocs(e.target.value);
     setClassId(e.target.value);
-    setClassIdName(e.target.id);
     formik.setFieldValue("programmeId", e.target.value);
 
     //  clear all the upload messages
@@ -392,38 +390,20 @@ function EnrollmentAcademicDetails({
                     </option>
                     {admissionProgrammes.map((eachClass, index) => {
                       return (
-                        <option
-                          key={eachClass.id}
-                          id={eachClass.name}
-                          value={eachClass.id}
-                        >
+                        <option key={eachClass.id} value={eachClass.id}>
                           {eachClass.name}
                         </option>
                       );
                     })}
                   </select>
                   <p
-                    className={`${
-                      fee === "Choose a programme to see documents required"
-                        ? "text-[#f44336]"
-                        : "text-[#8ea2ba] pl-7 pt-3 font-bold text-sm"
-                    }`}
+                    className="text-red-600 pl-7 pt-3"
                     id="applicationFee"
                     name="applicationFee"
                   >
                     {fee === "Choose a programme to see documents required"
                       ? `${fee}`
-                      : `Application fee for this class is: `}
-
-                    <span
-                      className={`${
-                        fee === "Choose a programme to see documents required"
-                          ? " hidden"
-                          : null
-                      } text-[#8ea2ba]`}
-                    >
-                      N{fee}
-                    </span>
+                      : `Your Application fee is ${fee}`}
                   </p>
                 </div>
                 <div className="mb-6 w-full ">

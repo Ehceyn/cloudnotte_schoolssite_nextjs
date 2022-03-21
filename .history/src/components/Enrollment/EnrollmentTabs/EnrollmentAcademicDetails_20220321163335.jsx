@@ -26,7 +26,7 @@ function EnrollmentAcademicDetails({
   // Initialize the next router
   const router = useRouter();
   const [fee, setFee] = useState(
-    "Choose a programme to see documents required"
+    "Choose a programme to see documents required /"
   );
   const [tab, dispatch] = useEnrollmentTabsValue();
   const [formDetailsStore, formDetailsDispatch] = useFormDetailsStateValue();
@@ -403,27 +403,13 @@ function EnrollmentAcademicDetails({
                     })}
                   </select>
                   <p
-                    className={`${
-                      fee === "Choose a programme to see documents required"
-                        ? "text-[#f44336]"
-                        : "text-[#8ea2ba] pl-7 pt-3 font-bold text-sm"
-                    }`}
+                    className="text-[#8ea2ba] pl-7 pt-3 font-bold"
                     id="applicationFee"
                     name="applicationFee"
                   >
                     {fee === "Choose a programme to see documents required"
                       ? `${fee}`
-                      : `Application fee for this class is: `}
-
-                    <span
-                      className={`${
-                        fee === "Choose a programme to see documents required"
-                          ? " hidden"
-                          : null
-                      } text-[#8ea2ba]`}
-                    >
-                      N{fee}
-                    </span>
+                      : `Application fee for ${classIdName} ${fee}`}
                   </p>
                 </div>
                 <div className="mb-6 w-full ">

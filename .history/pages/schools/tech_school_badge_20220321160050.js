@@ -11,7 +11,7 @@ import GetStudentDataModal from "../../src/components/Modals/GetStudentDataModal
 import SearchbarFixed from "../../src/components/SearchbarFixed/SearchbarFixed";
 import { initializeApollo } from "../../lib/apolloClient";
 import { GET_SCHOOLS } from "../../graphql/user/queries/getSchools";
-import RegisterSchoolPage from "../../src/components/RegisterSchoolPage/RegisterSchoolPage";
+import TechBadgePage from "../../src/components/TechBadgePage/TechBadgePage";
 import SEO from "../../src/components/SEO";
 
 function Home({ data }) {
@@ -51,7 +51,7 @@ function Home({ data }) {
 
   return (
     <div>
-      <SEO title="Register School" />
+      <SEO title="TechBadgePage" />
       <section className="2xl:w-[1536px] 2xl:max-w-[1536px] 2xl:px-auto h-full">
         <div className="w-full h-full flex justify-between relative  ">
           <div className="bg-white fixed  left-0 h-full w-1/4 border-r hidden md2:flex">
@@ -68,7 +68,7 @@ function Home({ data }) {
             />
           </div>
 
-          <RegisterSchoolPage />
+          <TechBadgePage />
 
           <div className="bg-white fixed right-0 h-full w-1/4  border-l hidden md2:flex">
             <RightBar schools={schools.getSchools} />
@@ -84,8 +84,6 @@ function Home({ data }) {
           onCallGetStudentDataModal={() =>
             setDisplayGetStudentDataModal(!displayGetStudentDataModal)
           }
-          onDisplayRegisterSchoolPage={() => setDisplayRegisterSchoolPage(true)}
-          onDisplayHomePage={() => setDisplayRegisterSchoolPage(false)}
         />
 
         <SearchbarFixed display={searchbarFixed} />
@@ -128,7 +126,6 @@ export const getStaticProps = async () => {
   const apolloClient = initializeApollo();
   const { data, error, loading } = await apolloClient.query({
     query: GET_SCHOOLS,
-    variables: { afterId: "", limit: 100, filter: "" },
   });
 
   if (loading) return <h2>Loading...</h2>;
@@ -138,7 +135,5 @@ export const getStaticProps = async () => {
     props: { initializeApolloState: apolloClient.cache.extract(), data },
   };
 };
-
-//
 
 export default Home;

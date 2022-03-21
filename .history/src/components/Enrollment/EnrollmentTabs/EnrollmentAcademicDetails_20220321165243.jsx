@@ -406,7 +406,7 @@ function EnrollmentAcademicDetails({
                     className={`${
                       fee === "Choose a programme to see documents required"
                         ? "text-[#f44336]"
-                        : "text-[#8ea2ba] pl-7 pt-3 font-bold text-sm"
+                        : "text-[#8ea2ba] pl-7 pt-3 font-bold"
                     }`}
                     id="applicationFee"
                     name="applicationFee"
@@ -418,9 +418,9 @@ function EnrollmentAcademicDetails({
                     <span
                       className={`${
                         fee === "Choose a programme to see documents required"
-                          ? " hidden"
+                          ? "text-[#8ea2ba] hidden"
                           : null
-                      } text-[#8ea2ba]`}
+                      }`}
                     >
                       N{fee}
                     </span>

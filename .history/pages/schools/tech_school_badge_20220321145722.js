@@ -9,12 +9,11 @@ import CheckAdmissionModal from "../../src/components/Modals/CheckAdmissionModal
 import TakeEntranceModal from "../../src/components/Modals/TakeEntranceModal";
 import GetStudentDataModal from "../../src/components/Modals/GetStudentDataModal";
 import SearchbarFixed from "../../src/components/SearchbarFixed/SearchbarFixed";
-import { initializeApollo } from "../../lib/apolloClient";
-import { GET_SCHOOLS } from "../../graphql/user/queries/getSchools";
+
 import RegisterSchoolPage from "../../src/components/RegisterSchoolPage/RegisterSchoolPage";
 import SEO from "../../src/components/SEO";
 
-function Home({ data }) {
+function Home() {
   const [displayEntranceExamModal, setDisplayEntranceExamModal] =
     useState(false);
   const [displayChangeLocationModal, setDisplayChangeLocationModal] =
@@ -46,12 +45,9 @@ function Home({ data }) {
     }
   }
 
-  const schools = data;
-  console.log(schools, "here --------<-");
-
   return (
     <div>
-      <SEO title="Register School" />
+      <SEO title="Get a tech badge" />
       <section className="2xl:w-[1536px] 2xl:max-w-[1536px] 2xl:px-auto h-full">
         <div className="w-full h-full flex justify-between relative  ">
           <div className="bg-white fixed  left-0 h-full w-1/4 border-r hidden md2:flex">
@@ -123,22 +119,5 @@ function Home({ data }) {
     </div>
   );
 }
-
-export const getStaticProps = async () => {
-  const apolloClient = initializeApollo();
-  const { data, error, loading } = await apolloClient.query({
-    query: GET_SCHOOLS,
-    variables: { afterId: "", limit: 100, filter: "" },
-  });
-
-  if (loading) return <h2>Loading...</h2>;
-  if (error) return console.log(JSON.stringify(error, null, 2));
-
-  return {
-    props: { initializeApolloState: apolloClient.cache.extract(), data },
-  };
-};
-
-//
 
 export default Home;

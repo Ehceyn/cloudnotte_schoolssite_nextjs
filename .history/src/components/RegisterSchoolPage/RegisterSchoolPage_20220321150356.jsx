@@ -59,7 +59,7 @@ function RegisterSchoolPage() {
       </div>
       <div className="flex justify-center w-full my-6">
         <a
-          href="https://cloudnotte.com"
+          href="https://www.cloudnotte.com/register"
           target="_blank"
           rel="noopener noreferrer"
           className="text-center font-semibold text-[#F44336] "

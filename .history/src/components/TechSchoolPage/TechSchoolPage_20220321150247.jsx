@@ -1,13 +1,13 @@
 import React from "react";
 import Image from "next/image";
-import RegisterSchoolPageHero from "./RegisterSchoolPageHero";
+import TechBadgePageHero from "./TechBadgePageHero";
 
-function RegisterSchoolPage() {
+function TechBadgePage() {
   return (
     <section
       className={` bg-white relative inset-0 my-0 mx-auto h-auto w-full md:w-3/4 md2:w-1/2 mt-5 mb-14 md:px-6 transition-[display] duration-300 ease-in-out`}
     >
-      <RegisterSchoolPageHero />{" "}
+      <TechBadgePageHero />{" "}
       <div className="w-full h-fit flex item-center justify-center">
         <Image
           width={350}
@@ -71,4 +71,4 @@ function RegisterSchoolPage() {
   );
 }
 
-export default RegisterSchoolPage;
+export default TechBadgePage;
