@@ -7,7 +7,7 @@ function Sidebar(props) {
   return (
     <>
       <div className="">
-        <article className=" pt-10 pl-9 ">
+        <article className=" pt-10 pl-9 pb-5 ">
           <Image
             src="https://res.cloudinary.com/ugomatt/image/upload/v1647277984/cloudnotte_icon_soqc6y.png"
             width={120}
@@ -143,7 +143,7 @@ function Sidebar(props) {
             </a>
           </div>{" "}
         </article>
-        <div className="bg-white pl-8 pr-8 pb-5 w-full capitalize h-[100px] flex flex-col justify-end">
+        <div className="bg-white pl-8 pr-8 pb-5 w-full capitalize h-28 flex flex-col justify-end">
           <Link href="/schools/register" passHref>
             <article>
               <Button
