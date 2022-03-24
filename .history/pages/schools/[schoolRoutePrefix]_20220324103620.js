@@ -19,6 +19,8 @@ import SEO from "../../src/components/SEO";
 import CheckAdmissionModal from "../../src/components/Modals/CheckAdmissionModal";
 import TakeEntranceModal from "../../src/components/Modals/TakeEntranceModal";
 import GetStudentDataModal from "../../src/components/Modals/GetStudentDataModal";
+import { states } from "../../src/exApi/states";
+import { countries } from "../../src/exApi/countries";
 
 function SchoolsPersonalPage({
   data: {
