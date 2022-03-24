@@ -225,7 +225,7 @@ function EnrollmentAcademicDetails({
     const base64Payload = btoa(JSON.stringify(details));
 
     FlutterwaveCheckout({
-      public_key: process.env.NEXT_PUBLIC_FLUTTERWAVE_API,
+      public_key: NEXT_PUBLIC_FLUTTERWAVE_API,
       tx_ref: new Date().getTime(),
       amount: fee,
       currency: "NGN",

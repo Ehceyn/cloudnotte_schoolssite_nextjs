@@ -68,7 +68,7 @@ function EnrollmentPageSummary({
           >
             <Button2
               customStyle="border sm:w-[230px]"
-              py="py-2 px-10 sm:px-0 mb-5"
+              py="py-2 px-10 sm:px-0"
               bg=" bg-[#5f9af2] text-[#E7F0FB]"
             >
               <GiGraduateCap className="w-5 h-5 mr-1" />
@@ -90,7 +90,7 @@ function EnrollmentPageSummary({
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5 mr-1"
                 viewBox="0 0 20 20"
-                fill="#8EA2BA"
+                fill="#E7F0FB"
               >
                 <path
                   fillRule="evenodd"

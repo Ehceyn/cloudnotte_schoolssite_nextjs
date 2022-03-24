@@ -5,7 +5,7 @@ import { IoIosCall } from "react-icons/io";
 import { RiWhatsappFill } from "react-icons/ri";
 import { useSchoolPersonalPageTabsValue } from "../../../StateProviders/SchoolPersonalPageTabsProvider";
 
-function Navbar({ phoneNumber, anthemUrl, name }) {
+function Navbar({ phoneNumber, anthemUrl, name, phoneNumber }) {
   const [tab, dispatch] = useSchoolPersonalPageTabsValue();
 
   const changeTab = (id) => {

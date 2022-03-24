@@ -48,7 +48,7 @@ function RegisterSchoolPage() {
       <div className="flex justify-center w-full my-4">
         <button className="bg-[#5f9af2] hover:brightness-90 text-white font-bold py-2 px-4 rounded-[5px]">
           <a
-            href="https://www.cloudnotte.com"
+            href="https://www.cloudnotte.com/register"
             target="_blank"
             rel="noopener noreferrer"
             className="text-white"

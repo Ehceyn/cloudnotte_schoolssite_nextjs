@@ -61,14 +61,14 @@ function EnrollmentPageSummary({
       <article className="flex w-full py-14 justify-center">
         <div className="flex flex-col sm:flex-row">
           <div
-            className="w-full mr-1"
+            className="w-full"
             onClick={() => {
               changeTab(2);
             }}
           >
             <Button2
               customStyle="border sm:w-[230px]"
-              py="py-2 px-10 sm:px-0 mb-5"
+              py="py-2 px-10 sm:px-0"
               bg=" bg-[#5f9af2] text-[#E7F0FB]"
             >
               <GiGraduateCap className="w-5 h-5 mr-1" />
@@ -82,15 +82,15 @@ function EnrollmentPageSummary({
             }}
           >
             <Button3
-              customStyle=" sm:w-[230px] border "
-              py="py-2 mb-5 sm:mb-0 sm:mr-5 px-[18px] sm:px-0"
-              bg="bg-white text-[#8EA2BA]"
+              customStyle=" sm:w-[230px] border sm:border-0"
+              py="py-2 mb-5 sm:mb-0 sm:mr-5 px-5 sm:px-0"
+              bg="bg-black text-[#8EA2BA]"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5 mr-1"
                 viewBox="0 0 20 20"
-                fill="#8EA2BA"
+                fill="#E7F0FB"
               >
                 <path
                   fillRule="evenodd"
