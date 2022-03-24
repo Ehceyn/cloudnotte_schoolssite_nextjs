@@ -11,6 +11,9 @@ const nextConfig = {
       "cloudnotte-cdn.fra1.cdn.digitaloceanspaces.com",
     ],
   },
+  experimental: {
+    outputStandalone: true,
+  },
 };
 
 const withCSS = require("@zeit/next-css");

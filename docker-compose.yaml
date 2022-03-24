@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  frontend:
+    container_name: cloudnotte-directory-frontend
+    restart: always
+    build: .
+    ports:
+      - 4222:3000
+    
