@@ -531,7 +531,7 @@ function EnrollmentAcademicDetails({
                                 <Image
                                   width={28}
                                   height={28}
-                                  src="/assets/icons/Vector-upload-icon.svg"
+                                  src="https://res.cloudinary.com/zichygraphs/image/upload/v1648242792/Vector-upload-icon_balboa.svg"
                                   className="w-7 h-7"
                                   alt="upload icon"
                                 />
