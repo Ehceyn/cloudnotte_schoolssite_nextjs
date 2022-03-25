@@ -4,6 +4,7 @@ import styles from "../../../styles/Home.module.css";
 function Button(props) {
   return (
     <button
+      type="button"
       className={` flex items-center justify-center hover:brightness-90 ${props.customStyle} font-medium ${props.py} ${props.px} ${props.borderRaduis} ${props.height} capitalize`}
     >
       {props.children}

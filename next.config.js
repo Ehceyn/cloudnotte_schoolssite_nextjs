@@ -1,48 +1,54 @@
 /** @type {import('next').NextConfig} */
-
-const withPlugins = require("next-compose-plugins");
-const withImages = require("next-images");
-
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["res.cloudinary.com"],
+    domains: [
+      "res.cloudinary.com",
+      "cloudnotte.com",
+      "www.pngitem.com",
+      "cdn.pixabay.com",
+      "static.vecteezy.com",
+      "cloudnotte-cdn.fra1.cdn.digitaloceanspaces.com",
+    ],
+  },
+  experimental: {
+    outputStandalone: true,
   },
 };
 
-// const withCSS = require("@zeit/next-css");
+const withCSS = require("@zeit/next-css");
 
-// module.exports = withCSS({
-//   webpack: function (config) {
-//     config.module.rules.push({
-//       test: /\.(eot|woff|woff2|ttf|svg|png|jpg|gif)$/,
-//       use: {
-//         loader: "url-loader",
-//         options: {
-//           limit: 100000,
-//           name: "[name].[ext]",
-//         },
-//       },
-//     });
-//     return config;
-//   },
-// });
+module.exports = withCSS({
+  webpack: function (config) {
+    config.module.rules.push({
+      test: /\.(eot|woff|woff2|ttf|svg|png|jpg|gif)$/,
+      use: {
+        loader: "url-loader",
+        options: {
+          limit: 100000,
+          name: "[name].[ext]",
+        },
+      },
+    });
+    return config;
+  },
+});
 
-// module.exports = {
-//   webpack(config) {
-//     config.module.rules.push({
-//       test: /\.svg$/,
-//       issuer: {
-//         test: /\.(js|ts)x?$/,
-//         // for webpack 5 use
-//         // { and: [/\.(js|ts)x?$/] }
-//       },
+module.exports = {
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      issuer: {
+        test: /\.(js|ts)x?$/,
+        // for webpack 5 use
+        // { and: [/\.(js|ts)x?$/] }
+      },
 
-//       use: ["@svgr/webpack"],
-//     });
+      use: ["@svgr/webpack"],
+    });
 
-//     return config;
-//   },
-// };
+    return config;
+  },
+};
 
-module.exports = withPlugins([[withImages]], nextConfig);
+module.exports = nextConfig;

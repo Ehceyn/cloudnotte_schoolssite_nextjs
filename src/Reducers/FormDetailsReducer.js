@@ -1,13 +1,24 @@
-export const formInitialState = {
-  formDetailsStore: [],
-};
-
+export const formInitialState = [];
+let dataStore = [];
 function formReducer(state = formInitialState, action) {
   console.log(action);
   switch (action.type) {
     case "ADD_TO_FORM_DETAILS_STORE":
+      let obj = action.item;
+      dataStore.push(obj);
+      console.log(dataStore, "The formstore");
+      state = dataStore;
+
+      console.log(state, "Added state");
+
       return {
-        formDetailsStore: [...state.formDetailsStore, action.item],
+        state,
+      };
+
+    case "REMOVE_FROM_FORM_DETAILS_STORE":
+      dataStore.pop();
+      return {
+        state,
       };
 
     default:
