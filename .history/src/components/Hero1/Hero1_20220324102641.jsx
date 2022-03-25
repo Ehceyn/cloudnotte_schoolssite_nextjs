@@ -80,7 +80,7 @@ function Hero_1(props) {
             <div
               className={`absolute z-10 inset-x-0 top-[38px] w-[inherit] ${
                 displaySearchResultsDiv ? null : "hidden"
-              } shadow-sm h-fit px-5 py-1 bg-white rounded-b-3xl overflow-y-scroll scrollbar-hide`}
+              } shadow-sm h-fit px-5 py-1 bg-white rounded-b-3xl`}
             >
               {loading && (
                 <p className="text-xs text-center">loading results</p>
