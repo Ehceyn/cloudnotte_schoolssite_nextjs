@@ -122,7 +122,7 @@ function Hero_1(props) {
         </div>
 
         <p
-          className="mt-2 font-medium text-slate-300 cursor-pointer text-center"
+          className="mt-2 font-medium text-slate-300 cursor-pointer"
           // onClick={props.onCallChangeLocationModal}
         >
           Find schools nearby
