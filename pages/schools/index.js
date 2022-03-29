@@ -53,7 +53,7 @@ function Home({ data }) {
   return (
     <div>
       <SEO
-        title="CloudNotte Schools - Find schools nearby"
+        title="Find good schools nearby"
         keywords={`Best school in ${states.map((state) => {
           return "Best school in " + state.name;
         })}, Best school in Nigeria, ${countries.map((country) => {

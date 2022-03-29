@@ -30,7 +30,7 @@ function Hero_1(props) {
   const [getSearchSchools, { data, loading, error }] = useLazyQuery(
     GET_SEARCH_SCHOOLS,
     {
-      variables: { afterId: "", limit: 20, filter: input.searchInputs },
+      variables: { afterId: "", limit: 10, filter: input.searchInputs },
     }
   );
   if (loading) {
@@ -125,7 +125,7 @@ function Hero_1(props) {
           className="mt-2 font-medium text-slate-300 cursor-pointer text-center"
           // onClick={props.onCallChangeLocationModal}
         >
-          Find schools nearby
+          Find good schools nearby
         </p>
       </section>
     </>

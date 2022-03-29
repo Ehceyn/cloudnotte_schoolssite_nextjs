@@ -31,7 +31,7 @@ function SearchbarFixed(props) {
   const [getSearchSchools, { data, loading, error }] = useLazyQuery(
     GET_SEARCH_SCHOOLS,
     {
-      variables: { afterId: "", limit: 20, filter: input.searchInputs },
+      variables: { afterId: "", limit: 10, filter: input.searchInputs },
     }
   );
   if (loading) {
