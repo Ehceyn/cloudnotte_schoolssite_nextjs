@@ -10,9 +10,9 @@ export default function SEO({
 }) {
   return (
     <Head>
-      <meta charset="utf-8" />
       <link rel="shortcut icon" href="/favicon.ico" />
       <title>{`${title} | Schools Search Engine`}</title>
+      <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
