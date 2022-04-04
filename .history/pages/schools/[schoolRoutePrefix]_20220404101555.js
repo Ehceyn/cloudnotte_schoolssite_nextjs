@@ -168,9 +168,7 @@ Best schools in ${state}, Best schools in ${country}, Best schools in ${city}, S
                     <article className="border rounded-sm px-1 sm:px-2 py-1 sm:py-2 ml-2 h-fit">
                       <a
                         href={`https://api.whatsapp.com/send?phone=${
-                          phoneNumber.charAt(0) === "0"
-                            ? phoneNumber.slice(1)
-                            : phoneNumber
+                          phoneNumber.charAt(0) === "0" && phoneNumber.slice(1)
                         }&text=Hi%20${name},%20I%20came%20across%20your%20school%20on%20Schools.cloudnotte.com.%20I'd%20like%20to%20make%20more%20enquiries`}
                         target="_blank"
                         rel="noopener noreferrer"
