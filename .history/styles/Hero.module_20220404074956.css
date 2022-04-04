@@ -1,0 +1,10 @@
+.hero_1_bg {
+  background: url(https://res.cloudinary.com/ugomatt/image/upload/v1648061137/Rectangle_2_1_idavgb.png)
+    no-repeat center;
+  height: 13rem;
+}
+@media screen and (max-width: 400px) {
+  .hero_1_bg {
+    height: 10rem;
+  }
+}
