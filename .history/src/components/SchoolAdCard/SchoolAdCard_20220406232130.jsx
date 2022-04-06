@@ -27,20 +27,12 @@ function SchoolAdCard({
   isSmartSchool,
   textColor,
 }) {
-  const [newShortDescription, setNewShortDescription] = useState();
-
   // PArse text from server to html
   function htmlDecode(content) {
     var doc =
       process.browser && new DOMParser().parseFromString(content, "text/html");
     return process.browser && doc.documentElement.textContent;
   }
-
-  useEffect(() => {
-    if (shortDescription) {
-      setNewShortDescription(htmlDecode(DOMPurify.sanitize(shortDescription)));
-    }
-  }, [shortDescription]);
 
   const settings = {
     dots: false,
@@ -158,17 +150,13 @@ function SchoolAdCard({
 
             <div className=" flex px-4 xs:px-7 pt-2 pb-4 flex-wrap cursor-pointer">
               <p
-                className={`${
-                  newShortDescription ? "flex" : "hidden"
-                } w-[100vh]`}
+                className={`${shortDescription ? "flex" : "hidden"} w-[100vh]`}
                 dangerouslySetInnerHTML={{
-                  __html: newShortDescription && newShortDescription,
+                  __html: htmlDecode(DOMPurify.sanitize(shortDescription)),
                 }}
               ></p>
               <p
-                className={`${
-                  newShortDescription ? "hidden" : "flex"
-                } w-[100vh]`}
+                className={`${shortDescription ? "hidden" : "flex"} w-[100vh]`}
                 dangerouslySetInnerHTML={{
                   __html: `Welcome to ${name}, We are a thriving educational community of
                 students whose parents and guardians have made a decision for

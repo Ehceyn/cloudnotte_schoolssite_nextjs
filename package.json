@@ -19,6 +19,7 @@
     "axios": "^0.26.0",
     "formik": "^2.2.9",
     "graphql": "^16.2.0",
+    "isomorphic-dompurify": "^0.18.0",
     "next": "^12.1.0",
     "next-compose-plugins": "^2.2.1",
     "next-images": "^1.8.4",

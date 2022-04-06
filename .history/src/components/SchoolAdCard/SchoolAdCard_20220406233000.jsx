@@ -166,9 +166,7 @@ function SchoolAdCard({
                 }}
               ></p>
               <p
-                className={`${
-                  newShortDescription ? "hidden" : "flex"
-                } w-[100vh]`}
+                className={`${shortDescription ? "hidden" : "flex"} w-[100vh]`}
                 dangerouslySetInnerHTML={{
                   __html: `Welcome to ${name}, We are a thriving educational community of
                 students whose parents and guardians have made a decision for
