@@ -56,7 +56,7 @@ function AdmissionStatusSchoolHead({ data }) {
             >
               {data.school.name.split(" ").map((word, index) => {
                 return (
-                  <article className="text-3xl font-bold" key={index}>
+                  <article className="font-bold" key={index}>
                     {index <= 1 ? word.charAt(0).toUpperCase() : null}
                   </article>
                 );

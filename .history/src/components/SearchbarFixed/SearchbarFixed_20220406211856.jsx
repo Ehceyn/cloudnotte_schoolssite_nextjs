@@ -148,18 +148,12 @@ function SearchbarFixed(props) {
                         </span>
                         {imageLoaded ? null : (
                           <span
-                            className={`flex items-center justify-center min-w-full min-h-full bg-[#fff] rounded-full object-cover border-white`}
-                            style={{
-                              color:
-                                colors[
-                                  Math.floor(Math.random() * colors.length)
-                                ],
-                            }}
+                            className={`flex items-center justify-center min-w-full min-h-full bg-[#fff] rounded-full object-cover border`}
                           >
                             {school.name.split(" ").map((word, index) => {
                               return (
                                 <article
-                                  className="font-bold text-xs"
+                                  className=" text-bold text-xs"
                                   key={index}
                                 >
                                   {index <= 1

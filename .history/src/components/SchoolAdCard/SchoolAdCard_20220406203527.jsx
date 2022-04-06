@@ -36,6 +36,8 @@ function SchoolAdCard({
 
   const [imageLoaded, setImageLoaded] = useState();
 
+  console.log(textColor, "lor");
+
   return (
     <>
       <section className=" border mt-8 md:rounded-lg">

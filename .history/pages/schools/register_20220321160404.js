@@ -49,9 +49,6 @@ function Home({ data }) {
   const schools = data;
   console.log(schools, "here --------<-");
 
-  // COLORS TO MAP
-  const colors = ["#ffd833", "#fc2d44", "#28a265", "#70a4f3"];
-
   return (
     <div>
       <SEO title="Register School" />
@@ -74,10 +71,7 @@ function Home({ data }) {
           <RegisterSchoolPage />
 
           <div className="bg-white fixed right-0 h-full w-1/4  border-l hidden md2:flex">
-            <RightBar
-              schools={schools.getSchools}
-              textColor={colors[Math.floor(Math.random() * colors.length)]}
-            />
+            <RightBar schools={schools.getSchools} />
           </div>
         </div>
         <BottomNavbar

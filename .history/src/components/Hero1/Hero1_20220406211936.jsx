@@ -138,7 +138,7 @@ function Hero_1(props) {
                           </span>
                           {imageLoaded ? null : (
                             <span
-                              className={`flex items-center justify-center min-w-full min-h-full bg-[#fff] rounded-full object-cover border-white`}
+                              className={`flex items-center justify-center min-w-full min-h-full bg-[#fff] rounded-full object-cover border`}
                               style={{
                                 color:
                                   colors[

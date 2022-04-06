@@ -104,7 +104,7 @@ function SchoolsPersonalLandingPage({
 
           <div className="flex justify-between mb-5 sm:mb-0 h-fit items-center ">
             <div className="flex pl-18 px-5 pt-5">
-              <article className=" flex items-center justify-center w-[70px] h-[70px] sm:w-[150px]  sm:h-[150px] object-contain bg-white rounded-[50%] sm:shadow-sm sm:-translate-y-12 border-white md:border-8 sm:border relative">
+              <article className=" flex items-center justify-center w-[70px] h-[70px] sm:w-[150px]  sm:h-[150px] object-contain bg-white rounded-[50%] sm:-translate-y-12 border-white md:border-8 sm:border relative">
                 <span
                   title="Tech School"
                   className={`absolute z-[1] ${

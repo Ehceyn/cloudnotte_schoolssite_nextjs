@@ -109,23 +109,25 @@ function RightBar({ schools, textColor }) {
                         {imageLoaded[smartSchool.id] ? null : (
                           <span
                             className={`flex items-center justify-center bg-[#fff] w-[65px] h-[65px]  border rounded-full`}
-                            style={{
-                              color:
-                                colors[
-                                  Math.floor(Math.random() * colors.length)
-                                ],
-                            }}
                           >
                             {smartSchool.name.split(" ").map((word, index) => {
                               return (
-                                <article
-                                  className="text-lg font-bold"
+                                <span
+                                  className="text-lg font-bold text-white"
+                                  style={{
+                                    color:
+                                      colors[
+                                        Math.floor(
+                                          Math.random() * colors.length
+                                        )
+                                      ],
+                                  }}
                                   key={index}
                                 >
                                   {index <= 1
                                     ? word.charAt(0).toUpperCase()
                                     : null}
-                                </article>
+                                </span>
                               );
                             })}
                           </span>

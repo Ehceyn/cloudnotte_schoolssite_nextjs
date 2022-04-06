@@ -36,6 +36,8 @@ function SchoolAdCard({
 
   const [imageLoaded, setImageLoaded] = useState();
 
+  console.log(textColor, "lor");
+
   return (
     <>
       <section className=" border mt-8 md:rounded-lg">
@@ -94,23 +96,22 @@ function SchoolAdCard({
                   />
                 </span>
                 {imageLoaded ? null : (
-                  <span
+                  <article
                     className={`${
                       imageLoaded ? "hidden" : "flex"
                     } items-center justify-center bg-[#fff] w-[85px] h-[85px]  border rounded-full`}
                   >
                     {name.split(" ").map((word, index) => {
                       return (
-                        <span
-                          className={`text-2xl font-bold`}
-                          style={{ color: textColor }}
+                        <div
+                          className={`text-2xl text-bold text-[${textColor}]`}
                           key={index}
                         >
                           {index <= 1 ? word.charAt(0).toUpperCase() : null}
-                        </span>
+                        </div>
                       );
                     })}
-                  </span>
+                  </article>
                 )}
               </article>
               <article className="pl-2 xs:pl-4">

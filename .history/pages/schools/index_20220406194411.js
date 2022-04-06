@@ -11,8 +11,9 @@ import GetStudentDataModal from "../../src/components/Modals/GetStudentDataModal
 import SearchbarFixed from "../../src/components/SearchbarFixed/SearchbarFixed";
 import { initializeApollo } from "../../lib/apolloClient";
 import { GET_SCHOOLS } from "../../graphql/user/queries/getSchools";
-import RegisterSchoolPage from "../../src/components/RegisterSchoolPage/RegisterSchoolPage";
 import SEO from "../../src/components/SEO";
+import { states } from "../../src/exApi/states";
+import { countries } from "../../src/exApi/countries";
 
 function Home({ data }) {
   const [displayEntranceExamModal, setDisplayEntranceExamModal] =
@@ -46,15 +47,59 @@ function Home({ data }) {
     }
   }
 
+  // COLORS TO MAP
+  const colors = ["#FC2D44", "#FFD833", "#28A265", "#70A4F3"];
+
   const schools = data;
   console.log(schools, "here --------<-");
 
-  // COLORS TO MAP
-  const colors = ["#ffd833", "#fc2d44", "#28a265", "#70a4f3"];
-
   return (
     <div>
-      <SEO title="Register School" />
+      <SEO
+        title="Find good schools nearby"
+        keywords={`Best school in ${states.map((state) => {
+          return "Best school in " + state.name;
+        })}, Best school in Nigeria, ${countries.map((country) => {
+          return "Best school in " + country.name;
+        })}, Best school in ${schools?.getSchools.map((school) => {
+          return "Best school in " + school.city;
+        })},
+Best schools in ${states.map((state) => {
+          return state.name;
+        })}, Best schools in ${countries.map((country) => {
+          return "Best schools in " + country.name;
+        })}, Best schools in ${schools?.getSchools.map((school) => {
+          return "Best schools in " + school.city;
+        })}, Schools in ${states.map((state) => {
+          return "Best schools in " + state.name;
+        })}, Schools in ${countries.map((country) => {
+          return "Schools in " + country.name;
+        })}, Schools in ${schools?.getSchools.map((school) => {
+          return "Schools in " + school.city;
+        })}, School in ${states.map((state) => {
+          return "Schools in " + state.name;
+        })}, School in ${countries.map((country) => {
+          return "School in " + country.name;
+        })}, School in ${schools?.getSchools.map((school) => {
+          return "School in " + school.city;
+        })}, private schools in ${schools?.getSchools.map((school) => {
+          return "School in " + school.city;
+        })}, private schools in ${states.map((state) => {
+          return "private schools in" + state.name;
+        })}, private schools in ${countries.map((country) => {
+          return "private schools in" + country.name;
+        })},  Best private schools in ${schools?.getSchools.map((school) => {
+          return "Best private schools in" + school.city;
+        })}, Best private schools in ${states.map((state) => {
+          return "Best private schools in" + state.name;
+        })}, Best private schools in ${countries.map((country) => {
+          return "Best private schools in" + country.name;
+        })}, Smart schools, cloudnotte schools, admission-ongoing, schools admitting, schools nearby, school with best facities, secured schools.
+`}
+        description="Cloudnotte schools - Find schools nearby"
+        image="https://res.cloudinary.com/ugomatt/image/upload/v1647363425/cloudnotte_cover_ymomcf.jpg"
+        url="https://cloudnotte.com/schools"
+      />{" "}
       <section className="2xl:w-[1536px] 2xl:max-w-[1536px] 2xl:px-auto h-full">
         <div className="w-full h-full flex justify-between relative  ">
           <div className="bg-white fixed  left-0 h-full w-1/4 border-r hidden md2:flex">
@@ -71,13 +116,41 @@ function Home({ data }) {
             />
           </div>
 
-          <RegisterSchoolPage />
+          <div
+            className={`bg-white relative inset-0 mb-14 mx-auto h-auto w-full md:w-3/4 md2:w-1/2 mt-5 md:px-6`}
+          >
+            <Hero1
+              onCallChangeLocationModal={() =>
+                setDisplayChangeLocationModal(!displayChangeLocationModal)
+              }
+            />
+            {/* <SchoolsLocation /> */}
+
+            {/*MAP THE RETURNED SCHOOLS AND DISPLAY THEM  */}
+            {schools.getSchools.map((school) => {
+              return (
+                <SchoolAdCard
+                  key={school.id}
+                  id={school.id}
+                  name={school.name}
+                  country={school.country}
+                  state={school.state}
+                  city={school.city}
+                  logoUrl={school.logoUrl}
+                  prefix={school.prefix}
+                  type={school.type}
+                  isSmartSchool={school.isSmartSchool}
+                  longDescription={school.admissionInfo.longDescription}
+                  shortDescription={school.admissionInfo.shortDescription}
+                  assetsUrl={school.admissionInfo.assetsUrl}
+                  textColor={colors[1]}
+                />
+              );
+            })}
+          </div>
 
           <div className="bg-white fixed right-0 h-full w-1/4  border-l hidden md2:flex">
-            <RightBar
-              schools={schools.getSchools}
-              textColor={colors[Math.floor(Math.random() * colors.length)]}
-            />
+            <RightBar schools={schools.getSchools} />
           </div>
         </div>
         <BottomNavbar
@@ -90,8 +163,6 @@ function Home({ data }) {
           onCallGetStudentDataModal={() =>
             setDisplayGetStudentDataModal(!displayGetStudentDataModal)
           }
-          onDisplayRegisterSchoolPage={() => setDisplayRegisterSchoolPage(true)}
-          onDisplayHomePage={() => setDisplayRegisterSchoolPage(false)}
         />
 
         <SearchbarFixed display={searchbarFixed} />

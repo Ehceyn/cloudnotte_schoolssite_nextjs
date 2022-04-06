@@ -4,11 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "../../../styles/Home.module.css";
 
-function RightBar({ schools, textColor }) {
+function RightBar({ schools }) {
   const [imageLoaded, setImageLoaded] = useState({});
-
-  // COLORS TO MAP
-  const colors = ["#ffd833", "#fc2d44", "#28a265", "#70a4f3"];
 
   return (
     <>
@@ -109,23 +106,18 @@ function RightBar({ schools, textColor }) {
                         {imageLoaded[smartSchool.id] ? null : (
                           <span
                             className={`flex items-center justify-center bg-[#fff] w-[65px] h-[65px]  border rounded-full`}
-                            style={{
-                              color:
-                                colors[
-                                  Math.floor(Math.random() * colors.length)
-                                ],
-                            }}
                           >
                             {smartSchool.name.split(" ").map((word, index) => {
                               return (
-                                <article
-                                  className="text-lg font-bold"
+                                <span
+                                  className="text-lg text-bold text-white"
+                                  style={{ color: textColor }}
                                   key={index}
                                 >
                                   {index <= 1
                                     ? word.charAt(0).toUpperCase()
                                     : null}
-                                </article>
+                                </span>
                               );
                             })}
                           </span>

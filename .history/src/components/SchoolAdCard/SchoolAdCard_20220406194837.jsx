@@ -36,6 +36,8 @@ function SchoolAdCard({
 
   const [imageLoaded, setImageLoaded] = useState();
 
+  console.log(shortDescription);
+
   return (
     <>
       <section className=" border mt-8 md:rounded-lg">
@@ -51,7 +53,7 @@ function SchoolAdCard({
                   title="Tech School"
                   className={`absolute z-[1] ${
                     isSmartSchool ? "flex" : "hidden"
-                  } top-2 right-0 bg-white  border-[#5f9af2] rounded-full`}
+                  } top-2 right-0 bg-white  border-[#5f9af2] text-red-500 rounded-full`}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -97,13 +99,12 @@ function SchoolAdCard({
                   <span
                     className={`${
                       imageLoaded ? "hidden" : "flex"
-                    } items-center justify-center bg-[#fff] w-[85px] h-[85px]  border rounded-full`}
+                    } items-center justify-center text-lg bg-[#fff] w-[85px] h-[85px]  border rounded-full`}
                   >
                     {name.split(" ").map((word, index) => {
                       return (
                         <span
-                          className={`text-2xl font-bold`}
-                          style={{ color: textColor }}
+                          className={` text-bold text-[${textColor}]`}
                           key={index}
                         >
                           {index <= 1 ? word.charAt(0).toUpperCase() : null}

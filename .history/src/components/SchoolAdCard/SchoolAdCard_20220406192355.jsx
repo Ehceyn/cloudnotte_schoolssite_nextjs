@@ -24,7 +24,6 @@ function SchoolAdCard({
   shortDescription,
   assetsUrl,
   isSmartSchool,
-  textColor,
 }) {
   const settings = {
     dots: false,
@@ -35,6 +34,8 @@ function SchoolAdCard({
   };
 
   const [imageLoaded, setImageLoaded] = useState();
+
+  console.log(shortDescription);
 
   return (
     <>
@@ -51,7 +52,7 @@ function SchoolAdCard({
                   title="Tech School"
                   className={`absolute z-[1] ${
                     isSmartSchool ? "flex" : "hidden"
-                  } top-2 right-0 bg-white  border-[#5f9af2] rounded-full`}
+                  } top-2 right-0 bg-white  border-[#5f9af2] text-red-500 rounded-full`}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -101,11 +102,7 @@ function SchoolAdCard({
                   >
                     {name.split(" ").map((word, index) => {
                       return (
-                        <span
-                          className={`text-2xl font-bold`}
-                          style={{ color: textColor }}
-                          key={index}
-                        >
+                        <span className=" text-bold text-white" key={index}>
                           {index <= 1 ? word.charAt(0).toUpperCase() : null}
                         </span>
                       );
