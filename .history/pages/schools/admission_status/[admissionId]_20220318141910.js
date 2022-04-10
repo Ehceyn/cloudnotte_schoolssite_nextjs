@@ -10,7 +10,7 @@ import { initializeApollo } from "../../../lib/apolloClient";
 import SEO from "../../../src/components/SEO";
 
 function AdmissionStatusPage({ data }) {
-  // //.log(data, "data here");
+  // console.log(data, "data here");
 
   return (
     <>
@@ -40,7 +40,7 @@ export async function getServerSideProps({ params }) {
     query: GET_ADMISSION_APPLICANT,
     variables: { applicationNumber: applicationNumber },
   });
-  if (error) return; //.log(JSON.stringify(error, null, 2));
+  if (error) return console.log(JSON.stringify(error, null, 2));
 
   if (!data) {
     return {

@@ -2,7 +2,7 @@ import React from "react";
 import AdmissionStatusSchoolHead from "./AdmissionStatusSchoolHead";
 
 function AdmissionStatusLandingPage({ data }) {
-  //.log("my data ===>", data);
+  console.log("my data ===>", data);
   return (
     <>
       <section className="w-full flex mt-8 flex-col">

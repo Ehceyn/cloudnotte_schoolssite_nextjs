@@ -145,12 +145,11 @@ function EnrollmentAcademicDetails({
     CREATE_NEW_ADMISSION_APPLICATION
   );
 
-  // if (error)
-  // // .log(JSON.stringify(error, null, 2));
-  // .log(
-  //   data?.createNewAdmissionApplication.applicationNumber,
-  //   "Welome bro"
-  // );
+  if (error) //.log(JSON.stringify(error, null, 2));
+  //.log(
+    data?.createNewAdmissionApplication.applicationNumber,
+    "Welome bro"
+  );
 
   // INITIAL FORM VALUES
   let initialValues = {

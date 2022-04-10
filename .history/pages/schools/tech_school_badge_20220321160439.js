@@ -11,7 +11,7 @@ import GetStudentDataModal from "../../src/components/Modals/GetStudentDataModal
 import SearchbarFixed from "../../src/components/SearchbarFixed/SearchbarFixed";
 import { initializeApollo } from "../../lib/apolloClient";
 import { GET_SCHOOLS } from "../../graphql/user/queries/getSchools";
-import RegisterSchoolPage from "../../src/components/RegisterSchoolPage/RegisterSchoolPage";
+import TechBadgePage from "../../src/components/TechBadgePage/TechBadgePage";
 import SEO from "../../src/components/SEO";
 
 function Home({ data }) {
@@ -47,14 +47,11 @@ function Home({ data }) {
   }
 
   const schools = data;
-  //.log(schools, "here --------<-");
-
-  // COLORS TO MAP
-  const colors = ["#ffd833", "#fc2d44", "#28a265", "#70a4f3"];
+  console.log(schools, "here --------<-");
 
   return (
     <div>
-      <SEO title="Register School" />
+      <SEO title="Get A Tech Badge" />
       <section className="2xl:w-[1536px] 2xl:max-w-[1536px] 2xl:px-auto h-full">
         <div className="w-full h-full flex justify-between relative  ">
           <div className="bg-white fixed  left-0 h-full w-1/4 border-r hidden md2:flex">
@@ -71,13 +68,10 @@ function Home({ data }) {
             />
           </div>
 
-          <RegisterSchoolPage />
+          <TechBadgePage />
 
           <div className="bg-white fixed right-0 h-full w-1/4  border-l hidden md2:flex">
-            <RightBar
-              schools={schools.getSchools}
-              textColor={colors[Math.floor(Math.random() * colors.length)]}
-            />
+            <RightBar schools={schools.getSchools} />
           </div>
         </div>
         <BottomNavbar
@@ -90,8 +84,6 @@ function Home({ data }) {
           onCallGetStudentDataModal={() =>
             setDisplayGetStudentDataModal(!displayGetStudentDataModal)
           }
-          onDisplayRegisterSchoolPage={() => setDisplayRegisterSchoolPage(true)}
-          onDisplayHomePage={() => setDisplayRegisterSchoolPage(false)}
         />
 
         <SearchbarFixed display={searchbarFixed} />
@@ -138,13 +130,11 @@ export const getStaticProps = async () => {
   });
 
   if (loading) return <h2>Loading...</h2>;
-  if (error) return; //.log(JSON.stringify(error, null, 2));
+  if (error) return console.log(JSON.stringify(error, null, 2));
 
   return {
     props: { initializeApolloState: apolloClient.cache.extract(), data },
   };
 };
-
-//
 
 export default Home;

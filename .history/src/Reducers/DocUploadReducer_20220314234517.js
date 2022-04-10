@@ -1,15 +1,15 @@
 export const docInitialState = [];
 let dataStore = [];
 function docUpload(state = docInitialState, action) {
-  //.log(action);
+  console.log(action);
   switch (action.type) {
     case "ADD_TO_DOC_STORE":
       let obj = action.item;
       dataStore.push(obj);
-      //.log(dataStore, "The docstore");
+      console.log(dataStore, "The docstore");
       state = dataStore;
 
-      //.log(state, "Added DOC");
+      console.log(state, "Added DOC");
 
       return {
         state,

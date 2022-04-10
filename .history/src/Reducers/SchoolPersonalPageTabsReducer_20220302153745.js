@@ -1,13 +1,13 @@
 export const initialState = 1;
 
-//.log(initialState);
+console.log(initialState);
 
 function reducer(state = initialState, action) {
-  //.log(action);
-  //.log("ITem" + action.item);
+  console.log(action);
+  console.log("ITem" + action.item);
 
   switch (action.type) {
-    case "TOGGLE_ENROLLMENT_TAB":
+    case "TOGGLE_TAB":
       return action.item;
     default:
       return state;
