@@ -53,7 +53,7 @@ function AdmissionStatusSchoolHead({ data }) {
         </span>
         {imageLoaded ? null : (
           <span
-            className={`flex items-center justify-center min-w-full min-h-full bg-[#fff] rounded-full w-[60px] h-[60px] sm:w-[150px]  sm:h-[150px] object-contain border-white`}
+            className={`flex items-center justify-center min-w-full min-h-full bg-[#fff] rounded-full object-cover border-white`}
             style={{
               color: colors[Math.floor(Math.random() * colors.length)],
             }}

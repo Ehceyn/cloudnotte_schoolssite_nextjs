@@ -76,8 +76,8 @@ function EnrollmentLandingPage({
                 } items-center justify-center w-[70px] h-[70px] sm:w-[150px] sm:h-[150px] object-contain bg-white rounded-full`}
               >
                 <Image
-                  width={130}
-                  height={130}
+                  width={140}
+                  height={140}
                   onLoad={() => setImageLoaded(true)}
                   onError={() => {
                     //.log("error");
@@ -95,7 +95,7 @@ function EnrollmentLandingPage({
               </span>
               {imageLoaded ? null : (
                 <span
-                  className={`flex items-center justify-center min-w-full min-h-full bg-[#fff] rounded-full w-[70px] h-[70px] sm:w-[150px] sm:h-[150px] object-contain border-white`}
+                  className={`flex items-center justify-center min-w-full min-h-full bg-[#fff] rounded-full object-cover border-white`}
                   style={{
                     color: colors[Math.floor(Math.random() * colors.length)],
                   }}

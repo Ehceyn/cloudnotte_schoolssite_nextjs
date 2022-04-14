@@ -49,7 +49,7 @@ function EnrollmentLandingPage({
       <div className="px-5 md:px-10 md2:px-28 md3:px-40 mt-6 sm:mt-14 mb-5">
         <div className="flex justify-between mb-5 sm:mb-0 h-fit items-start">
           <div className="flex items-center ">
-            <article className="flex items-center justify-center  object-contain bg-white rounded-full sm:border border-gray-300 relative">
+            <article className="flex items-center justify-center w-[70px] h-[70px] sm:w-[150px] sm:h-[150px] object-contain bg-white rounded-full sm:border border-gray-300 relative">
               <span
                 title="Tech School"
                 className={`absolute z-[1] ${
@@ -76,8 +76,8 @@ function EnrollmentLandingPage({
                 } items-center justify-center w-[70px] h-[70px] sm:w-[150px] sm:h-[150px] object-contain bg-white rounded-full`}
               >
                 <Image
-                  width={130}
-                  height={130}
+                  width={120}
+                  height={120}
                   onLoad={() => setImageLoaded(true)}
                   onError={() => {
                     //.log("error");
@@ -95,7 +95,7 @@ function EnrollmentLandingPage({
               </span>
               {imageLoaded ? null : (
                 <span
-                  className={`flex items-center justify-center min-w-full min-h-full bg-[#fff] rounded-full w-[70px] h-[70px] sm:w-[150px] sm:h-[150px] object-contain border-white`}
+                  className={`flex items-center justify-center min-w-full min-h-full bg-[#fff] rounded-full object-cover border-white`}
                   style={{
                     color: colors[Math.floor(Math.random() * colors.length)],
                   }}

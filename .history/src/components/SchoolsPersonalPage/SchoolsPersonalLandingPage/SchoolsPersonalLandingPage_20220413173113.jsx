@@ -127,7 +127,7 @@ function SchoolsPersonalLandingPage({
                 <span
                   className={`${
                     imageLoaded ? "flex" : "hidden"
-                  } items-center justify-center w-[70px] h-[70px] sm:w-[150px] sm:h-[150px] object-contain`}
+                  } items-center justify-center`}
                 >
                   <img
                     src={
@@ -143,7 +143,7 @@ function SchoolsPersonalLandingPage({
                 </span>
                 {imageLoaded ? null : (
                   <span
-                    className={`flex items-center justify-center min-w-full min-h-full bg-[#fff] rounded-full w-[70px] h-[70px] sm:w-[150px] sm:h-[150px] object-contain border-white`}
+                    className={`flex items-center justify-center min-w-full min-h-full bg-[#fff] rounded-full object-cover border-white`}
                     style={{
                       color: colors[Math.floor(Math.random() * colors.length)],
                     }}
