@@ -12,6 +12,7 @@ import { GrTechnology } from "react-icons/gr";
 
 import { CardButton } from "../Home/Button";
 import DOMPurify from "isomorphic-dompurify";
+import Loader from "../Loader";
 
 function SchoolAdCard({
   id,
@@ -28,6 +29,8 @@ function SchoolAdCard({
   textColor,
 }) {
   const [newShortDescription, setNewShortDescription] = useState();
+  // loader state
+  const [loader, setLoader] = useState(false);
 
   // PArse text from server to html
   function htmlDecode(content) {
@@ -60,7 +63,7 @@ function SchoolAdCard({
           as={`/schools/${prefix}`}
           passHref
         >
-          <div className="cursor-pointer">
+          <div className="cursor-pointer" onClick={() => setLoader(true)}>
             <div className="flex px-3 xs:px-5 py-5">
               <article className="h-[85px] w-[85px] relative min-h-[85px] min-w-[85px] object-contain rounded-full">
                 <span
@@ -100,7 +103,7 @@ function SchoolAdCard({
                     src={
                       logoUrl
                         ? logoUrl
-                        : `https://res.cloudinary.com/ugomatt/image/upload/v1647277984/cloudnotte_icon_soqc6y.png`
+                        : `https://res.cloudinary.com/ugomatt/image/upload/v1647277984/cloudnotte_icon_soq.png`
                     }
                     width={85}
                     height={85}
@@ -188,7 +191,7 @@ function SchoolAdCard({
                         <Image
                           loading="lazy"
                           src={
-                            asset !== undefined
+                            asset
                               ? asset
                               : `https://res.cloudinary.com/zichygraphs/image/upload/v1648834278/school-ad-img-1_qkjvwh.png`
                           }
@@ -242,7 +245,10 @@ function SchoolAdCard({
             as={`/schools/${prefix}/apply`}
             passHref
           >
-            <article className="cursor-pointer flex items-center">
+            <article
+              className="cursor-pointer flex items-center"
+              onClick={() => setLoader(true)}
+            >
               <CardButton
                 py=" xs:h-[50px] py-2 xs:py-2"
                 px="xs:text-base text-[13px] px-2 xs:px-4  bg-[#5f9af2] text-white "
@@ -253,6 +259,7 @@ function SchoolAdCard({
             </article>
           </Link>
         </div>
+        <Loader display={loader} message="Please wait..." />
       </section>
     </>
   );

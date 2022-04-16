@@ -65,7 +65,7 @@ function TechBadgePage() {
           href="https://cloudnotte.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-center font-semibold text-[#F44336] "
+          className="text-center   font-bold text-[#F44336] "
         >
           Need help? Contact support
         </a>

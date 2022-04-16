@@ -7,7 +7,7 @@ function Sidebar(props) {
   return (
     <>
       <div className="">
-        <article className=" pt-10 pl-9 ">
+        <article className="translate-x-[-25px] pt-10 pl-9 ">
           <Image
             src="https://res.cloudinary.com/ugomatt/image/upload/v1647277984/cloudnotte_icon_soqc6y.png"
             width={120}

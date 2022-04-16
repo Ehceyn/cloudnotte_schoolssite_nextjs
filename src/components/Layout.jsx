@@ -3,9 +3,7 @@ import React from "react";
 function Layout({ children }) {
   return (
     <>
-      <section className="2xl:w-[1536px] 2xl:max-w-[1536px] 2xl:px-auto h-full">
-        {children}
-      </section>
+      <section className="max-w-4/5 h-full">{children}</section>
     </>
   );
 }

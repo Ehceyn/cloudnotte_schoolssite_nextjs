@@ -55,7 +55,7 @@ function SchoolPersonalPageTabs(props) {
 
   return (
     <>
-      <div className="w-[85%] md2:w-[70%] mx-auto">
+      <div className="w-[85%] font-bold md2:w-[70%] mx-auto">
         <QuickLinks
           onCallEntranceExamModal={props.onCallEntranceExamModal}
           onCallCheckAdmissionModal={props.onCallCheckAdmissionModal}

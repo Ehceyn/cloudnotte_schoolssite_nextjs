@@ -151,7 +151,7 @@ function EnrollmentLandingPage({
                   ))}
               </p> */}
               {/* <div className=" md:text-base flex">
-                <p className="text-[0.9em] md:text-base font-semibold">
+                <p className="text-[0.9em] md:text-base   font-bold">
                   Application Fee:&nbsp;
                 </p>
                 <p>Required</p>

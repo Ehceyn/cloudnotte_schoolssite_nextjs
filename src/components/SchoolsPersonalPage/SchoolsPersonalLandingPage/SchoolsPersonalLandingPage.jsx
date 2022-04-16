@@ -160,7 +160,7 @@ function SchoolsPersonalLandingPage({
               </article>
               <article className=" pl-4 sm:leading-7 md:leading-9 ">
                 <h2
-                  className=" sm:text-[1.5em] md:text-[2.0em] font-semibold capitalize"
+                  className=" sm:text-[1.5em] md:text-[2.0em]   font-bold capitalize"
                   dangerouslySetInnerHTML={{ __html: name.toLowerCase() }}
                 ></h2>
                 <p className=" sm:text-[0.9em] md:text-[1.2em] capitalize">
