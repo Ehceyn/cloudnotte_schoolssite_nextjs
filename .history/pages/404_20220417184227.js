@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
-import Hero1 from "../../src/components/Hero1/Hero1";
-import SchoolAdCard from "../../src/components/SchoolAdCard/SchoolAdCard";
-import Sidebar from "../../src/components/Sidebar/Sidebar";
-import RightBar from "../../src/components/RightBar/RightBar";
-import BottomNavbar from "../../src/components/BottomNavbar/BottomNavbar";
-import ChangeLocationModal from "../../src/components/Modals/ChangeLocationModal";
-import CheckAdmissionModal from "../../src/components/Modals/CheckAdmissionModal";
-import TakeEntranceModal from "../../src/components/Modals/TakeEntranceModal";
-import GetStudentDataModal from "../../src/components/Modals/GetStudentDataModal";
-import SearchbarFixed from "../../src/components/SearchbarFixed/SearchbarFixed";
-import SEO from "../../src/components/SEO";
-import { states } from "../../src/exApi/states";
-import { countries } from "../../src/exApi/countries";
-import Loader from "../../src/components/Loader";
+import Hero1 from "../src/components/Hero1/Hero1";
+import SchoolAdCard from "../src/components/SchoolAdCard/SchoolAdCard";
+import Sidebar from "../src/components/Sidebar/Sidebar";
+import RightBar from "../src/components/RightBar/RightBar";
+import BottomNavbar from "../src/components/BottomNavbar/BottomNavbar";
+import ChangeLocationModal from "../src/components/Modals/ChangeLocationModal";
+import CheckAdmissionModal from "../src/components/Modals/CheckAdmissionModal";
+import TakeEntranceModal from "../src/components/Modals/TakeEntranceModal";
+import GetStudentDataModal from "../src/components/Modals/GetStudentDataModal";
+import SearchbarFixed from "../src/components/SearchbarFixed/SearchbarFixed";
+import Image from "next/image";
+import { useRouter } from "next/router";
+
+import Loader from "../src/components/Loader";
 
 function Home() {
   const [displayEntranceExamModal, setDisplayEntranceExamModal] =
@@ -25,6 +25,13 @@ function Home() {
     useState(false);
   const [searchbarFixed, setSearchbarFixed] = useState(false);
   const [loader, setLoader] = useState(false);
+
+  // Initialize userouter
+  const router = useRouter();
+
+  setTimeout(() => {
+    setLoader(false);
+  }, 5000);
 
   //LISTENS FOR THE EVENTS IN THE ARRAY BELOW AND CALLS HANDLESCROLL FUNCTION
   useEffect(() => {
@@ -52,51 +59,6 @@ function Home() {
 
   return (
     <section className="">
-      <SEO
-        title="Find good schools nearby"
-        keywords={`Best school in ${states.map((state) => {
-          return "Best school in " + state.name;
-        })}, Best school in Nigeria, ${countries.map((country) => {
-          return "Best school in " + country.name;
-        })}, Best school in ${schools?.getSchools.map((school) => {
-          return "Best school in " + school.city;
-        })},
-Best schools in ${states.map((state) => {
-          return state.name;
-        })}, Best schools in ${countries.map((country) => {
-          return "Best schools in " + country.name;
-        })}, Best schools in ${schools?.getSchools.map((school) => {
-          return "Best schools in " + school.city;
-        })}, Schools in ${states.map((state) => {
-          return "Best schools in " + state.name;
-        })}, Schools in ${countries.map((country) => {
-          return "Schools in " + country.name;
-        })}, Schools in ${schools?.getSchools.map((school) => {
-          return "Schools in " + school.city;
-        })}, School in ${states.map((state) => {
-          return "Schools in " + state.name;
-        })}, School in ${countries.map((country) => {
-          return "School in " + country.name;
-        })}, School in ${schools?.getSchools.map((school) => {
-          return "School in " + school.city;
-        })}, private schools in ${schools?.getSchools.map((school) => {
-          return "School in " + school.city;
-        })}, private schools in ${states.map((state) => {
-          return "private schools in" + state.name;
-        })}, private schools in ${countries.map((country) => {
-          return "private schools in" + country.name;
-        })},  Best private schools in ${schools?.getSchools.map((school) => {
-          return "Best private schools in" + school.city;
-        })}, Best private schools in ${states.map((state) => {
-          return "Best private schools in" + state.name;
-        })}, Best private schools in ${countries.map((country) => {
-          return "Best private schools in" + country.name;
-        })}, Smart schools, cloudnotte schools, admission-ongoing, schools admitting, schools nearby, school with best facities, secured schools.
-`}
-        description="Cloudnotte schools - Find schools nearby"
-        image="https://res.cloudinary.com/ugomatt/image/upload/v1647363425/cloudnotte_cover_ymomcf.jpg"
-        url="https://cloudnotte.com/schools"
-      />{" "}
       <section className="   h-full">
         <div className="w-full h-full flex justify-between relative  ">
           <div className=" fixed grow justify-end bg-white left-0 h-full w-1/4 2xl:w-1/3 border-r hidden md2:flex">
@@ -121,11 +83,39 @@ Best schools in ${states.map((state) => {
                 setDisplayChangeLocationModal(!displayChangeLocationModal)
               }
             />
-            {/* <SchoolsLocation /> */}
+            {/* Create a funny 404 messsage page */}
+            <div className="flex flex-col items-center justify-center  w-full px-3 md:px-0">
+              {/* 404 not found svg */}
+              <Image
+                width="500"
+                height="300"
+                src="https://res.cloudinary.com/zichygraphs/image/upload/v1650209172/404stars_qkezne.jpg"
+                alt="404 not found"
+              />
+              <h1 className="text-5xl text-center text-gray-800">
+                404 not found
+              </h1>
+              <h2 className="text-2xl text-center text-gray-800">
+                I tried my best to get you there. But you know its not easy
+                looking for a school that doesn&apos;t exist.
+              </h2>
+              <p className="text-xl text-center text-gray-800 font-bold">
+                {" "}
+                You can use our search bar to find a school or go{" "}
+                <span
+                  onClick={() => {
+                    router.push("/schools");
+                    setLoader(true);
+                  }}
+                >
+                  home.
+                </span>
+              </p>
+            </div>
           </div>
 
           <div className="bg-white fixed right-0 h-full w-1/4 2xl:w-1/3  border-l hidden md2:flex">
-            <RightBar schools={schools.getSchools} />
+            <RightBar schools={[]} />
           </div>
         </div>
         <BottomNavbar

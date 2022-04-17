@@ -29,6 +29,10 @@ function Home() {
   // Initialize userouter
   const router = useRouter();
 
+  setTimeout(() => {
+    setLoader(false);
+  }, 5000);
+
   //LISTENS FOR THE EVENTS IN THE ARRAY BELOW AND CALLS HANDLESCROLL FUNCTION
   useEffect(() => {
     ["load", "scroll", "resize"].forEach((e) =>
