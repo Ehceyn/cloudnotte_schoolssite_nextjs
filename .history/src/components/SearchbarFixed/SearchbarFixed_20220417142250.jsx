@@ -186,7 +186,6 @@ function SearchbarFixed(props) {
                       </article>
                     </article>
                   </Link>
-                  <hr />
                 </div>
               );
             })}

@@ -104,7 +104,7 @@ function SchoolsPersonalLandingPage({
 
           <div className="flex justify-between mb-5 sm:mb-0 h-fit items-center ">
             <div className="flex pl-18 px-5 pt-5">
-              <article className=" flex items-center justify-center w-[70px] h-[70px] sm:w-[150px]  sm:h-[150px] object-contain bg-white sm:shadow-sm sm:-translate-y-12 border-white md:border-8 sm:border relative rounded-full">
+              <article className=" flex items-center justify-center w-[70px] h-[70px] sm:w-[150px]  sm:h-[150px] object-contain bg-white rounded-[50%] sm:shadow-sm sm:-translate-y-12 border-white md:border-8 sm:border relative">
                 <span
                   title="Tech School"
                   className={`absolute z-[1] ${
@@ -127,19 +127,17 @@ function SchoolsPersonalLandingPage({
                 <span
                   className={`${
                     imageLoaded ? "flex" : "hidden"
-                  } items-center justify-center w-[70px] h-[70px] sm:w-[150px] sm:h-[150px] rounded-full`}
+                  } items-center justify-center w-[70px] h-[70px] sm:w-[150px] sm:h-[150px] object-contain`}
                 >
                   <img
                     src={
                       logoUrl
                         ? logoUrl
-                        : `https://res.cloudinary.com/ugomatt/image/upload/v1647277984/cloudnotte_icon_soq.png`
+                        : `https://res.cloudinary.com/ugomatt/image/upload/v1647277984/cloudnotte_icon_soqc6y.png`
                     }
-                    width="140px"
-                    height="140px"
                     onLoad={() => setImageLoaded(true)}
                     onError={() => setImageLoaded(false)}
-                    className="object-cover rounded-full w-[70px] h-[70px] sm:w-[140px] sm:h-[140px]"
+                    className="object-cover rounded-full"
                     alt={name}
                   />
                 </span>

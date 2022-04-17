@@ -32,7 +32,7 @@ function SearchbarFixed(props) {
   const [getSearchSchools, { data, loading, error }] = useLazyQuery(
     GET_SEARCH_SCHOOLS,
     {
-      variables: { afterId: "", limit: 20, filter: input.searchInputs },
+      variables: { afterId: "", limit: 7, filter: input.searchInputs },
     }
   );
   if (loading) {
@@ -67,7 +67,7 @@ function SearchbarFixed(props) {
   return (
     <section className="">
       <div
-        className={`fixed z-20 px-3 md2:px-24  top-0 left-0 right-0 flex items-center justify-center transition-all duration-500 mt-0  w-full py-2 sm:py-4 px-auto border-b bg-[#F8FBFF] ${
+        className={`fixed z-20 px-3 md2:px-10  top-0 left-0 right-0 flex items-center justify-center transition-all duration-500 mt-0  w-full py-2 sm:py-4 px-auto border-b bg-[#F8FBFF] ${
           props.display === false ? "hidden" : "flex"
         } ${show ? "null" : " -translate-y-full"}`}
       >
@@ -98,7 +98,7 @@ function SearchbarFixed(props) {
           <div
             className={`absolute z-10 inset-x-0 top-[38px] ${
               displaySearchResultsDiv ? null : "hidden"
-            } shadow-sm px-5 py-1 bg-white rounded-b-3xl overflow-y-scroll h-96 `}
+            } shadow-sm h-fit px-5 py-1 bg-white rounded-b-3xl overflow-y-scroll scrollbar-hide`}
           >
             {loading && <p className="text-xs text-center">loading results</p>}
             {data?.getSchools.map((school) => {
@@ -186,17 +186,12 @@ function SearchbarFixed(props) {
                       </article>
                     </article>
                   </Link>
-                  <hr />
                 </div>
               );
             })}
           </div>
         </label>
-        <span
-          onClick={props.onCallChangeLocationModal}
-          className="cursor-pointer"
-          title="Change Location"
-        >
+        <span onClick={props.onCallChangeLocationModal}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"

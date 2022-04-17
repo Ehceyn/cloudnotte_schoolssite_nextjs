@@ -135,11 +135,11 @@ function SchoolsPersonalLandingPage({
                         ? logoUrl
                         : `https://res.cloudinary.com/ugomatt/image/upload/v1647277984/cloudnotte_icon_soq.png`
                     }
-                    width="140px"
-                    height="140px"
+                    width="150px"
+                    height="150px"
                     onLoad={() => setImageLoaded(true)}
                     onError={() => setImageLoaded(false)}
-                    className="object-cover rounded-full w-[70px] h-[70px] sm:w-[140px] sm:h-[140px]"
+                    className="object-cover rounded-full w-[70px] h-[70px] sm:w-[150px] sm:h-[150px]"
                     alt={name}
                   />
                 </span>

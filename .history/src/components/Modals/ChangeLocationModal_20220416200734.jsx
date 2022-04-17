@@ -185,10 +185,7 @@ function ChangeLocationModal(props) {
           <article
             className="w-full flex items-center justify-center"
             onClick={() =>
-              formik.values.country !== "" &&
-              formik.isValid &&
-              selectedCountry &&
-              setLoader(true)
+              formik.values.country !== "" && formik.isValid && setLoader(true)
             }
           >
             <Button
@@ -196,7 +193,7 @@ function ChangeLocationModal(props) {
               px="px-5 w-full sm:w-[200px]"
               py="py-3"
               bg={`${
-                formik.isValid && selectedCountry
+                formik.isValid
                   ? "bg-[#5f9af2] text-[#E7F0FB]"
                   : "cursor-not-allowed bg-[#293b57] text-[#476697]"
               }`}

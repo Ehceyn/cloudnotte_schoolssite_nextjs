@@ -56,7 +56,7 @@ function Hero2() {
             Schools in {router.query.country}
           </h2>
           <label className="relative block w-full">
-            <span className="absolute bottom-[9px] left-0 flex items-center pl-2">
+            <span className="absolute bottom-2 left-0 flex items-center pl-2">
               <Image
                 src="/assets/icons/search-icon.svg"
                 width={20}
@@ -66,7 +66,7 @@ function Hero2() {
               />
             </span>
             <input
-              className={`placeholder:text-slate-400 flex sm:placeholder:text-base placeholder:text-sm grow bg-white w-[100%] border border-slate-300 focus:ring-[transparent]  focus:rounded-t-3xl focus:rounded-b-none rounded-full  py-2 pl-7 pr-3 shadow-sm focus:outline-none sm:text-sm`}
+              className={`placeholder:text-slate-400 flex placeholder:sm:text-sm grow bg-white w-[100%] border border-slate-300 focus:ring-[transparent]  focus:rounded-t-3xl focus:rounded-b-none rounded-full  py-2 pl-9 pr-3 shadow-sm focus:outline-none sm:text-sm`}
               placeholder=" Search a school by name, state or country"
               type="text"
               name="searchInputs"

@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import styles from "../../../styles/Hero.module.css";
-import { useRouter } from "next/router";
 import Link from "next/link";
+import styles from "../../../styles/Hero.module.css";
 import { useLazyQuery } from "@apollo/client";
 import { GET_SEARCH_SCHOOLS } from "../../../graphql/user/queries/getSearchSchools";
-function Hero2() {
-  const router = useRouter();
 
+function Hero_1(props) {
   const [displaySearchResultsDiv, setDisplaySearchResultsDiv] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [input, setInput] = useState({
@@ -46,6 +44,7 @@ function Hero2() {
 
   // COLORS TO MAP
   const colors = ["#ffd833", "#fc2d44", "#28a265", "#70a4f3"];
+
   return (
     <>
       <section
@@ -53,10 +52,11 @@ function Hero2() {
       >
         <div className="container px-5 flex items-center flex-col justify-center w-full  rounded ">
           <h2 className="text-lg sm:text-2xl font-bold text-white mb-2">
-            Schools in {router.query.country}
+            School Search Engine{" "}
           </h2>
+
           <label className="relative block w-full">
-            <span className="absolute bottom-[9px] left-0 flex items-center pl-2">
+            <span className="absolute bottom-2 left-0 flex items-center pl-2">
               <Image
                 src="/assets/icons/search-icon.svg"
                 width={20}
@@ -66,8 +66,8 @@ function Hero2() {
               />
             </span>
             <input
-              className={`placeholder:text-slate-400 flex sm:placeholder:text-base placeholder:text-sm grow bg-white w-[100%] border border-slate-300 focus:ring-[transparent]  focus:rounded-t-3xl focus:rounded-b-none rounded-full  py-2 pl-7 pr-3 shadow-sm focus:outline-none sm:text-sm`}
-              placeholder=" Search a school by name, state or country"
+              className={`placeholder:text-slate-400 flex placeholder:sm:text-sm sm:placeholder:text-sm grow bg-white w-[100%] border border-slate-300 focus:ring-[transparent]  focus:rounded-t-3xl focus:rounded-b-none rounded-full  py-2 pl-9 pr-3 shadow-sm focus:outline-none sm:text-sm`}
+              placeholder="Search a school by name, state or country"
               type="text"
               name="searchInputs"
               onFocus={() => setDisplaySearchResultsDiv(true)}
@@ -183,12 +183,15 @@ function Hero2() {
           </label>
         </div>
 
-        <p className="mt-2 font-medium text-slate-300 cursor-pointer text-center">
-          Find best schools in {router.query.country}
+        <p
+          className="mt-2 font-medium text-slate-300 cursor-pointer text-center"
+          onClick={props.onCallChangeLocationModal}
+        >
+          Change Location
         </p>
       </section>
     </>
   );
 }
 
-export default Hero2;
+export default Hero_1;

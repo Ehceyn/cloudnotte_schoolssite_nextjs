@@ -62,6 +62,7 @@ function SchoolsPersonalPage({
     useState(false);
   const [displayAudioModal, setDisplayAudioModal] = useState(false);
   const [newDescription, setNewDescription] = useState();
+  // const [displayMessageModal, setDisplayMessageModal] = useState(false);
 
   function htmlDecode(content) {
     var doc =
