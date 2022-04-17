@@ -26,7 +26,7 @@ function BottomNavbar(props) {
 
   return (
     <div
-      className={`fixed md2:hidden z-[20] bottom-0 right-0 left-0 ${
+      className={`fixed md2:hidden z-[31] bottom-0 right-0 left-0 ${
         show ? "translate-y--[100%] h-fit " : "translate-y-[100%] h-0"
       } flex transition-all duration-500 shrink mb-0`}
     >
