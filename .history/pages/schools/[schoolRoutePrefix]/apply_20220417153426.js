@@ -50,7 +50,10 @@ function EnrollmentPage({
 
   // Check fallback and generate page
   if (router.isFallback) {
-    return <Loader display={true} message="Please wait..." />;
+    setLoader(true);
+    setTimeout(() => {
+      setLoader(false);
+    }, 3000);
   }
 
   return (

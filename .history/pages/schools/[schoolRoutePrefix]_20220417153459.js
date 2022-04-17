@@ -65,6 +65,14 @@ function SchoolsPersonalPage({
   // initialize router
   const router = useRouter();
 
+  // Check fallback and generate page
+  if (router.isFallback) {
+    setLoader(true);
+    setTimeout(() => {
+      setLoader(false);
+    }, 3000);
+  }
+
   const [displayEntranceExamModal, setDisplayEntranceExamModal] =
     useState(false);
   const [displayCheckAdmissionModal, setDisplayCheckAdmissionModal] = useState;
@@ -81,11 +89,6 @@ function SchoolsPersonalPage({
       setNewDescription(htmlDecode(DOMPurify.sanitize(shortDescription)));
     }
   }, [shortDescription]);
-
-  // Check fallback and generate page
-  if (router.isFallback) {
-    return <Loader display={true} message="Please wait..." />;
-  }
 
   return (
     <>
