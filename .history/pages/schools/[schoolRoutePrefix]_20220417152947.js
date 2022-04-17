@@ -55,7 +55,11 @@ function SchoolsPersonalPage({
   //.log(singleSchool, "Single cosread here --------<-");
   const [displayReviewSchoolModal, setDisplayReviewSchoolModal] =
     useState(false);
-  false;
+
+  const [displayEntranceExamModal, setDisplayEntranceExamModal] =
+    useState(false);
+  const [displayCheckAdmissionModal, setDisplayCheckAdmissionModal] =
+    useState(false);
   const [displayGetStudentDataModal, setDisplayGetStudentDataModal] =
     useState(false);
   const [displayAudioModal, setDisplayAudioModal] = useState(false);
@@ -73,9 +77,6 @@ function SchoolsPersonalPage({
     }, 3000);
   }
 
-  const [displayEntranceExamModal, setDisplayEntranceExamModal] =
-    useState(false);
-  const [displayCheckAdmissionModal, setDisplayCheckAdmissionModal] = useState;
   // Html parser
   function htmlDecode(content) {
     var doc =

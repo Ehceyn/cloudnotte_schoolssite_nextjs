@@ -16,8 +16,6 @@ import { GET_SINGLE_SCHOOL } from "../../../graphql/user/queries/getSingleSchool
 import { GET_SCHOOLS } from "../../../graphql/user/queries/getSchools";
 import { FormDetailsProvider } from "../../../src/StateProviders/FormDetailsProvider";
 import { DocUploadProvider } from "../../../src/StateProviders/DocUploadProvider";
-import { useRouter } from "next/router";
-import Loader from "../../../src/components/Loader";
 import SEO from "../../../src/components/SEO";
 
 function EnrollmentPage({
@@ -43,18 +41,6 @@ function EnrollmentPage({
   },
 }) {
   //.log(admissionProgrammes, "Enrollment Data");
-  const [loader, setLoader] = useState(false);
-
-  // initialize router
-  const router = useRouter();
-
-  // Check fallback and generate page
-  if (router.isFallback) {
-    setLoader(true);
-    setTimeout(() => {
-      setLoader(false);
-    }, 3000);
-  }
 
   return (
     <>
@@ -90,7 +76,6 @@ function EnrollmentPage({
           </EnrollmentTabsProvider>
         </DocUploadProvider>
       </FormDetailsProvider>
-      <Loader display={loader} message="Please wait..." />
     </>
   );
 }
@@ -141,7 +126,7 @@ export async function getStaticPaths() {
 
   return {
     paths: paths || [],
-    fallback: true,
+    fallback: false,
   };
 }
 
