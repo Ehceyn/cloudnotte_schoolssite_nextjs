@@ -17,7 +17,7 @@ function EnrollmentPageParentDetails({ display, location }) {
   const [formDetailsStore, formDetailsDispatch] = useFormDetailsStateValue();
   const [loaderState, setLoaderState] = useState(false);
   const [uploadMessage, setUploadMessage] = useState("");
-  const [selectedCountry, setSelectedCountry] = useState(null);
+  const [selectedCountry, setSelectedCountry] = useState();
 
   // UPLOAD PASSPORT ON IMAGE CHANGE
   useEffect(() => {
@@ -157,8 +157,6 @@ function EnrollmentPageParentDetails({ display, location }) {
   useEffect(() => {
     formik.setFieldValue("country", location?.country);
     setSelectedCountry(location?.country);
-    formik.initialStatus = null;
-    formik.status = null;
   }, []);
 
   //.log(formDetailsStore, "The Store form data");

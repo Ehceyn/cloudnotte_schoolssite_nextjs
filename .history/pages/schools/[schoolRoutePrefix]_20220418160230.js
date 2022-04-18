@@ -51,6 +51,7 @@ function SchoolsPersonalPage({
     },
   },
 }) {
+  const singleSchool = name;
   //.log(singleSchool, "Single cosread here --------<-");
   const [displayReviewSchoolModal, setDisplayReviewSchoolModal] =
     useState(false);
@@ -59,7 +60,7 @@ function SchoolsPersonalPage({
     useState(false);
   const [displayAudioModal, setDisplayAudioModal] = useState(false);
   const [loader, setLoader] = useState(false);
-  const [newDescription, setNewDescription] = useState(null);
+  const [newDescription, setNewDescription] = useState();
 
   // initialize router
   const router = useRouter();

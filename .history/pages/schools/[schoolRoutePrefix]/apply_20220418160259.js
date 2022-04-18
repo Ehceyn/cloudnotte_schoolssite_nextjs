@@ -44,7 +44,7 @@ function EnrollmentPage({
 }) {
   //.log(admissionProgrammes, "Enrollment Data");
   const [loader, setLoader] = useState(false);
-  const [location, setLocation] = useState(null);
+  const [location, setLocation] = useState();
 
   // Get location from url
   useEffect(() => {

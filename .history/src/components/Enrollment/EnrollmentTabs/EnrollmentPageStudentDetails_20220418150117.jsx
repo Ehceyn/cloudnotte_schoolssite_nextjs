@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useFormik } from "formik";
 import Image from "next/image";
-import { Button2, Button4 } from "../EnrollmentLandingPage/Button";
+import { Button2, Button3 } from "../EnrollmentLandingPage/Button";
 import { useEnrollmentTabsValue } from "../../../StateProviders/EnrollmentTabsProvider";
 import { useFormDetailsStateValue } from "../../../StateProviders/FormDetailsProvider";
 import * as Yup from "yup";
@@ -11,17 +11,21 @@ import styles from "../../../../styles/MiniLoader.module.css";
 import { countries } from "../../../exApi/countries";
 import { states } from "../../../exApi/states";
 
-function EnrollmentPageParentDetails({ display, location }) {
+function EnrollmentPageStudentDetails({ display, location }) {
   const [tab, dispatch] = useEnrollmentTabsValue();
   const [image, setImage] = useState({ preview: "", raw: "" });
   const [formDetailsStore, formDetailsDispatch] = useFormDetailsStateValue();
   const [loaderState, setLoaderState] = useState(false);
   const [uploadMessage, setUploadMessage] = useState("");
-  const [selectedCountry, setSelectedCountry] = useState(null);
+  const [selectedCountry, setSelectedCountry] = useState();
+  //.log(countries, "countries");
 
-  // UPLOAD PASSPORT ON IMAGE CHANGE
+  // Date ref
+  const DateRef = useRef();
+
+  // UPLOAD STUDENT PSSPORT ONCHANGE
   useEffect(() => {
-    //.log(image, "PArent Passport upload");
+    //.log(image, "docfor upload");
     const headers = {
       "Content-Type": "multipart/form-data",
     };
@@ -31,7 +35,6 @@ function EnrollmentPageParentDetails({ display, location }) {
       const instance = axios.create();
       setLoaderState(true);
       setUploadMessage("Uploading Passport...");
-
       instance
         .post(
           "https://cloudnotte-api.herokuapp.com/api/rest/upload/file",
@@ -42,18 +45,16 @@ function EnrollmentPageParentDetails({ display, location }) {
           formik.setFieldValue("passportUrl", res.data.url);
           formik.setFieldValue("Passport", image.raw);
           setLoaderState(false);
-          setUploadMessage(" Successfully uploaded");
-
+          setUploadMessage("Uploaded Successfully");
           setTimeout(() => {
             setUploadMessage("");
           }, 1500);
-
           //.log(formik, "The url response");
         })
         .catch((err) => {
-          //.log(err);
+          //.log(err, "werr");
           setUploadMessage(
-            "Error uploading image check your internet connection"
+            `Error uploading image check your internet connection`
           );
         });
     }
@@ -85,13 +86,6 @@ function EnrollmentPageParentDetails({ display, location }) {
     });
   };
 
-  // REMOVE FROM FORM DETAILS STORE
-  const removeFromStore = () => {
-    formDetailsDispatch({
-      type: "REMOVE_FROM_FORM_DETAILS_STORE",
-    });
-  };
-
   // INITIAL FORM VALUES
   let initialValues = {
     firstName: "",
@@ -99,8 +93,8 @@ function EnrollmentPageParentDetails({ display, location }) {
     lastName: "",
     phoneNumber: "",
     email: "",
-    relationship: "",
-    occupation: "",
+    gender: "",
+    dateOfBirth: "",
     country: "",
     state: "",
     lga: "",
@@ -111,7 +105,7 @@ function EnrollmentPageParentDetails({ display, location }) {
   // FORMIK ONSUBMIT
   const onSubmit = (values) => {
     pushToStore(values);
-    changeTab(4);
+    changeTab(3);
   };
 
   // FORMIK VALIDATION SCHEMA WITH YUP
@@ -125,8 +119,8 @@ function EnrollmentPageParentDetails({ display, location }) {
     email: Yup.string()
       .email("Invalid Email")
       .required("This field is required"),
-    relationship: Yup.string().required("This field is required"),
-    occupation: Yup.string().required("This field is required"),
+    gender: Yup.string().required("This field is required"),
+    dateOfBirth: Yup.string().required("This field is required"),
     country: Yup.string().required("This field is required"),
     state: Yup.string().required("This field is required"),
     lga: Yup.string().required("This field is required"),
@@ -137,9 +131,8 @@ function EnrollmentPageParentDetails({ display, location }) {
       .test(
         "fileSize",
         "File Size is too large",
-        (value) => value && value.size <= FILE_SIZE
+        (value) => !value || (value && value.size <= FILE_SIZE)
       )
-
       .test(
         "fileType",
         "Unsupported File Format",
@@ -153,27 +146,30 @@ function EnrollmentPageParentDetails({ display, location }) {
     onSubmit,
     validationSchema,
   });
-
   useEffect(() => {
     formik.setFieldValue("country", location?.country);
     setSelectedCountry(location?.country);
-    formik.initialStatus = null;
-    formik.status = null;
   }, []);
 
   //.log(formDetailsStore, "The Store form data");
-  //.log(formik.values, "The Parent form data");
-  //.log(formik, "The  formik");
+  //.log(formik.values, "The student form data");
+  // console.log(formik, "The  formik");
+  // console.log(location, "The location");
 
   return (
     <section
       className={`${
-        display === 3 ? "flex" : "hidden"
+        display === 2 ? "flex" : "hidden"
       } px-5 md:px-10 md2:px-28 md3:px-40 text-justify w-full mt-6 sm:mt-10 mb-14 mx-auto text-[0.8em] sm:text-base`}
     >
       <div className="w-full bg-white">
-        <h2 className="font-bold mb-3">Parents&apos;s details</h2>
-
+        <h2 className="font-bold mb-3">Student&apos;s details</h2>
+        {/* <p className="text-xs sm:text-sm font-medium ">
+          Do you have a CloudNotte Student ID/Username? <span>Click here</span>
+        </p>
+        <p className="text-xs font-normal sm:font-medium mb-5">
+          This won&apos;t require you entering your information again.
+        </p> */}
         <form
           className="flex flex-col sm:flex-row w-full"
           onSubmit={(e) => {
@@ -183,20 +179,19 @@ function EnrollmentPageParentDetails({ display, location }) {
         >
           <div className="flex flex-col items-center justify-center sm:justify-start mr-0 mt-5 sm:mr-10 sm:mt-7  w-full  sm:w-[200px] mb-7 sm:mb-0">
             <label
-              htmlFor="parentPassport"
+              htmlFor="Passport"
               className={` relative ${
                 loaderState ? styles.mini_loader_inner : null
               }  `}
             >
-              {" "}
               {image.preview ? (
                 <Image
                   width={100}
                   height={100}
                   src={image.preview}
                   objectFit="contain"
-                  className="w-[100px] h-[100px] mb-3 sm:w-[150px] sm:h-[150px] cursor-pointer object-contain bg-gray-400 rounded-[50%] sm:border"
-                  alt="parentPassport"
+                  className="w-[100px] h-[100px] sm:w-[150px] sm:h-[150px] cursor-pointer object-contain bg-gray-400 rounded-[50%] sm:border"
+                  alt="Passport"
                 />
               ) : (
                 <Image
@@ -204,7 +199,7 @@ function EnrollmentPageParentDetails({ display, location }) {
                   height={100}
                   src="https://res.cloudinary.com/ugomatt/image/upload/v1650132345/profile_head_nwwxuu.png"
                   objectFit="contain"
-                  className="w-[100px] h-[100px] mb-3 sm:w-[150px] sm:h-[150px] cursor-pointer object-contain bg-gray-400 rounded-[50%] sm:border"
+                  className="w-[100px] h-[100px] sm:w-[150px] sm:h-[150px] cursor-pointer object-contain bg-gray-400 rounded-[50%] sm:border"
                   alt=""
                 />
               )}
@@ -212,17 +207,16 @@ function EnrollmentPageParentDetails({ display, location }) {
             {/* IMAGE INPUT */}
             <input
               type="file"
-              id="parentPassport"
-              name="parentPassport"
+              id="Passport"
+              name="Passport"
               className="hidden"
               accept="image/png,image/jpg,image/jpeg"
               required
               onChange={(e) => {
                 handleImageChange(e);
-                //.log(e.target.files[0], "The file");
               }}
             />
-            <label htmlFor="parentPassport" className="">
+            <label htmlFor="Passport">
               <span className="cursor-pointer">
                 {uploadMessage === "" ? "Upload Passport" : uploadMessage}
               </span>
@@ -322,21 +316,24 @@ function EnrollmentPageParentDetails({ display, location }) {
                 )}
               </div>
               <div className="mb-6 w-full sm:w-1/2">
-                <input
-                  type="text"
-                  id="relationship"
-                  name="relationship"
-                  className="shadow-sm h-12 pl-7 border border-[#CFDBEA] text-gray-900 text-sm rounded-[5px] outline-none focus:ring-[#5f9af2] focus:border-[#5f9af2] block w-full p-2.5 bg-[#F8FBFF]   "
-                  placeholder="Relationship"
+                <select
+                  id="gender"
+                  name="gender"
+                  className="shadow-sm h-12 pl-7 border border-[#CFDBEA] text-gray-900 text-sm rounded-[5px] outline-none focus:ring-[#5f9af2] focus:border-[#5f9af2] block w-full p-2.5 bg-[#F8FBFF] "
                   onChange={formik.handleChange}
-                  value={formik.values.relationship}
+                  value={formik.values.gender}
                   required
                   onBlur={formik.handleBlur}
-                />
-                {formik.touched.relationship && formik.errors.relationship && (
-                  <p className="text-xs text-red-600">
-                    {formik.errors.relationship}
-                  </p>
+                >
+                  <option selected={true} value="">
+                    Gender{" "}
+                  </option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+
+                {formik.touched.gender && formik.errors.gender && (
+                  <p className="text-xs text-red-600">{formik.errors.gender}</p>
                 )}
               </div>
             </div>
@@ -344,22 +341,28 @@ function EnrollmentPageParentDetails({ display, location }) {
             <div className="flex flex-col sm:flex-row items-center justify-between">
               <div className="mb-6 w-full sm:w-1/2 mr-0 sm:mr-10">
                 <input
+                  ref={DateRef}
                   type="text"
-                  id="occupation"
-                  name="occupation"
+                  id="dateOfBirth"
+                  name="dateOfBirth"
                   className="shadow-sm h-12 pl-7 border border-[#CFDBEA] text-gray-900 text-sm rounded-[5px] outline-none focus:ring-[#5f9af2] focus:border-[#5f9af2] block w-full p-2.5 bg-[#F8FBFF]   "
-                  placeholder="Occupation"
+                  placeholder="Date of birth"
                   onChange={formik.handleChange}
-                  value={formik.values.occupation}
+                  value={formik.values.dateOfBirth}
                   required
-                  onBlur={formik.handleBlur}
+                  onBlur={() => {
+                    formik.handleBlur;
+                    DateRef.current.type = "text";
+                  }}
+                  onFocus={() => (DateRef.current.type = "date")}
                 />
-                {formik.touched.occupation && formik.errors.occupation && (
+                {formik.touched.dateOfBirth && formik.errors.dateOfBirth && (
                   <p className="text-xs text-red-600">
-                    {formik.errors.occupation}
+                    {formik.errors.dateOfBirth}
                   </p>
                 )}
               </div>
+
               <div className="mb-6 w-full sm:w-1/2">
                 <select
                   id="country"
@@ -452,35 +455,18 @@ function EnrollmentPageParentDetails({ display, location }) {
                 <p className="text-xs text-red-600">{formik.errors.address}</p>
               )}
             </div>
-            <div className="w-full flex justify-between">
-              <div
-                onClick={() => {
-                  changeTab(2);
-                  removeFromStore();
-                }}
+            <div className="w-full flex justify-end">
+              <Button2
+                customStyle="w-full sm:w-[250px]"
+                py="py-3 px-1"
+                bg={`${
+                  formik.isValid
+                    ? "bg-[#5f9af2] text-[#E7F0FB]"
+                    : "cursor-not-allowed bg-[#293b57] text-[#476697]"
+                }`}
               >
-                <Button4
-                  customStyle="w-full border mr-10 xs:mr-0"
-                  py="py-3 px-3"
-                  bg={`bg-[#fff] text-[#8EA2BA]
-                 `}
-                >
-                  Previous
-                </Button4>
-              </div>
-              <div>
-                <Button2
-                  customStyle="w-[200px]"
-                  py="py-3 px-1"
-                  bg={`${
-                    formik.isValid
-                      ? "bg-[#5f9af2] text-[#E7F0FB]"
-                      : "cursor-not-allowed bg-[#293b57] text-[#476697]"
-                  }`}
-                >
-                  Proceed
-                </Button2>
-              </div>
+                Proceed
+              </Button2>
             </div>
           </div>
         </form>
@@ -489,4 +475,4 @@ function EnrollmentPageParentDetails({ display, location }) {
   );
 }
 
-export default EnrollmentPageParentDetails;
+export default EnrollmentPageStudentDetails;

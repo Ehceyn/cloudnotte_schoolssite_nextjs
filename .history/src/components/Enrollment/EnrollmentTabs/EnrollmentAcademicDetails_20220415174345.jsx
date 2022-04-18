@@ -31,15 +31,15 @@ function EnrollmentAcademicDetails({
   const [tab, dispatch] = useEnrollmentTabsValue();
   const [formDetailsStore, formDetailsDispatch] = useFormDetailsStateValue();
   const [docUploadStore, docUploadDispatch] = useDocUploadStateValue();
-  const [allDocs, setAllDocs] = useState(null);
-  const [docForUpload, setDocForUpload] = useState(null);
-  const [classId, setClassId] = useState(null);
-  const [classIdName, setClassIdName] = useState(null);
-  const [docForUploadName, setDocForUploadName] = useState(null);
-  const [docForUploadIndex, setDocForUploadIndex] = useState(null);
-  const [formSubmitMessage, setFormSubmitMessage] = useState(null);
-  const [formSubmitHeading, setFormSubmitHeading] = useState(null);
-  const [formSubmitStatus, setFormSubmitStatus] = useState(null);
+  const [allDocs, setAllDocs] = useState();
+  const [docForUpload, setDocForUpload] = useState();
+  const [classId, setClassId] = useState();
+  const [classIdName, setClassIdName] = useState();
+  const [docForUploadName, setDocForUploadName] = useState();
+  const [docForUploadIndex, setDocForUploadIndex] = useState();
+  const [formSubmitMessage, setFormSubmitMessage] = useState();
+  const [formSubmitHeading, setFormSubmitHeading] = useState();
+  const [formSubmitStatus, setFormSubmitStatus] = useState();
   const [displayMessageModal, setDisplayMessageModal] = useState(false);
 
   const [loaderState, setLoaderState] = useState({});
@@ -171,11 +171,6 @@ function EnrollmentAcademicDetails({
     initialValues,
     validationSchema,
   });
-
-  useEffect(() => {
-    formik.initialStatus = null;
-    formik.status = null;
-  }, []);
 
   // GETS THE Application fEES BASED ON CLASS
   const applicationFees = (class_) => {

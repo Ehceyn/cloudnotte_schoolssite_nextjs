@@ -8,9 +8,9 @@ import Loader from "../Loader";
 import * as Yup from "yup";
 
 function ChangeLocationModal(props) {
-  const [selectedCountry, setSelectedCountry] = useState(null);
+  const [selectedCountry, setSelectedCountry] = useState();
   const [loader, setLoader] = useState(false);
-  const [location, setLocation] = useState(null);
+  const [location, setLocation] = useState();
 
   // Get location from url
   useEffect(() => {
@@ -39,7 +39,7 @@ function ChangeLocationModal(props) {
   loader &&
     setTimeout(() => {
       setLoader(false);
-      props.onCallChangeLocationModal;
+      props.onCallChangeLocationModal();
     }, 3000);
 
   // INITIAL FORM VALUES

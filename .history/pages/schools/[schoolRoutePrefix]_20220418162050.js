@@ -51,6 +51,7 @@ function SchoolsPersonalPage({
     },
   },
 }) {
+  const singleSchool = name;
   //.log(singleSchool, "Single cosread here --------<-");
   const [displayReviewSchoolModal, setDisplayReviewSchoolModal] =
     useState(false);
