@@ -30,7 +30,7 @@ function ChangeLocationModal(props) {
       });
   }, []);
 
-  console.log(location && location, "location");
+  //log(location && location, "location");
 
   // Initialize router
   const router = useRouter();
@@ -51,7 +51,7 @@ function ChangeLocationModal(props) {
   // FORMIK ONSUBMIT
   const onSubmit = (values) => {
     if (values.country !== "" && formik.isValid) {
-      console.log("values: ", values.state);
+      //log("values: ", values.state);
       if (values.state !== "") {
         router.push(`/schools/location/${values.country}/${values.state}`);
       } else {
@@ -73,7 +73,7 @@ function ChangeLocationModal(props) {
   });
 
   // log
-  console.log("formik: ", formik);
+  //log("formik: ", formik);
 
   return (
     <section

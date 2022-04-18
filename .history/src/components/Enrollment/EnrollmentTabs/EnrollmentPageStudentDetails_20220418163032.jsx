@@ -17,7 +17,7 @@ function EnrollmentPageStudentDetails({ display, location }) {
   const [formDetailsStore, formDetailsDispatch] = useFormDetailsStateValue();
   const [loaderState, setLoaderState] = useState(false);
   const [uploadMessage, setUploadMessage] = useState("");
-  const [selectedCountry, setSelectedCountry] = useState();
+  const [selectedCountry, setSelectedCountry] = useState(null);
   //.log(countries, "countries");
 
   // Date ref
@@ -149,12 +149,14 @@ function EnrollmentPageStudentDetails({ display, location }) {
   useEffect(() => {
     formik.setFieldValue("country", location?.country);
     setSelectedCountry(location?.country);
+    formik.initialStatus = null;
+    formik.status = null;
   }, []);
 
   //.log(formDetailsStore, "The Store form data");
   //.log(formik.values, "The student form data");
-  // console.log(formik, "The  formik");
-  // console.log(location, "The location");
+  // //log(formik, "The  formik");
+  // //log(location, "The location");
 
   return (
     <section

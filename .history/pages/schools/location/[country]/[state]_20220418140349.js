@@ -220,7 +220,7 @@ Best schools in ${router.query.state}, Best schools in ${router.query.country}y}
 
 export async function getServerSideProps({ params }) {
   // Fetch data from external API
-  //log(params, "params.prefix");
+  console.log(params, "params.prefix");
   const apolloClient = initializeApollo();
   const country = params.country;
   const state = params.state;

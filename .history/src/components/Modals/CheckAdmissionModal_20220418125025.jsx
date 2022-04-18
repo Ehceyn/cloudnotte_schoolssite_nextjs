@@ -27,7 +27,7 @@ function CheckAdmissionModal(props) {
   // FORMIK ONSUBMIT
   const onSubmit = (values) => {
     if (values.admissionNo !== "" && formik.isValid) {
-      //log("values: ", values.admissionNo);
+      console.log("values: ", values.admissionNo);
       router.push(`/schools/admission_status/${values.admissionNo}`);
     } else {
       null;

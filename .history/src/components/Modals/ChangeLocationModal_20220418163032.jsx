@@ -8,9 +8,9 @@ import Loader from "../Loader";
 import * as Yup from "yup";
 
 function ChangeLocationModal(props) {
-  const [selectedCountry, setSelectedCountry] = useState();
+  const [selectedCountry, setSelectedCountry] = useState(null);
   const [loader, setLoader] = useState(false);
-  const [location, setLocation] = useState();
+  const [location, setLocation] = useState(null);
 
   // Get location from url
   useEffect(() => {
@@ -30,7 +30,7 @@ function ChangeLocationModal(props) {
       });
   }, []);
 
-  console.log(location && location, "location");
+  //log(location && location, "location");
 
   // Initialize router
   const router = useRouter();
@@ -39,7 +39,7 @@ function ChangeLocationModal(props) {
   loader &&
     setTimeout(() => {
       setLoader(false);
-      props.onCallChangeLocationModal();
+      props.onCallChangeLocationModal;
     }, 3000);
 
   // INITIAL FORM VALUES
@@ -51,7 +51,7 @@ function ChangeLocationModal(props) {
   // FORMIK ONSUBMIT
   const onSubmit = (values) => {
     if (values.country !== "" && formik.isValid) {
-      console.log("values: ", values.state);
+      //log("values: ", values.state);
       if (values.state !== "") {
         router.push(`/schools/location/${values.country}/${values.state}`);
       } else {
@@ -73,7 +73,7 @@ function ChangeLocationModal(props) {
   });
 
   // log
-  console.log("formik: ", formik);
+  //log("formik: ", formik);
 
   return (
     <section

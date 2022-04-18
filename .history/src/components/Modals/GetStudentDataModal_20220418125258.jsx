@@ -7,7 +7,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useRouter } from "next/router";
 
-function CheckAdmissionModal(props) {
+function GetStudentDataModal(props) {
   const [loader, setLoader] = useState(false);
 
   const router = useRouter();
@@ -27,8 +27,8 @@ function CheckAdmissionModal(props) {
   // FORMIK ONSUBMIT
   const onSubmit = (values) => {
     if (values.admissionNo !== "" && formik.isValid) {
-      //log("values: ", values.admissionNo);
-      router.push(`/schools/admission_status/${values.admissionNo}`);
+      console.log("values: ", values.admissionNo);
+      router.push(`/schools/students_info/${values.admissionNo}`);
     } else {
       null;
     }
@@ -51,7 +51,7 @@ function CheckAdmissionModal(props) {
       className={`w-full h-screen bg-[#00000065] fixed top-0 bottom-0 z-30 flex items-center  justify-center ${
         props.display ? "flex" : "hidden"
       } `}
-      onClick={props.onCallCheckAdmissionModal}
+      onClick={props.onCallGetStudentDataModal}
     >
       <form
         onSubmit={(e) => {
@@ -64,21 +64,7 @@ function CheckAdmissionModal(props) {
           onClick={(e) => e.stopPropagation()}
         >
           <article className="w-full flex justify-center mb-4">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 mr-1"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="#F44336"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1}
-                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            <p className="font-bold">Check Admission Status</p>
+            <p className="font-bold">Print Admission Slip</p>
           </article>
           <div className="flex flex-col justify-center items-center mb-5">
             <article className="relative mb-1">
@@ -98,10 +84,10 @@ function CheckAdmissionModal(props) {
                 name="admissionNo"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                required
                 value={formik.values.admissionNo}
                 className="shadow-sm h-12 pl-12 border border-[#CFDBEA] text-base text-gray-900 rounded-full outline-none focus:ring-[#5f9af2] focus:border-[#5f9af2] block w-[260px]  xs:w-[320px] p-2.5 bg-[#F8FBFF]"
-                placeholder="Enter your admission number here"
+                placeholder="Student admission number"
+                required
               />
             </article>
             {formik.touched.admissionNo && formik.errors.admissionNo && (
@@ -110,7 +96,6 @@ function CheckAdmissionModal(props) {
               </p>
             )}
           </div>
-
           <article
             className="w-full flex items-center justify-center"
             onClick={() =>
@@ -129,14 +114,14 @@ function CheckAdmissionModal(props) {
                   : "cursor-not-allowed bg-[#293b57] text-[#476697]"
               }`}
             >
-              Check Status
+              Proceed{" "}
             </Button>
           </article>
         </div>
       </form>
-      <Loader display={loader} message="Checking Admission Status" />
+      <Loader display={loader} message="Checking Admission Information" />
     </section>
   );
 }
 
-export default CheckAdmissionModal;
+export default GetStudentDataModal;

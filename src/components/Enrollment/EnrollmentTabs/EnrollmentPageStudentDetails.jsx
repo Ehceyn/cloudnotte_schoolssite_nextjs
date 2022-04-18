@@ -155,8 +155,8 @@ function EnrollmentPageStudentDetails({ display, location }) {
 
   //.log(formDetailsStore, "The Store form data");
   //.log(formik.values, "The student form data");
-  // console.log(formik, "The  formik");
-  // console.log(location, "The location");
+  // //log(formik, "The  formik");
+  // //log(location, "The location");
 
   return (
     <section
