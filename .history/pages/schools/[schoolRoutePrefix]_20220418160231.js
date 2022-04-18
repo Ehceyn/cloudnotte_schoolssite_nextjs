@@ -275,12 +275,17 @@ export const getStaticProps = async (context) => {
     variables: { schoolPrefix: schoolRoutePrefix },
   });
 
+  if (error) return null;
+
   if (!data) {
     return { notfound: true };
   }
 
   return {
-    props: { initializeApolloState: apolloClient.cache.extract(), data },
+    props: {
+      initializeApolloState: apolloClient.cache.extract(),
+      data: data || null,
+    },
     revalidate: 10,
   };
 };
@@ -294,7 +299,7 @@ export async function getStaticPaths() {
   });
 
   // if (loading) return { paths: [], fallback: true };
-  if (error) return; //.log(JSON.stringify(error, null, 2));
+  if (error) return null; //.log(JSON.stringify(error, null, 2));
 
   const prefix = data.getSchools.map((school) => {
     return {

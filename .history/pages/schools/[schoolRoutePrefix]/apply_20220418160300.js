@@ -123,9 +123,15 @@ export const getStaticProps = async (context) => {
 
   if (error) return; //.log(JSON.stringify(error, null, 2));
   //.log(data, "why error");
+  if (!data) {
+    return { notfound: true };
+  }
 
   return {
-    props: { initializeApolloState: apolloClient.cache.extract(), data },
+    props: {
+      initializeApolloState: apolloClient.cache.extract(),
+      data: data || null,
+    },
     revalidate: 10,
   };
 };
