@@ -67,10 +67,10 @@ export const GET_ADMISSION_APPLICANT = gql`
       timeAdded
       admissionStatus
       admissionReason
-    }
-    admissionProgramme {
-      id
-      name
+      admissionProgramme {
+        id
+        name
+      }
     }
   }
 `;

@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../Home/Button";
 import Image from "next/image";
 import Link from "next/link";
+import Loader from "../Loader";
 
 function Sidebar(props) {
+  const [loader, setLoader] = useState(false);
+
+  // Set loader false
+  loader &&
+    setTimeout(() => {
+      setLoader(false);
+      props.onCallChangeLocationModal;
+    }, 3000);
+
   return (
     <>
       <div className="">
@@ -17,7 +27,10 @@ function Sidebar(props) {
         </article>
         <article className="bg-white pl-8 pr-8 pb-2 w-full capitalize h-fit flex flex-col justify-between">
           <Link href="/schools" passHref>
-            <div className=" w-full my-3 h-[30px] items-center bg-white flex cursor-pointer">
+            <div
+              className=" w-full my-3 h-[30px] items-center bg-white flex cursor-pointer"
+              onClick={() => setLoader(true)}
+            >
               {/* <Image
               src={vector_side_bar_home}
               alt=""
@@ -145,18 +158,19 @@ function Sidebar(props) {
         </article>
         <div className="bg-white pl-8 pr-8 pb-5 w-full capitalize h-[100px] flex flex-col justify-end">
           <Link href="/schools/register" passHref>
-            <article>
+            <article onClick={() => setLoader(true)}>
               <Button
                 py="py-2"
                 px="px-8"
                 borderRaduis="rounded-full"
                 height="h-[62px] bg-[#5f9af2] text-white"
               >
-                List your school
+                {loader ? "Please Wait..." : "List your school"}
               </Button>
             </article>
           </Link>
         </div>
+        {/* <Loader display={loader} message="Please wait..." /> */}
       </div>
     </>
   );

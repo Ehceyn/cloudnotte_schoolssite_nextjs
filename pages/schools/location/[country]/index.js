@@ -14,6 +14,7 @@ import { initializeApollo } from "../../../../lib/apolloClient";
 import { GET_SCHOOLS } from "../../../../graphql/user/queries/getSchools";
 import { useRouter } from "next/router";
 import SEO from "../../../../src/components/SEO";
+import Image from "next/image";
 import { states } from "../../../../src/exApi/states";
 import { countries } from "../../../../src/exApi/countries";
 
@@ -63,8 +64,7 @@ function Home({ data }) {
     <section className="">
       <SEO
         title={`Best Schools in ${router.query.country}`}
-        keywords={`Best school in ${router.query.country},
- Best schools in ${router.query.country}, School in ${router.query.country}, private schools in ${router.query.country}, Best private schools in ${router.query.country}, Smart schools, cloudnotte schools, admission-ongoing, schools admitting, schools nearby, school with best facilities, secured schools, automated schools, tech schools.
+        keywords={`Find Best Schools in ${router.query.country}, Best school in ${router.query.country}, Best schools in ${router.query.country}, School in ${router.query.country}, private schools in ${router.query.country}, Best private schools in ${router.query.country}, Smart schools in ${router.query.country}   cloudnotte schools, cloudnotte schools in ${router.query.country}, admission-ongoing, schools admitting, schools admitting in ${router.query.country}, school nearby, schools nearby, school with best facilities, school with best facilities in ${router.query.country}, schools with best facilities, schools with best facilities in ${router.query.country}, secured schools, secured schools in ${router.query.country}, automated schools, automated schools in ${router.query.country}, tech schools, tech schools in ${router.query.country}.
 `}
         description={`These schools stand out in the poll of thousands of other schools operating in ${router.query.country}. Below are the list of best schools in ${router.query.country}`}
         url={`https://cloudnotte.com/schools/location/${router.query.country}`}
@@ -108,26 +108,59 @@ function Home({ data }) {
             />
 
             {/*MAP THE RETURNED SCHOOLS AND DISPLAY THEM  */}
-            {schools.getSchools.map((school) => {
-              return (
-                <SchoolAdCard
-                  key={school.id}
-                  id={school.id}
-                  name={school.name}
-                  country={school.country}
-                  state={school.state}
-                  city={school.city}
-                  logoUrl={school.logoUrl}
-                  prefix={school.prefix}
-                  type={school.type}
-                  isSmartSchool={school.isSmartSchool}
-                  longDescription={school.admissionInfo.longDescription}
-                  shortDescription={school.admissionInfo.shortDescription}
-                  assetsUrl={school.admissionInfo.assetsUrl}
-                  textColor={colors[Math.floor(Math.random() * colors.length)]}
-                />
-              );
-            })}
+            {schools.getSchools.length > 0 ? (
+              schools.getSchools.map((school) => {
+                return (
+                  <SchoolAdCard
+                    key={school.id}
+                    id={school.id}
+                    name={school.name}
+                    country={school.country}
+                    state={school.state}
+                    city={school.city}
+                    logoUrl={school.logoUrl}
+                    prefix={school.prefix}
+                    type={school.type}
+                    isSmartSchool={school.isSmartSchool}
+                    longDescription={school.admissionInfo.longDescription}
+                    shortDescription={school.admissionInfo.shortDescription}
+                    assetsUrl={school.admissionInfo.assetsUrl}
+                    textColor={
+                      colors[Math.floor(Math.random() * colors.length)]
+                    }
+                  />
+                );
+              })
+            ) : (
+              <section>
+                <div className="w-full h-fit flex item-center justify-center mb-2">
+                  <Image
+                    width={350}
+                    height={200}
+                    src="https://res.cloudinary.com/zichygraphs/image/upload/v1650286100/register-school-image_bphjhn.svg"
+                    alt=""
+                  />
+                </div>
+                <div className="flex justify-center">
+                  <p className="text-center text-lg ">
+                    No school in {router.query.country} at the moment. Refer a
+                    school and make money
+                  </p>
+                </div>
+                <div className="flex justify-center w-full my-4">
+                  <button className="bg-[#5f9af2] hover:brightness-90 text-white font-bold py-2 px-4 rounded-[5px]">
+                    <a
+                      href="https://business.cloudnotte.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white"
+                    >
+                      Become an affiliate
+                    </a>
+                  </button>
+                </div>
+              </section>
+            )}
           </div>
 
           <div className="bg-white fixed right-0 h-full w-1/4 2xl:w-1/3  border-l hidden md2:flex">

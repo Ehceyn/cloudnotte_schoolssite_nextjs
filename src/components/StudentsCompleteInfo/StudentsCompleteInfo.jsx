@@ -37,7 +37,7 @@ function StudentsInfoPage({ theData }) {
           <span
             title="Tech School"
             className={`absolute z-[1] ${
-              data.school.isSmartSchool ? "flex" : "hidden"
+              theData.school.isSmartSchool ? "flex" : "hidden"
             } top-2 right-0 bg-white  border-[#5f9af2] text-red-500 rounded-full`}
           >
             <svg

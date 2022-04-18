@@ -16,6 +16,7 @@ function Navbar({
   name,
   onCallAudioModal,
   displayAudioModal,
+  prefix,
 }) {
   const [tab, dispatch] = useSchoolPersonalPageTabsValue();
 
@@ -115,11 +116,13 @@ function Navbar({
                     phoneNumber.charAt(0) === "0"
                       ? phoneNumber.slice(1)
                       : phoneNumber
-                  }&text=Hi%20${name},%20I%20came%20across%20your%20school%20on%20Schools.cloudnotte.com.%20I'd%20like%20to%20make%20more%20enquiries`}
+                  }&text=Hi%20${name},%20I%20came%20across%20your%20school%20on%20Cloudnotte%20School%20Search%20Engine%20(www.cloudnotte.com/schools/${prefix})%20I'd%20like%20to%20make%20more%20enquiries`}
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="text-[#8EA2BA] flex"
                 >
-                  <RiWhatsappFill className="w-6 h-6 fill-[#02a556]" />
+                  Whatsapp{" "}
+                  <RiWhatsappFill className="ml-2 w-6 h-6 fill-[#02a556]" />
                 </a>
               </Button2>
             </div>

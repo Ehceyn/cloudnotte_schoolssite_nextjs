@@ -16,7 +16,7 @@ function CheckAdmissionModal(props) {
   loader &&
     setTimeout(() => {
       setLoader(false);
-      props.onCallChangeLocationModal();
+      props.onCallChangeLocationModal;
     }, 3000);
 
   // INITIAL FORM VALUES

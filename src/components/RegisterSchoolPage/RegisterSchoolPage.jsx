@@ -8,11 +8,11 @@ function RegisterSchoolPage() {
       className={` bg-white relative inset-0 my-0 mx-auto h-auto w-full md:w-3/4 md2:w-1/2 mt-5 mb-14 md:px-6 transition-[display] duration-300 ease-in-out`}
     >
       <RegisterSchoolPageHero />{" "}
-      <div className="w-full h-fit flex item-center justify-center">
+      <div className="w-full h-fit flex item-center justify-center mb-2">
         <Image
           width={350}
           height={200}
-          src="/assets/images/register-school-image.svg"
+          src="https://res.cloudinary.com/zichygraphs/image/upload/v1650286100/register-school-image_bphjhn.svg"
           alt=""
         />
       </div>

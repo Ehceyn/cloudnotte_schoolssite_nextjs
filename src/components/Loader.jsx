@@ -5,7 +5,7 @@ function Loader({ display, message }) {
     <div
       className={`${
         display ? "flex" : "hidden"
-      } items-center justify-center bg-[#00000065] fixed z-30 top-0 bottom-0 w-full right-0 left-0 space-x-2`}
+      } items-center justify-center bg-[#00000065] fixed z-50 top-0 bottom-0 w-full right-0 left-0 space-x-2`}
     >
       <div
         className="w-80 min-h-96 xs:w-64 border rounded-2xl bg-white px-6 py-6 flex flex-col justify-center items-center"

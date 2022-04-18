@@ -16,7 +16,7 @@ function GetStudentDataModal(props) {
   loader &&
     setTimeout(() => {
       setLoader(false);
-      props.onCallChangeLocationModal();
+      props.onCallChangeLocationModal;
     }, 3000);
 
   // INITIAL FORM VALUES
@@ -119,7 +119,7 @@ function GetStudentDataModal(props) {
           </article>
         </div>
       </form>
-      <Loader display={loader} message="Checking Admission Status" />
+      <Loader display={loader} message="Checking Admission Information" />
     </section>
   );
 }

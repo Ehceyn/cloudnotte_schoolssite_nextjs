@@ -18,7 +18,7 @@ function StudentsPersonalInfo({ data }) {
               src={
                 data.passportUrl
                   ? data.passportUrl
-                  : "/assets/images/school-profile-img.png"
+                  : "https://res.cloudinary.com/ugomatt/image/upload/v1650132345/profile_head_nwwxuu.png"
               }
               className="w-[60px] h-[60px] sm:w-[120px] sm:h-[120px] object-contain"
               alt={data.firstName + ", " + data.lastName}

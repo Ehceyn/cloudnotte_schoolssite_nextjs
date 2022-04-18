@@ -27,6 +27,7 @@ function AudioModal(props) {
             borderRaduis="rounded-full"
             px="px-5 w-full xs:w-[200px]"
             py="py-3"
+            bg="bg-[#5f9af2] text-[#E7F0FB]"
           >
             Close
           </Button>

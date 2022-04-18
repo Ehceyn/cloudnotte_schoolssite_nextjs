@@ -92,14 +92,12 @@ function Home() {
                 src="https://res.cloudinary.com/zichygraphs/image/upload/v1650209172/404stars_qkezne.jpg"
                 alt="404 not found"
               />
-              <h1 className="text-5xl text-center text-gray-800">
-                404 not found
-              </h1>
-              <h2 className="text-2xl text-center text-gray-800">
+              <h1 className="text-5xl text-center">404 not found</h1>
+              <h2 className="text-xl text-center">
                 I tried my best to get you there. But you know its not easy
                 looking for a school that doesn&apos;t exist.
               </h2>
-              <p className="text-xl text-center text-gray-800 font-bold">
+              <p className="text-xl text-center font-bold">
                 {" "}
                 You can use our search bar to find a school or go{" "}
                 <span
@@ -107,9 +105,11 @@ function Home() {
                     router.push("/schools");
                     setLoader(true);
                   }}
+                  className="text-xl cursor-pointer text-center text-[#5f9af2] font-bold"
                 >
-                  home.
+                  home
                 </span>
+                .
               </p>
             </div>
           </div>
