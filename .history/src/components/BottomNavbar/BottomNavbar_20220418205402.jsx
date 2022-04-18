@@ -42,10 +42,7 @@ function BottomNavbar(props) {
         } border-[#E7F0FB]  py-1 px-3 sm:py-5 w-full rounded-t-2xl capitalize h-fit flex items-center justify-between`}
       >
         <Link href="/schools" passHref>
-          <div
-            className="  flex flex-col mr-2 overflow-hidden w-fit sm:w-fit items-center  justify-center cursor-pointer "
-            onClick={() => setLoader(true)}
-          >
+          <div className="  flex flex-col mr-2 overflow-hidden w-fit sm:w-fit items-center  justify-center cursor-pointer ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className=" w-5 h-5 sm:w-9 sm:h-9"

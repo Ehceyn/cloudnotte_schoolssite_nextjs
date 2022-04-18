@@ -32,7 +32,7 @@ function EnrollmentPageSummary({
     <div
       className={`${
         display === 1 ? "block" : "hidden"
-      } px-5 md:px-10 md2:px-28 md3:px-40 w-full xs:w-[85%] sm:w-[70%] mt-10 mb-14 mx-auto text-[0.8em] sm:text-base`}
+      } px-5 md:px-10 md2:px-28 md3:px-40 text-justify w-full xs:w-[85%] sm:w-[70%] mt-10 mb-14 mx-auto text-[0.8em] sm:text-base`}
     >
       <p>
         Welcome to the first stage of the{" "}
@@ -52,15 +52,14 @@ function EnrollmentPageSummary({
       <br />
       <p>
         Please note that receipt of this application does not guarantee
-        admission into
+        admission to
         <span className="text-bold text-[#5f9af2] capitalize"> {name}</span>. Do
         not apply for admission again if you have applied before. Please contact
         us at <span className="text-bold text-[#5f9af2]  ">{email}</span>,{" "}
         <span className="text-bold text-[#5f9af2]">{phoneNumber}</span> if you
         need more information to continue with the application process. <br />
-        Regards, Administrator.
+        Regards, Administrator
       </p>
-      <p>Note: DO NOT PERFORM ANY TRANSACTION OUTSIDE THIS PLATFORM</p>
       <MessageModal
         displayMessageModal={displayMessageModal}
         status="error"

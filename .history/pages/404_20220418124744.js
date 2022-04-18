@@ -102,8 +102,8 @@ function Home() {
                 You can use our search bar to find a school or go{" "}
                 <span
                   onClick={() => {
-                    setLoader(true);
                     router.push("/schools");
+                    setLoader(true);
                   }}
                   className="text-xl cursor-pointer text-center text-[#5f9af2] font-bold"
                 >

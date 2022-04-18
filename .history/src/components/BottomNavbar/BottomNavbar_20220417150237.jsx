@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Loader from "../Loader";
 
 function BottomNavbar(props) {
   const [show, setShow] = useState(false);
   const [scrollPos, setScrollPos] = useState(0);
   const [moreNavItems, setMoreNavItems] = useState(false);
-  const [loader, setLoader] = useState(false);
 
   // Show Bottom Navbar only on scroll up
   useEffect(() => {
@@ -26,10 +24,6 @@ function BottomNavbar(props) {
     //.log(scrollPos);
   };
 
-  setTimeout(() => {
-    setLoader(false);
-  }, 3000);
-
   return (
     <div
       className={`fixed md2:hidden z-[20] bottom-0 right-0 left-0 ${
@@ -42,10 +36,7 @@ function BottomNavbar(props) {
         } border-[#E7F0FB]  py-1 px-3 sm:py-5 w-full rounded-t-2xl capitalize h-fit flex items-center justify-between`}
       >
         <Link href="/schools" passHref>
-          <div
-            className="  flex flex-col mr-2 overflow-hidden w-fit sm:w-fit items-center  justify-center cursor-pointer "
-            onClick={() => setLoader(true)}
-          >
+          <div className="  flex flex-col mr-2 overflow-hidden w-fit sm:w-fit items-center  justify-center cursor-pointer ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className=" w-5 h-5 sm:w-9 sm:h-9"
@@ -196,7 +187,7 @@ function BottomNavbar(props) {
             </p>
           </article>{" "} */}
           <Link href="/schools/tech_school_badge" passHref>
-            <article className="border-b py-5" onClick={() => setLoader(true)}>
+            <article className="border-b py-5">
               <p className="flex justify-center ">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -262,10 +253,7 @@ function BottomNavbar(props) {
               </p>
             </article>
           </a>
-          <div
-            className="flex justify-center my-5"
-            onClick={() => setLoader(true)}
-          >
+          <div className="flex justify-center my-5">
             <Link href="/schools/register" passHref>
               <button
                 className="bg-[#5f9af2] hover:brightness-90 text-white font-bold py-3 px-5 rounded-full"
@@ -277,7 +265,6 @@ function BottomNavbar(props) {
           </div>
         </div>
       </div>
-      <Loader display={loader} message="Please wait..." />
     </div>
   );
 }
