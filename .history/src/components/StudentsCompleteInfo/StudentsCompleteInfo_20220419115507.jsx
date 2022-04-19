@@ -9,7 +9,7 @@ function StudentsInfoPage({ theData }) {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   // Print Page
-  const componentRef = useRef(null);
+  const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });

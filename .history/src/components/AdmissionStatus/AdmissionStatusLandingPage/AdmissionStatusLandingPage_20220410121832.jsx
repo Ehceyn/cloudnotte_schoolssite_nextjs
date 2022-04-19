@@ -1,13 +1,13 @@
 import React from "react";
 import AdmissionStatusSchoolHead from "./AdmissionStatusSchoolHead";
 
-function AdmissionStatusLandingPage({ data, onCallHandlePrint }) {
+function AdmissionStatusLandingPage({ data }) {
   //.log("my data ===>", data);
   return (
     <>
       <section className="w-full flex mt-8 flex-col">
-        <div className="w-full flex justify-end print:hidden">
-          <p className="flex cursor-pointer" onClick={onCallHandlePrint}>
+        <div className="w-full flex justify-end">
+          <p className="flex cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6 mr-1"

@@ -82,7 +82,7 @@ function EnrollmentLandingPage({
                   src={`${
                     logoUrl
                       ? logoUrl
-                      : `https://res.cloudinary.com/ugomatt/image/upload/v1647277984/cloudnotte_icon_soq.png`
+                      : `https://res.cloudinary.com/ugomatt/image/upload/v1647277984/cloudnotte_icon_soqc6y.png`
                   }`}
                   className=" rounded-full "
                   alt=""

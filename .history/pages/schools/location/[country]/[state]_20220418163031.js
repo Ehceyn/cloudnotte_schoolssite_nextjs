@@ -66,7 +66,7 @@ Best schools in ${router.query.state}, Best schools in ${router.query.country}y}
 `}
         description={`These schools stand out in the poll of thousands of other schools operating in ${router.query.state}. Below are the list of best schools in ${router.query.state}, ${router.query.country}`}
         url={`https://cloudnotte.com/schools/location/${router.query.country}/${router.query.state}`}
-        image={`https://res.cloudinary.com/ugomatt/image/upload/v1647277984/cloudnotte_icon_soq.png`}
+        image={`https://res.cloudinary.com/ugomatt/image/upload/v1647277984/cloudnotte_icon_soqc6y.png`}
       />
       <section className="   h-full">
         <div className="w-full h-full flex justify-between relative  ">

@@ -9,7 +9,7 @@ function StudentsInfoPage({ theData }) {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   // Print Page
-  const componentRef = useRef(null);
+  const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
@@ -38,7 +38,7 @@ function StudentsInfoPage({ theData }) {
           Print Admission Slip
         </p>
       </div>
-      <div ref={componentRef} className="print:px-10">
+      <div ref={componentRef}>
         {/* SCHOOL HEAD */}
         <div className="w-full flex flex-col justify-center items-center mt-3 mb-7">
           <article className="w-[60px] h-[60px] print:w-[150px]  print:h-[150px] sm:w-[150px] sm:h-[150px] object-contain print:border sm:border border-white rounded-full relative">
@@ -123,19 +123,15 @@ function StudentsInfoPage({ theData }) {
           </p>
         </div>
         {/* ADMISSION STATUS AND EXAM SCORE */}
-        <div className=" flex w-full justify-between print:justify-center xs:justify-center">
+        <div className=" flex w-full justify-between xs:justify-center">
           <article className="xs:px-4 print:px-4 print:mr-0 mr-1 xs:mr-0  text-center">
-            <p className="font-bold text-xs  print:text-sm xs:text-sm">
-              Admssion Number
-            </p>
-            <p className="font-normal text-base print:text-lg xs:text-lg">
+            <p className="font-bold text-xs xs:text-sm">Admssion Number</p>
+            <p className="font-normal text-base xs:text-lg">
               {theData.applicationNumber}
             </p>
           </article>
-          <article className="border-r-2 border-l-2 border-[#8EA2BA] px-1 print:px-4 xs:px-4 text-center">
-            <p className="font-bold text-xs print:text-sm xs:text-sm ">
-              Admission Status
-            </p>
+          <article className="border-r-2 border-l-2 border-[#8EA2BA] px-1 xs:px-4 text-center">
+            <p className="font-bold text-xs xs:text-sm ">Admission Status</p>
             <p
               className={`font-normal text-base print:text-lg xs:text-lg ${
                 theData.admissionStatus === "REJECTED"
@@ -148,10 +144,8 @@ function StudentsInfoPage({ theData }) {
               {theData.admissionStatus}
             </p>
           </article>
-          <article className=" print:ml-0 print:px-4 xs:px-4 ml-1 xs:ml-0  text-center">
-            <p className="font-bold text-xs print:text-sm xs:text-sm">
-              Exam Score
-            </p>
+          <article className="print:px-4 print:ml-0 xs:px-4 ml-1 xs:ml-0  text-center">
+            <p className="font-bold text-xs xs:text-sm">Exam Score</p>
             <p className="font-normal text-base print:text-lg xs:text-lg">
               {theData.cbtSubmissions.score
                 ? theData.cbtSubmissions.score

@@ -10,7 +10,7 @@ function AdmissionStatusSchoolHead({ data }) {
   return (
     //.log("brainy data: ", data),
     <div className="w-full flex flex-col justify-center items-center mt-7 mb-10">
-      <article className="w-[60px] h-[60px] sm:w-[150px]  sm:h-[150px] print:w-[150px]  print:h-[150px] object-contain rounded-full sm:border print:border border-white relative">
+      <article className="w-[60px] h-[60px] sm:w-[150px]  sm:h-[150px] print:w-[90px]  print:h-[90px] object-contain rounded-full sm:border print:border border-white relative">
         <span
           title="Tech School"
           className={`absolute z-[1] ${
@@ -53,7 +53,7 @@ function AdmissionStatusSchoolHead({ data }) {
         </span>
         {imageLoaded ? null : (
           <span
-            className={`flex items-center justify-center min-w-full min-h-full bg-[#fff] rounded-full w-[60px] h-[60px] sm:w-[150px]  sm:h-[150px] print:w-[90px]  print:h-[90px] object-contain border-white`}
+            className={`flex items-center justify-center min-w-full min-h-full bg-[#fff] rounded-full w-[60px] h-[60px] sm:w-[150px]  sm:h-[150px] print:w-[150px]  print:h-[150px] object-contain border-white`}
             style={{
               color: colors[Math.floor(Math.random() * colors.length)],
             }}

@@ -13,7 +13,7 @@ import { useReactToPrint } from "react-to-print";
 function AdmissionStatusPage({ data }) {
   // //.log(data, "data here");
   // Print Page
-  const componentRef = useRef(null);
+  const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });

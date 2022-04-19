@@ -13,7 +13,7 @@ import { useReactToPrint } from "react-to-print";
 function AdmissionStatusPage({ data }) {
   // //.log(data, "data here");
   // Print Page
-  const componentRef = useRef(null);
+  const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
@@ -25,15 +25,15 @@ function AdmissionStatusPage({ data }) {
         initialState={initialState}
         reducer={reducer}
       >
-        <section
-          ref={componentRef}
-          className="flex flex-col bg-white w-[320px] xs:w-[400px] sm:w-[500px] print:w-[672px] md:w-[672px] max-w-2xl mx-auto"
-        >
+        <section className="flex flex-col bg-white w-[320px] xs:w-[400px] sm:w-[500px] md:w-[672px] max-w-2xl mx-auto">
           <AdmissionStatusLandingPage
             data={data.getAdmissionApplicant}
             onCallHandlePrint={handlePrint}
           />
-          <AdmissionStatusInformation data={data.getAdmissionApplicant} />
+          <AdmissionStatusInformation
+            data={data.getAdmissionApplicant}
+            ref={componentRef}
+          />
         </section>
       </AdmissionStatusTabsProvider>
     </>

@@ -12,7 +12,7 @@ function AdmittedStage({ data }) {
           You have been admitted into{" "}
           <span className="font-bold text-[#8EA2BA]">{data.class.name}</span> in
         </p>
-        <p className="font-bold capitalize">{data.school.name.toLowerCase()}</p>
+        <p className="font-bold">Royal Group of Schools</p>
       </div>
       <div className="h-[1px] border-t w-full"></div>
       <div className="flex flex-col items-center mt-5 mb-5">
@@ -29,8 +29,8 @@ function AdmittedStage({ data }) {
           <p>123456</p>
         </article>
       </div>
-      <div className="h-[1px] border-t w-full print:hidden"></div>
-      <div className="flex flex-col items-center mt-5 mb-5 print:hidden">
+      <div className="h-[1px] border-t w-full"></div>
+      <div className="flex flex-col items-center mt-5 mb-5">
         <p className="font-medium mb-2">Download School App</p>
         <article className="w-fit flex items-center justify-center">
           <a

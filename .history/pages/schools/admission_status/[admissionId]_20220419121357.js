@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import AdmissionStatusLandingPage from "../../../src/components/AdmissionStatus/AdmissionStatusLandingPage/AdmissionStatusLandingPage";
 import AdmissionStatusInformation from "../../../src/components/AdmissionStatus/AdmissionStatusInformation/AdmissionStatusInformation";
 import { AdmissionStatusTabsProvider } from "../../../src/StateProviders/AdmissionStatusTabsProvider";
@@ -12,11 +12,11 @@ import { useReactToPrint } from "react-to-print";
 
 function AdmissionStatusPage({ data }) {
   // //.log(data, "data here");
-  // Print Page
-  const componentRef = useRef(null);
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-  });
+  const [printPage, setPrintPage] = useState(false);
+
+  const handlePrint = () => {
+    setPrintPage(true);
+  };
 
   return (
     <>
@@ -25,15 +25,15 @@ function AdmissionStatusPage({ data }) {
         initialState={initialState}
         reducer={reducer}
       >
-        <section
-          ref={componentRef}
-          className="flex flex-col bg-white w-[320px] xs:w-[400px] sm:w-[500px] print:w-[672px] md:w-[672px] max-w-2xl mx-auto"
-        >
+        <section className="flex flex-col bg-white w-[320px] xs:w-[400px] sm:w-[500px] md:w-[672px] max-w-2xl mx-auto">
           <AdmissionStatusLandingPage
             data={data.getAdmissionApplicant}
             onCallHandlePrint={handlePrint}
           />
-          <AdmissionStatusInformation data={data.getAdmissionApplicant} />
+          <AdmissionStatusInformation
+            data={data.getAdmissionApplicant}
+            print={printPage}
+          />
         </section>
       </AdmissionStatusTabsProvider>
     </>

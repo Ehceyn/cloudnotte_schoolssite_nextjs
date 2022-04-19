@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Hero3 from "../../../../src/components/Hero3/Hero3";
+import Hero2 from "../../../../src/components/Hero2/Hero2";
 import SchoolAdCard from "../../../../src/components/SchoolAdCard/SchoolAdCard";
 import Sidebar from "../../../../src/components/Sidebar/Sidebar";
 import RightBar from "../../../../src/components/RightBar/RightBar";
@@ -15,6 +15,8 @@ import { GET_SCHOOLS } from "../../../../graphql/user/queries/getSchools";
 import { useRouter } from "next/router";
 import SEO from "../../../../src/components/SEO";
 import Image from "next/image";
+import { states } from "../../../../src/exApi/states";
+import { countries } from "../../../../src/exApi/countries";
 
 function Home({ data }) {
   const [displayEntranceExamModal, setDisplayEntranceExamModal] =
@@ -26,8 +28,9 @@ function Home({ data }) {
   const [displayCheckAdmissionModal, setDisplayCheckAdmissionModal] =
     useState(false);
   const [searchbarFixed, setSearchbarFixed] = useState(false);
-  // location details state
   const [location, setLocation] = useState(null);
+
+  // initialize router
   const router = useRouter();
 
   //LISTENS FOR THE EVENTS IN THE ARRAY BELOW AND CALLS HANDLESCROLL FUNCTION
@@ -55,18 +58,17 @@ function Home({ data }) {
   const colors = ["#ffd833", "#fc2d44", "#28a265", "#70a4f3"];
 
   const schools = data;
-  //.log(schools, "here --------<-");
+  //log(schools, "here --------<-");
 
   return (
     <section className="">
       <SEO
-        title={`Best Schools in ${router.query.state}, ${router.query.country}`}
-        keywords={`Find Best Schools in ${router.query.state}, Best school in ${router.query.state}, Best school in ${router.query.country},
-Best schools in ${router.query.state}, Best schools in ${router.query.country}y}, School in ${router.query.state}, School in ${router.query.country}, private schools in ${router.query.state}, private schools in ${router.query.country}, Best private schools in ${router.query.state}, Best private schools in ${router.query.country}, Smart schools, Smart schools in ${router.query.state}, Smart schools in ${router.query.country}   cloudnotte schools, cloudnotte schools in ${router.query.state}, cloudnotte schools in ${router.query.country}, admission-ongoing, admission-ongoing in ${router.query.state}, schools admitting, schools admitting in ${router.query.state}, schools admitting in ${router.query.country}, school nearby, schools nearby, school with best facilities, school with best facilities in ${router.query.country}, school with best facilities in ${router.query.state}, schools with best facilities, schools with best facilities in ${router.query.state}, schools with best facilities in ${router.query.country}, secured schools, secured schools in ${router.query.state}, secured schools in ${router.query.country}, automated schools, automated schools in ${router.query.country}, tech schools, tech schools in ${router.query.state}, tech schools in ${router.query.country}.
+        title={`Best Schools in ${router.query.country}`}
+        keywords={`Find Best Schools in ${router.query.country}, Best school in ${router.query.country}, Best schools in ${router.query.country}, School in ${router.query.country}, private schools in ${router.query.country}, Best private schools in ${router.query.country}, Smart schools in ${router.query.country}   cloudnotte schools, cloudnotte schools in ${router.query.country}, admission-ongoing, schools admitting, schools admitting in ${router.query.country}, school nearby, schools nearby, school with best facilities, school with best facilities in ${router.query.country}, schools with best facilities, schools with best facilities in ${router.query.country}, secured schools, secured schools in ${router.query.country}, automated schools, automated schools in ${router.query.country}, tech schools, tech schools in ${router.query.country}.
 `}
-        description={`These schools stand out in the poll of thousands of other schools operating in ${router.query.state}. Below are the list of best schools in ${router.query.state}, ${router.query.country}`}
-        url={`https://cloudnotte.com/schools/location/${router.query.country}/${router.query.state}`}
-        image={`https://res.cloudinary.com/ugomatt/image/upload/v1647277984/cloudnotte_icon_soq.png`}
+        description={`These schools stand out in the poll of thousands of other schools operating in ${router.query.country}. Below are the list of best schools in ${router.query.country}`}
+        url={`https://cloudnotte.com/schools/location/${router.query.country}`}
+        image={`https://res.cloudinary.com/ugomatt/image/upload/v1647277984/cloudnotte_icon_soqc6y.png`}
       />
       <section className="   h-full">
         <div className="w-full h-full flex justify-between relative  ">
@@ -85,9 +87,9 @@ Best schools in ${router.query.state}, Best schools in ${router.query.country}y}
           </div>
 
           <div
-            className={`bg-white relative inset-0 mb-14 mx-auto h-auto w-full md:w-3/4 md2:w-1/2 mt-5 max-w-[600px] md:px-6`}
+            className={`bg-white relative inset-0 mb-14 mx-auto h-auto w-full md:w-3/4 md2:w-1/2 mt-5 max-w-[800px] md:px-6`}
           >
-            <Hero3
+            <Hero2
               onCallChangeLocationModal={() =>
                 setDisplayChangeLocationModal(!displayChangeLocationModal)
               }
@@ -95,8 +97,8 @@ Best schools in ${router.query.state}, Best schools in ${router.query.country}y}
             <div className="flex flex-wrap mx-3 text-sm sm:text-base sm:mx-0 my-5 rounded-[5px] bg-blue-50 border-blue-400 p-3 ">
               <h3 className="  font-bold text-blue-500">
                 These schools stand out in the poll of thousands of other
-                schools operating in {router.query.state}. Below are the list of
-                best schools in {router.query.state}, {router.query.country}.
+                schools operating in {router.query.country}. Below are the list
+                of best schools in {router.query.country}
               </h3>
             </div>
             <SchoolsLocation
@@ -141,7 +143,7 @@ Best schools in ${router.query.state}, Best schools in ${router.query.country}y}
                 </div>
                 <div className="flex justify-center">
                   <p className="text-center text-lg ">
-                    No school in {router.query.state} at the moment. Refer a
+                    No school in {router.query.country} at the moment. Refer a
                     school and make money
                   </p>
                 </div>
@@ -223,7 +225,6 @@ export async function getServerSideProps({ params }) {
   //log(params, "params.prefix");
   const apolloClient = initializeApollo();
   const country = params.country;
-  const state = params.state;
 
   const { data, loading, error } = await apolloClient.query({
     query: GET_SCHOOLS,
@@ -231,10 +232,9 @@ export async function getServerSideProps({ params }) {
       afterId: "",
       limit: 100,
       country: country,
-      state: state,
     },
   });
-  if (error) return; //.log(JSON.stringify(error, null, 2));
+  if (error) return; //log(JSON.stringify(error, null, 2));
 
   if (!data) {
     return {

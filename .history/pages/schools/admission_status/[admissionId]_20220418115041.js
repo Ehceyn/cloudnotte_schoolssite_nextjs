@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import AdmissionStatusLandingPage from "../../../src/components/AdmissionStatus/AdmissionStatusLandingPage/AdmissionStatusLandingPage";
 import AdmissionStatusInformation from "../../../src/components/AdmissionStatus/AdmissionStatusInformation/AdmissionStatusInformation";
 import { AdmissionStatusTabsProvider } from "../../../src/StateProviders/AdmissionStatusTabsProvider";
@@ -8,15 +8,9 @@ import reducer, {
 import { GET_ADMISSION_APPLICANT } from "../../../graphql/user/queries/getAdmissionApplicant";
 import { initializeApollo } from "../../../lib/apolloClient";
 import SEO from "../../../src/components/SEO";
-import { useReactToPrint } from "react-to-print";
 
 function AdmissionStatusPage({ data }) {
   // //.log(data, "data here");
-  // Print Page
-  const componentRef = useRef(null);
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-  });
 
   return (
     <>
@@ -25,14 +19,8 @@ function AdmissionStatusPage({ data }) {
         initialState={initialState}
         reducer={reducer}
       >
-        <section
-          ref={componentRef}
-          className="flex flex-col bg-white w-[320px] xs:w-[400px] sm:w-[500px] print:w-[672px] md:w-[672px] max-w-2xl mx-auto"
-        >
-          <AdmissionStatusLandingPage
-            data={data.getAdmissionApplicant}
-            onCallHandlePrint={handlePrint}
-          />
+        <section className="flex flex-col bg-white w-[320px] xs:w-[400px] sm:w-[500px] md:w-[672px] max-w-2xl mx-auto">
+          <AdmissionStatusLandingPage data={data.getAdmissionApplicant} />
           <AdmissionStatusInformation data={data.getAdmissionApplicant} />
         </section>
       </AdmissionStatusTabsProvider>

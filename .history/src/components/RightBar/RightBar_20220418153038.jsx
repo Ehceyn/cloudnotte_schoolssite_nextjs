@@ -83,7 +83,7 @@ function RightBar({ schools }) {
                             src={
                               smartSchool.logoUrl
                                 ? smartSchool.logoUrl
-                                : "https://res.cloudinary.com/ugomatt/image/upload/v1647277984/cloudnotte_icon_soq.png"
+                                : "https://res.cloudinary.com/ugomatt/image/upload/v1647277984/cloudnotte_icon_soqc6y.png"
                             }
                             onLoad={() => {
                               setImageLoaded({

@@ -9,7 +9,7 @@ function StudentsInfoPage({ theData }) {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   // Print Page
-  const componentRef = useRef(null);
+  const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
@@ -38,7 +38,7 @@ function StudentsInfoPage({ theData }) {
           Print Admission Slip
         </p>
       </div>
-      <div ref={componentRef} className="print:px-10">
+      <div ref={componentRef}>
         {/* SCHOOL HEAD */}
         <div className="w-full flex flex-col justify-center items-center mt-3 mb-7">
           <article className="w-[60px] h-[60px] print:w-[150px]  print:h-[150px] sm:w-[150px] sm:h-[150px] object-contain print:border sm:border border-white rounded-full relative">

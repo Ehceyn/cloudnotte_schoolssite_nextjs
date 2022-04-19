@@ -15,7 +15,7 @@ function AdmissionStatusInformationProfile({ data }) {
                 ? data.studentDetails.passportUrl
                 : "https://res.cloudinary.com/ugomatt/image/upload/v1650132345/profile_head_nwwxuu.png"
             }
-            className="w-[60px] h-[60px] sm:w-[120px] sm:h-[120px] print:w-[120px] print:h-[120px] object-contain bg-gray-400 rounded-[50%] sm:border ]"
+            className="w-[60px] h-[60px] sm:w-[120px] sm:h-[120px] object-contain bg-gray-400 rounded-[50%] sm:border ]"
             alt={
               data.studentDetails.firstName +
               ", " +

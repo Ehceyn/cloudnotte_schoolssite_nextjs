@@ -9,7 +9,7 @@ function StudentsInfoPage({ theData }) {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   // Print Page
-  const componentRef = useRef(null);
+  const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
@@ -38,10 +38,10 @@ function StudentsInfoPage({ theData }) {
           Print Admission Slip
         </p>
       </div>
-      <div ref={componentRef} className="print:px-10">
+      <div ref={componentRef}>
         {/* SCHOOL HEAD */}
         <div className="w-full flex flex-col justify-center items-center mt-3 mb-7">
-          <article className="w-[60px] h-[60px] print:w-[150px]  print:h-[150px] sm:w-[150px] sm:h-[150px] object-contain print:border sm:border border-white rounded-full relative">
+          <article className="w-[60px] h-[60px] sm:w-[150px] sm:h-[150px] object-contain sm:border border-white rounded-full relative">
             <span
               title="Tech School"
               className={`absolute z-[1] ${
@@ -64,7 +64,7 @@ function StudentsInfoPage({ theData }) {
             <span
               className={`${
                 imageLoaded ? "flex" : "hidden"
-              } items-center justify-center w-[60px] h-[60px] print:w-[150px] print:h-[150px] sm:w-[150px]  sm:h-[150px] object-contain`}
+              } items-center justify-center w-[60px] h-[60px] sm:w-[150px]  sm:h-[150px] object-contain`}
             >
               {" "}
               <Image
@@ -84,7 +84,7 @@ function StudentsInfoPage({ theData }) {
             </span>
             {imageLoaded ? null : (
               <span
-                className={`flex items-center justify-center min-w-full min-h-full bg-[#fff] rounded-full w-[60px] h-[60px] print:w-[150px]  print:h-[150px] sm:w-[150px]  sm:h-[150px] object-contain border-white`}
+                className={`flex items-center justify-center min-w-full min-h-full bg-[#fff] rounded-full w-[60px] h-[60px] sm:w-[150px]  sm:h-[150px] object-contain border-white`}
                 style={{
                   color: colors[Math.floor(Math.random() * colors.length)],
                 }}
@@ -117,27 +117,23 @@ function StudentsInfoPage({ theData }) {
               </p>
             ))}
         </article> */}
-          <p className=" sm:text-[0.9em] print:md:text-[1.2em] md:text-[1.2em] capitalize">
+          <p className=" sm:text-[0.9em] md:text-[1.2em] capitalize">
             {theData.school.state.toLowerCase()},{" "}
             {theData.school.country.toLowerCase()}
           </p>
         </div>
         {/* ADMISSION STATUS AND EXAM SCORE */}
-        <div className=" flex w-full justify-between print:justify-center xs:justify-center">
-          <article className="xs:px-4 print:px-4 print:mr-0 mr-1 xs:mr-0  text-center">
-            <p className="font-bold text-xs  print:text-sm xs:text-sm">
-              Admssion Number
-            </p>
-            <p className="font-normal text-base print:text-lg xs:text-lg">
+        <div className=" flex w-full justify-between xs:justify-center">
+          <article className="xs:px-4 mr-1 xs:mr-0  text-center">
+            <p className="font-bold text-xs xs:text-sm">Admssion Number</p>
+            <p className="font-normal text-base xs:text-lg">
               {theData.applicationNumber}
             </p>
           </article>
-          <article className="border-r-2 border-l-2 border-[#8EA2BA] px-1 print:px-4 xs:px-4 text-center">
-            <p className="font-bold text-xs print:text-sm xs:text-sm ">
-              Admission Status
-            </p>
+          <article className="border-r-2 border-l-2 border-[#8EA2BA] px-1 xs:px-4 text-center">
+            <p className="font-bold text-xs xs:text-sm ">Admission Status</p>
             <p
-              className={`font-normal text-base print:text-lg xs:text-lg ${
+              className={`font-normal text-base xs:text-lg ${
                 theData.admissionStatus === "REJECTED"
                   ? "text-[#F44336]"
                   : theData.admissionStatus === "ADMITTED"
@@ -148,11 +144,9 @@ function StudentsInfoPage({ theData }) {
               {theData.admissionStatus}
             </p>
           </article>
-          <article className=" print:ml-0 print:px-4 xs:px-4 ml-1 xs:ml-0  text-center">
-            <p className="font-bold text-xs print:text-sm xs:text-sm">
-              Exam Score
-            </p>
-            <p className="font-normal text-base print:text-lg xs:text-lg">
+          <article className="xs:px-4 ml-1 xs:ml-0  text-center">
+            <p className="font-bold text-xs xs:text-sm">Exam Score</p>
+            <p className="font-normal text-base xs:text-lg">
               {theData.cbtSubmissions.score
                 ? theData.cbtSubmissions.score
                 : "N/A"}{" "}
@@ -165,7 +159,7 @@ function StudentsInfoPage({ theData }) {
         </div>
 
         {/* STUDENT COMPLETE INFO */}
-        <div className="w-full h-fit flex flex-col justify-center items-center mt-3 mb-7 border-y sm:border-2 sm:rounded-md py-5 sm:px-6 print:border-2 print:rounded-md print:px-6">
+        <div className="w-full h-fit flex flex-col justify-center items-center mt-3 mb-7 border-y sm:border-2 sm:rounded-md py-5 sm:px-6">
           <StudentsPersonalInfo data={theData.studentDetails} />
           <div className="h-[1px] border-t w-full"></div>
           <StudentsParentInfo data={theData.parentDetails} />
