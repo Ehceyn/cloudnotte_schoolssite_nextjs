@@ -11,7 +11,7 @@ import styles from "../../../../styles/MiniLoader.module.css";
 import { countries } from "../../../exApi/countries";
 import { states } from "../../../exApi/states";
 
-function EnrollmentPageStudentDetails({ display }) {
+function EnrollmentPageStudentDetails({ display, location }) {
   const [tab, dispatch] = useEnrollmentTabsValue();
   const [image, setImage] = useState({ preview: "", raw: "" });
   const [formDetailsStore, formDetailsDispatch] = useFormDetailsStateValue();
@@ -146,15 +146,15 @@ function EnrollmentPageStudentDetails({ display }) {
     onSubmit,
     validationSchema,
   });
-  // useEffect(() => {
-  //   setSelectedCountry(location?.country_name);
-  //   // formik.setFieldValue("country", location?.country_name);
-  // }, []);
+  useEffect(() => {
+    formik.setFieldValue("country", location?.country_name);
+    setSelectedCountry(location?.country_name);
+  }, []);
 
   //.log(formDetailsStore, "The Store form data");
   //.log(formik.values, "The student form data");
-  // console.log(formik, "The  formik");
-  // console.log(selectedCountry, "The location");
+  // //log(formik, "The  formik");
+  // //log(location, "The location");
 
   return (
     <section
@@ -376,7 +376,14 @@ function EnrollmentPageStudentDetails({ display }) {
                   required
                   onBlur={formik.handleBlur}
                 >
-                  <option selected={true}>Country</option>
+                  <option
+                    selected={true}
+                    value={
+                      location?.country_name ? location.country_name : "Country"
+                    }
+                  >
+                    {location?.country_name ? location.country_name : "Country"}
+                  </option>
                   {countries.map((country) => {
                     return <option key={country.name}>{country.name}</option>;
                   })}
@@ -403,7 +410,7 @@ function EnrollmentPageStudentDetails({ display }) {
                 >
                   <option selected={true}>State</option>
                   {states
-                    .filter((i) => i.country_name === selectedCountry)
+                    .filter((i) => i.country_name === location?.country_name)
                     ?.map((state) => {
                       return (
                         <option key={state.id + state.name}>

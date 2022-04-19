@@ -74,7 +74,7 @@ function SearchbarFixed(props) {
         <label className="relative  rounded flex grow mr-2">
           <span className="absolute inset-y-0 left-0 flex items-center pl-2">
             <Image
-              src="https://res.cloudinary.com/zichygraphs/image/upload/v1650316249/search-icon_iejom8.svg"
+              src="/assets/icons/search-icon.svg"
               width={16}
               height={16}
               className="w-5 h-5 "

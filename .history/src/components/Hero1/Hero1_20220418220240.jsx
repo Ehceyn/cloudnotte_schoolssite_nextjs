@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import styles from "../../../styles/Hero.module.css";
-import { useRouter } from "next/router";
 import Link from "next/link";
+import styles from "../../../styles/Hero.module.css";
 import { useLazyQuery } from "@apollo/client";
 import { GET_SEARCH_SCHOOLS } from "../../../graphql/user/queries/getSearchSchools";
-function Hero2() {
-  const router = useRouter();
 
+function Hero_1(props) {
   const [displaySearchResultsDiv, setDisplaySearchResultsDiv] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [input, setInput] = useState({
@@ -46,19 +44,21 @@ function Hero2() {
 
   // COLORS TO MAP
   const colors = ["#ffd833", "#fc2d44", "#28a265", "#70a4f3"];
+
   return (
     <>
       <section
         className={`${styles.hero_1_bg} mx-3 xs:h-[150px] xs:mx-6 md:mx-0 flex items-center flex-col  justify-center rounded-lg mb-4 bg-gray-300`}
       >
         <div className="container px-5 flex items-center flex-col justify-center w-full  rounded ">
-          <h2 className="text-lg sm:text-2xl text-center font-bold text-white mb-2">
-            Schools in {router.query.country}
+          <h2 className="text-lg sm:text-2xl font-bold text-white mb-2">
+            School Search Engine{" "}
           </h2>
+
           <label className="relative block w-full">
             <span className="absolute bottom-[9px] left-0 flex items-center pl-2">
               <Image
-                src="https://res.cloudinary.com/zichygraphs/image/upload/v1650316249/search-icon_iejom8.svg"
+                src="/assets/icons/search-icon.svg"
                 width={20}
                 height={20}
                 className="w-5 h-5 "
@@ -84,7 +84,7 @@ function Hero2() {
             <div
               className={`absolute z-10 inset-x-0 top-[38px] w-[inherit] ${
                 displaySearchResultsDiv ? null : "hidden"
-              } shadow-sm h-fit max-h-96 px-5 py-1 bg-white rounded-b-3xl overflow-y-scroll`}
+              } shadow-sm h-fit max-h-84 px-5 py-1 bg-white rounded-b-3xl overflow-y-scroll`}
             >
               {loading && (
                 <p className="text-xs text-center">loading results</p>
@@ -176,7 +176,6 @@ function Hero2() {
                         </article>
                       </article>
                     </Link>
-                    <hr />
                   </div>
                 );
               })}
@@ -184,12 +183,15 @@ function Hero2() {
           </label>
         </div>
 
-        <p className="mt-2 mx-5 font-medium text-slate-300 cursor-pointer text-center">
-          Find best schools in {router.query.country}
+        <p
+          className="mt-2 font-medium text-slate-300 cursor-pointer text-center"
+          onClick={props.onCallChangeLocationModal}
+        >
+          Change Location
         </p>
       </section>
     </>
   );
 }
 
-export default Hero2;
+export default Hero_1;

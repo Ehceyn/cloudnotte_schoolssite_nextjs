@@ -58,7 +58,7 @@ function Hero2() {
           <label className="relative block w-full">
             <span className="absolute bottom-[9px] left-0 flex items-center pl-2">
               <Image
-                src="https://res.cloudinary.com/zichygraphs/image/upload/v1650316249/search-icon_iejom8.svg"
+                src="/assets/icons/search-icon.svg"
                 width={20}
                 height={20}
                 className="w-5 h-5 "

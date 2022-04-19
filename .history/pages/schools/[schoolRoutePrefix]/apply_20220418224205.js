@@ -44,23 +44,23 @@ function EnrollmentPage({
 }) {
   //.log(admissionProgrammes, "Enrollment Data");
   const [loader, setLoader] = useState(false);
-  // const [location, setLocation] = useState(null);
+  const [location, setLocation] = useState(null);
 
   // Get location from url
-  // useEffect(() => {
-  //   fetch(
-  //     "https://geolocation-db.com/json/d802faa0-10bd-11ec-b2fe-47a0872c6708"
-  //   )
-  //     .then((resp) => resp.json())
-  //     .catch(() => {
-  //       return {
-  //         country: "ng",
-  //       };
-  //     })
-  //     .then((resp) => {
-  //       setLocation(resp);
-  //     });
-  // }, []);
+  useEffect(() => {
+    fetch(
+      "https://geolocation-db.com/json/d802faa0-10bd-11ec-b2fe-47a0872c6708"
+    )
+      .then((resp) => resp.json())
+      .catch(() => {
+        return {
+          country: "ng",
+        };
+      })
+      .then((resp) => {
+        setLocation(resp);
+      });
+  }, []);
 
   // initialize router
   const router = useRouter();
@@ -100,6 +100,7 @@ function EnrollmentPage({
               phoneNumber={phoneNumber}
               admissionSubAccountId={admissionSubAccountId}
               logoUrl={logoUrl}
+              location={location}
             />
           </EnrollmentTabsProvider>
         </DocUploadProvider>
