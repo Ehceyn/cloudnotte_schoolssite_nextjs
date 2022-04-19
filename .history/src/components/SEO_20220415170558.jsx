@@ -11,7 +11,7 @@ export default function SEO({
   return (
     <Head>
       <link rel="shortcut icon" href="/favicon.ico" />
-      <title>{`${title} | School Search Engine`}</title>
+      <title>{`${title} | Schools Search Engine`}</title>
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
