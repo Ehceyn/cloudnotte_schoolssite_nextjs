@@ -28,11 +28,11 @@ function TakeEntranceModal(props) {
     if (values.admissionNo !== "" && formik.isValid) {
       //log("values: ", values.admissionNo);
       window.open(
-        `https://cloudnotte.com/admission/${values.admissionNo}/cbt`,
+        `https://cloudnotte.com/admission/${input.admissionNo}/cbt`,
         "_blank"
       ) ||
         window.location.replace(
-          `https://cloudnotte.com/admission/${values.admissionNo}/cbt`
+          `https://cloudnotte.com/admission/${input.admissionNo}/cbt`
         );
     } else {
       null;
