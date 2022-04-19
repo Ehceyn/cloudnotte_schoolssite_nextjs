@@ -28,7 +28,10 @@ export default function SEO({
       <link rel="shortcut icon" href="/favicon.ico" />
       <title>{`${title} | School Search Engine`}</title>
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      <meta name="description" content={description} />
+      <meta
+        name="description"
+        content={htmlDecode(DOMPurify.sanitize(description))}
+      />
       <meta name="keywords" content={keywords} />
       <meta property="og:type" content="website" />
       <meta property="og:title" content={title} />

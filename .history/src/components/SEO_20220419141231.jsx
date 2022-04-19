@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { Interweave, UrlMatcher, HashtagMatcher } from "interweave";
 import DOMPurify from "isomorphic-dompurify";
 
 export default function SEO({
@@ -17,18 +18,19 @@ export default function SEO({
   }
 
   console.log(
-    htmlDecode(
-      DOMPurify.sanitize(
-        "This string contains <b>HTML</b> and will safely be rendered!"
-      )
-    )
+    htmlDecode("This string contains <b>HTML</b> and will safely be rendered!")
   );
   return (
     <Head>
       <link rel="shortcut icon" href="/favicon.ico" />
       <title>{`${title} | School Search Engine`}</title>
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      <meta name="description" content={description} />
+      <meta
+        name="description"
+        content={
+          <Interweave content="This contains a URL, https://github.com/milesj/interweave, and a hashtag, #interweave, that will be converted to an anchor link!" />
+        }
+      />
       <meta name="keywords" content={keywords} />
       <meta property="og:type" content="website" />
       <meta property="og:title" content={title} />

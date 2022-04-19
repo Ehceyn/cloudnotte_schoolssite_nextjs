@@ -59,6 +59,7 @@ function SchoolsPersonalPage({
     useState(false);
   const [displayAudioModal, setDisplayAudioModal] = useState(false);
   const [loader, setLoader] = useState(false);
+  const [newDescription, setNewDescription] = useState(null);
 
   // initialize router
   const router = useRouter();
@@ -67,6 +68,19 @@ function SchoolsPersonalPage({
     useState(false);
   const [displayCheckAdmissionModal, setDisplayCheckAdmissionModal] =
     useState(false);
+  // Html parser
+  function htmlDecode(content) {
+    var doc =
+      process.browser && new DOMParser().parseFromString(content, "text/html");
+    return process.browser && doc.documentElement.textContent;
+  }
+
+  // Parse html
+  useEffect(() => {
+    if (shortDescription) {
+      setNewDescription(htmlDecode(DOMPurify.sanitize(shortDescription)));
+    }
+  }, [shortDescription]);
 
   // Check fallback and generate page
   if (router.isFallback) {
@@ -80,7 +94,7 @@ function SchoolsPersonalPage({
         keywords={`Best school in ${state}, Best school in ${country}, Best school in ${city},
 Best schools in ${state}, Best schools in ${country}, Best schools in ${city}, Schools in ${state}, Schools in ${country}, Schools in ${city}, School in ${state}, School in ${country}, School in ${city}, private schools in ${city}, private schools in ${state}, private schools in ${country},  Best private schools in ${city}, Best private schools in ${state}, Best private schools in ${country}, Smart schools, cloudnotte schools, admission-ongoing, schools admitting, schools nearby, school with best facilities, secured schools, automated schools, tech schools.
 `}
-        description={shortDescription}
+        description={newDescription}
         url={`https://cloudnotte.com/schools/${prefix}`}
         image={logoUrl}
       />

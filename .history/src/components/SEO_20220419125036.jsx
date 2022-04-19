@@ -1,5 +1,4 @@
 import Head from "next/head";
-import DOMPurify from "isomorphic-dompurify";
 
 export default function SEO({
   description,
@@ -9,20 +8,6 @@ export default function SEO({
   image,
   url,
 }) {
-  // PArse text from server to html
-  function htmlDecode(content) {
-    var doc =
-      process.browser && new DOMParser().parseFromString(content, "text/html");
-    return process.browser && doc.documentElement.textContent;
-  }
-
-  console.log(
-    htmlDecode(
-      DOMPurify.sanitize(
-        "This string contains <b>HTML</b> and will safely be rendered!"
-      )
-    )
-  );
   return (
     <Head>
       <link rel="shortcut icon" href="/favicon.ico" />
