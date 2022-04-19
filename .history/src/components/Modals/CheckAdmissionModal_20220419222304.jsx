@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { MdPersonOutline } from "react-icons/md";
 import Button from "./Button";
+import Link from "next/link";
 import Loader from "../Loader";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useRouter } from "next/router";
 
-function TakeEntranceModal(props) {
+function CheckAdmissionModal(props) {
   const [loader, setLoader] = useState(false);
 
   const router = useRouter();
@@ -27,13 +28,7 @@ function TakeEntranceModal(props) {
   const onSubmit = (values) => {
     if (values.admissionNo !== "" && formik.isValid) {
       //log("values: ", values.admissionNo);
-      window.open(
-        `https://cloudnotte.com/admission/${values.admissionNo}/cbt`,
-        "_blank"
-      ) ||
-        window.location.replace(
-          `https://cloudnotte.com/admission/${values.admissionNo}/cbt`
-        );
+      router.push(`/schools/admission_status/${values.admissionNo}`);
     } else {
       null;
     }
@@ -53,10 +48,10 @@ function TakeEntranceModal(props) {
 
   return (
     <section
-      className={`w-full h-screen bg-[#00000065] fixed inset-0 z-30 items-center  justify-center ${
+      className={`w-full h-screen bg-[#00000065] fixed right-0 left-0  top-0 bottom-0 z-30 flex items-center  justify-center ${
         props.display ? "flex" : "hidden"
       } `}
-      onClick={props.onCallEntranceExamModal}
+      onClick={props.onCallCheckAdmissionModal}
     >
       <form
         onSubmit={(e) => {
@@ -79,11 +74,11 @@ function TakeEntranceModal(props) {
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth={2}
-                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                strokeWidth={1}
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
               />
             </svg>
-            <p className="font-bold">Take Entrance Exam</p>
+            <p className="font-bold">Check Admission Status</p>
           </article>
           <div className="flex flex-col justify-center items-center mb-5">
             <article className="relative mb-1">
@@ -101,12 +96,12 @@ function TakeEntranceModal(props) {
                 type="text"
                 id="admissionNo"
                 name="admissionNo"
-                className="shadow-sm h-12 pl-12 border border-[#CFDBEA] text-base text-gray-900 rounded-full outline-none focus:ring-[#5f9af2] focus:border-[#5f9af2] block w-[260px]  xs:w-[320px] p-2.5 bg-[#F8FBFF]"
-                placeholder="Enter your admission number"
-                required
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
+                required
                 value={formik.values.admissionNo}
+                className="shadow-sm h-12 pl-12 border border-[#CFDBEA] text-base text-gray-900 rounded-full outline-none focus:ring-[#5f9af2] focus:border-[#5f9af2] block w-[260px]  xs:w-[320px] p-2.5 bg-[#F8FBFF]"
+                placeholder="Enter your admission number here"
               />
             </article>
             {formik.touched.admissionNo && formik.errors.admissionNo && (
@@ -115,6 +110,7 @@ function TakeEntranceModal(props) {
               </p>
             )}
           </div>
+
           <article
             className="w-full flex items-center justify-center"
             onClick={() =>
@@ -133,18 +129,14 @@ function TakeEntranceModal(props) {
                   : "cursor-not-allowed bg-[#293b57] text-[#476697]"
               }`}
             >
-              Take Entrance Exam
+              Check Status
             </Button>
           </article>
         </div>
       </form>
-      <Loader
-        display={loader}
-        message="
-      Please wait while we redirect you to the entrance exam portal"
-      />
+      <Loader display={loader} message="Checking Admission Status" />
     </section>
   );
 }
 
-export default TakeEntranceModal;
+export default CheckAdmissionModal;

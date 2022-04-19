@@ -77,7 +77,7 @@ function ChangeLocationModal(props) {
 
   return (
     <section
-      className={`w-full h-screen bg-[#00000065] fixed inset-0 z-30 flex items-center  justify-center ${
+      className={`w-full h-screen bg-[#00000065] fixed left-0 right-0 top-0 bottom-0 z-30 flex items-center  justify-center ${
         props.display ? "flex" : "hidden"
       } `}
       onClick={props.onCallChangeLocationModal}

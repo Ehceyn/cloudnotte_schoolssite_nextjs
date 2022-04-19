@@ -71,7 +71,7 @@ function ReviewSchoolModal(props) {
 
   return (
     <section
-      className={`w-full h-screen bg-[#00000065] fixed inset-0 z-30 flex items-center  justify-center ${
+      className={`w-full h-screen bg-[#00000065] fixed top-0 bottom-0 z-30 flex items-center  justify-center ${
         props.display ? "flex" : "hidden"
       } `}
       onClick={props.onCallReviewSchoolModal}

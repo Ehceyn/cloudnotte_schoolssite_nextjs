@@ -5,16 +5,10 @@ import { IoIosCall } from "react-icons/io";
 import { useSchoolPersonalPageTabsValue } from "../../../StateProviders/SchoolPersonalPageTabsProvider";
 import Link from "next/link";
 import { GiGraduateCap } from "react-icons/gi";
-import Loader from "../../Loader";
 
 function SchoolLandingPageNavbarFixed(props) {
   const [show, setShow] = useState(false);
   const [scrollPos, setScrollPos] = useState(0);
-  const [loader, setLoader] = useState(false);
-
-  setTimeout(() => {
-    setLoader(false);
-  }, 3000);
 
   // Show  Searchbar only on scroll up
   useEffect(() => {
@@ -98,7 +92,7 @@ function SchoolLandingPageNavbarFixed(props) {
             </p>
           </article>
           <article className=" w-fit justify-between hidden md2:flex ">
-            <div onClick={() => setLoader(true)}>
+            <div>
               <Link
                 href="/schools/[schoolRoutePrefix]/apply"
                 as={`/schools/${props.prefix}/apply`}
@@ -126,7 +120,6 @@ function SchoolLandingPageNavbarFixed(props) {
           </article>
         </div>
       </div>
-      <Loader display={loader} message="Please wait..." />
     </section>
   );
 }

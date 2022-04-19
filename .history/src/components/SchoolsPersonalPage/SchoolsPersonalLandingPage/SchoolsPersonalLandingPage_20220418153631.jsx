@@ -8,7 +8,6 @@ import { BsFillSuitHeartFill } from "react-icons/bs";
 import Navbar from "./SchoolPersonalPageNavbar";
 import Link from "next/link";
 import SchoolLandingPageNavbarFixed from "./SchoolLandingPageNavbarFixed";
-import Loader from "../../Loader";
 
 function SchoolsPersonalLandingPage({
   name,
@@ -25,11 +24,6 @@ function SchoolsPersonalLandingPage({
 }) {
   const [navbarFixed, setNavbarFixed] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
-  const [loader, setLoader] = useState(false);
-
-  setTimeout(() => {
-    setLoader(false);
-  }, 3000);
 
   useEffect(() => {
     ["load", "scroll", "resize"].forEach((e) =>
@@ -189,13 +183,7 @@ function SchoolsPersonalLandingPage({
                 passHref
               >
                 <div className="hidden md3:block">
-                  <Button1
-                    py="py-4"
-                    bg="cursor-pointer bg-[#5f9af2]"
-                    onClick={() => {
-                      setLoader(true);
-                    }}
-                  >
+                  <Button1 py="py-4" bg="cursor-pointer bg-[#5f9af2]">
                     <GiGraduateCap className="w-7 h-7 mr-1" />
                     Enroll for Admission
                   </Button1>
@@ -228,7 +216,6 @@ function SchoolsPersonalLandingPage({
         prefix={prefix}
         name={name}
       />
-      <Loader display={loader} message="Please wait..." />
     </>
   );
 }
