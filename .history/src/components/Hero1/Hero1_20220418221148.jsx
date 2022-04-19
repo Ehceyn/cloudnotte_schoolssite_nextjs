@@ -84,7 +84,7 @@ function Hero_1(props) {
             <div
               className={`absolute z-10 inset-x-0 top-[38px] w-[inherit] ${
                 displaySearchResultsDiv ? null : "hidden"
-              } shadow-sm h-fit max-h-96 px-5 py-1 bg-white rounded-b-3xl overflow-y-scroll`}
+              } shadow-sm h-fit max-h-84 px-5 py-1 bg-white rounded-b-3xl overflow-y-scroll`}
             >
               {loading && (
                 <p className="text-xs text-center">loading results</p>
@@ -176,7 +176,6 @@ function Hero_1(props) {
                         </article>
                       </article>
                     </Link>
-                    <hr />
                   </div>
                 );
               })}

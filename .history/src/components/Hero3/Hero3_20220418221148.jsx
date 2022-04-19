@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import styles from "../../../styles/Hero.module.css";
+import { useRouter } from "next/router";
+import Link from "next/link";
 import { useLazyQuery } from "@apollo/client";
 import { GET_SEARCH_SCHOOLS } from "../../../graphql/user/queries/getSearchSchools";
+function Hero3() {
+  const router = useRouter();
 
-function Hero_1(props) {
   const [displaySearchResultsDiv, setDisplaySearchResultsDiv] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [input, setInput] = useState({
@@ -44,17 +46,15 @@ function Hero_1(props) {
 
   // COLORS TO MAP
   const colors = ["#ffd833", "#fc2d44", "#28a265", "#70a4f3"];
-
   return (
     <>
       <section
-        className={`${styles.hero_1_bg} mx-3 xs:h-[150px] xs:mx-6 md:mx-0 flex items-center flex-col  justify-center rounded-lg mb-4 bg-gray-300`}
+        className={`${styles.hero_1_bg} mx-3 xs:h-[150px] xs:mx-6 md:mx-0 flex items-center flex-col  justify-center rounded-lg mb-4 bg-gray-300 py-3`}
       >
         <div className="container px-5 flex items-center flex-col justify-center w-full  rounded ">
-          <h2 className="text-lg sm:text-2xl font-bold text-white mb-2">
-            School Search Engine{" "}
+          <h2 className="text-lg sm:text-2xl text-center font-bold text-white mb-2">
+            Schools in {router.query.state}
           </h2>
-
           <label className="relative block w-full">
             <span className="absolute bottom-[9px] left-0 flex items-center pl-2">
               <Image
@@ -125,7 +125,7 @@ function Hero_1(props) {
                               src={
                                 school.logoUrl
                                   ? school.logoUrl
-                                  : `https://res.cloudinary.com/ugomatt/image/upload/v1647277984/cloudnotte_icon_soqc.png`
+                                  : `https://res.cloudinary.com/ugomatt/image/upload/v1647277984/cloudnotte_icon_soq.png`
                               }
                               onLoad={() => setImageLoaded(true)}
                               onError={() => setImageLoaded(false)}
@@ -184,15 +184,12 @@ function Hero_1(props) {
           </label>
         </div>
 
-        <p
-          className="mt-2 font-medium text-slate-300 cursor-pointer text-center"
-          onClick={props.onCallChangeLocationModal}
-        >
-          Change Location
+        <p className="mt-2 mx-5 font-medium text-slate-300 cursor-pointer text-center">
+          Find best schools in {router.query.state}, {router.query.country}
         </p>
       </section>
     </>
   );
 }
 
-export default Hero_1;
+export default Hero3;
