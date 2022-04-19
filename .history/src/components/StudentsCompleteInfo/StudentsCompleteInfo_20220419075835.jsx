@@ -110,7 +110,7 @@ function StudentsInfoPage({ theData }) {
             ))}
         </article> */}
         <p className=" sm:text-[0.9em] md:text-[1.2em] capitalize">
-          {theData.school.state.toLowerCase()},{" "}
+          {theData.school.state.toLowerCase()},{""}
           {theData.school.country.toLowerCase()}
         </p>
       </div>
