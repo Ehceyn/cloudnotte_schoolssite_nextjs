@@ -68,6 +68,10 @@ function SchoolsPersonalPage({
   const [displayCheckAdmissionModal, setDisplayCheckAdmissionModal] =
     useState(false);
 
+  setTimeout(() => {
+    setLoader(false);
+  }, 3000);
+
   // Check fallback and generate page
   if (router.isFallback) {
     return <Loader display={true} message="Please wait..." />;
@@ -154,7 +158,10 @@ Best schools in ${state}, Best schools in ${country}, Best schools in ${city}, S
                       as={`/schools/${prefix}/apply`}
                       passHref
                     >
-                      <div className="w-full cursor-pointer">
+                      <div
+                        className="w-full cursor-pointer"
+                        onClick={() => setLoader(true)}
+                      >
                         <CardButton
                           py=" xs:h-[70px] py-2 xs:py-8 w-full "
                           px="xs:text-base sm:text-lg text-[13px] px-2 xs:px-14"
@@ -302,7 +309,7 @@ export async function getStaticPaths() {
 
   return {
     paths: paths || [],
-    fallback: "blocking",
+    fallback: false,
   };
 }
 
