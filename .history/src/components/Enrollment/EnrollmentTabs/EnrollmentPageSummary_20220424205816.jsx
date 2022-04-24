@@ -83,7 +83,7 @@ function EnrollmentPageSummary({
           >
             <Button2
               customStyle="border w-[230px] sm:w-[230px]"
-              py="py-2 sm:px-0 mb-5"
+              py="py-2 px-10 sm:px-0 mb-5"
               bg=" bg-[#5f9af2] text-[#E7F0FB]"
             >
               <GiGraduateCap className="w-5 h-5 mr-1" />
@@ -98,7 +98,7 @@ function EnrollmentPageSummary({
           >
             <Button3
               customStyle="w-[230px] sm:w-[230px] border "
-              py="py-2 mb-5 sm:mb-0 sm:mr-5 sm:px-0"
+              py="py-2 mb-5 sm:mb-0 sm:mr-5 px-[18px] sm:px-0"
               bg="bg-white text-[#8EA2BA]"
             >
               <svg

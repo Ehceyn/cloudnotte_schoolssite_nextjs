@@ -98,7 +98,7 @@ function EnrollmentPageSummary({
           >
             <Button3
               customStyle="w-[230px] sm:w-[230px] border "
-              py="py-2 mb-5 sm:mb-0 sm:mr-5 sm:px-0"
+              py="py-2 mb-5 sm:mb-0 sm:mr-5 px-[18px] sm:px-0"
               bg="bg-white text-[#8EA2BA]"
             >
               <svg

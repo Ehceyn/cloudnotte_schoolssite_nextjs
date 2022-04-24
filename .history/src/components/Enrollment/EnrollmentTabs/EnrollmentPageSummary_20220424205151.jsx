@@ -68,7 +68,7 @@ function EnrollmentPageSummary({
         showBtn={false}
         onCallDisplayMessageModal={() => setDisplayMessageModal(false)}
         message={`You cannot apply for admission at the moment, contact the school admin via ${phoneNumber} or ${(
-          <span className="text-bold text-[#5f9af2]  "></span>
+          <span className="text-bold text-[#5f9af2]  ">{email}</span>
         )}  to enable online admission access.`}
       />
       <article className="flex w-full py-14 justify-center">
@@ -82,8 +82,8 @@ function EnrollmentPageSummary({
             }}
           >
             <Button2
-              customStyle="border w-[230px] sm:w-[230px]"
-              py="py-2 sm:px-0 mb-5"
+              customStyle="border sm:w-[230px]"
+              py="py-2 px-10 sm:px-0 mb-5"
               bg=" bg-[#5f9af2] text-[#E7F0FB]"
             >
               <GiGraduateCap className="w-5 h-5 mr-1" />
@@ -97,8 +97,8 @@ function EnrollmentPageSummary({
             }}
           >
             <Button3
-              customStyle="w-[230px] sm:w-[230px] border "
-              py="py-2 mb-5 sm:mb-0 sm:mr-5 sm:px-0"
+              customStyle=" sm:w-[230px] border "
+              py="py-2 mb-5 sm:mb-0 sm:mr-5 px-[18px] sm:px-0"
               bg="bg-white text-[#8EA2BA]"
             >
               <svg
