@@ -56,7 +56,7 @@ function EnrollmentPageSummary({
         <span className="text-bold text-[#5f9af2] capitalize"> {name}</span>. Do
         not apply for admission again if you have applied before. Please contact
         us at{" "}
-        <span className="text-bold text-[#5f9af2] w-[350px] break-words">
+        <span className="text-bold text-[#5f9af2] flex flex-wrap">
           {email}, {phoneNumber}
         </span>{" "}
         if you need more information to continue with the application process.{" "}
@@ -70,7 +70,9 @@ function EnrollmentPageSummary({
         heading={"Enrollment not available"}
         showBtn={false}
         onCallDisplayMessageModal={() => setDisplayMessageModal(false)}
-        message={`You cannot apply for admission at the moment, contact the school admin via ${phoneNumber} or ${email}  to enable online admission access.`}
+        message={`You cannot apply for admission at the moment, contact the school admin via ${phoneNumber} or ${(
+          <span className="text-bold text-[#5f9af2]  "></span>
+        )}  to enable online admission access.`}
       />
       <article className="flex w-full py-14 justify-center">
         <div className="flex flex-col sm:flex-row">

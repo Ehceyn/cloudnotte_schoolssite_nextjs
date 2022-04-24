@@ -49,7 +49,7 @@ function MessageModal(props) {
           )}
         </div>
         <h1 className={`text-2xl font-base text-center `}>{props.heading}</h1>
-        <p className="text-center w-72 xs:w-80 break-words">{props.message}</p>
+        <p className="text-center ">{props.message}</p>
 
         <article
           className={`w-full flex items-center justify-center mt-6 `}

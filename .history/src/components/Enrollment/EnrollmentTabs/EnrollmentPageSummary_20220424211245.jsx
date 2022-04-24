@@ -70,7 +70,9 @@ function EnrollmentPageSummary({
         heading={"Enrollment not available"}
         showBtn={false}
         onCallDisplayMessageModal={() => setDisplayMessageModal(false)}
-        message={`You cannot apply for admission at the moment, contact the school admin via ${phoneNumber} or ${email}  to enable online admission access.`}
+        message={`You cannot apply for admission at the moment, contact the school admin via ${phoneNumber} or ${(
+          <span className="text-bold text-[#5f9af2]  "></span>
+        )}  to enable online admission access.`}
       />
       <article className="flex w-full py-14 justify-center">
         <div className="flex flex-col sm:flex-row">
