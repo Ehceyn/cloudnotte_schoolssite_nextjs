@@ -40,7 +40,9 @@ function SchoolPersonalPageContact(props) {
               d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
             />
           </svg>
-          <p className="w-52 sm:w-full break-words">{props.email}</p>
+          <p className="flex flex-wrap w-[280px] sm:w-full break-words">
+            {props.email}
+          </p>
         </p>
         <p className="text-base flex my-3 align-center">
           <svg
@@ -57,7 +59,7 @@ function SchoolPersonalPageContact(props) {
               d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
             />
           </svg>
-          <p className="w-52 sm:w-full break-words">
+          <p className="flex flex-wrap w-52 sm:w-full">
             {"www.cloudnotte.com/schools/" + props.prefix}
           </p>
         </p>

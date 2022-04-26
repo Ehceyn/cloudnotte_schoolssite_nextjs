@@ -38,7 +38,7 @@ function Navbar({
           <article className="capitalize flex w-full sm:w-fit justify-between">
             <p
               className={`text-base cursor-pointer mr-2 sm:mr-6 ${
-                tab === 1 ? "font-bold" : "font-normal"
+                tab === 1 ? "font-[800]" : "font-medium"
               }`}
               onClick={() => {
                 changeTab(1);
@@ -48,7 +48,7 @@ function Navbar({
             </p>
             <p
               className={`text-base cursor-pointer mr-2 sm:mr-6 ${
-                tab === 2 ? "font-bold" : "font-normal"
+                tab === 2 ? "font-[800]" : "font-medium"
               }`}
               onClick={() => {
                 changeTab(2);
@@ -58,7 +58,7 @@ function Navbar({
             </p>
             <p
               className={`text-base font-medium cursor-pointer mr-2 sm:mr-6 ${
-                tab === 3 ? "font-bold" : "font-normal"
+                tab === 3 ? "font-[800]" : "font-medium"
               }`}
               onClick={() => {
                 changeTab(3);
@@ -67,14 +67,14 @@ function Navbar({
               Reviews
             </p>
             <p
-              className={` cursor-pointer
+              className={`text-base cursor-pointer font-medium
               `}
             >
               <a
                 href="https://cloudnotte.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#8ea2ba] font-normal"
+                className="text-[#8ea2ba]"
               >
                 School Portal
               </a>

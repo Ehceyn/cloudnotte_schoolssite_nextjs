@@ -67,7 +67,7 @@ function Navbar({
               Reviews
             </p>
             <p
-              className={` cursor-pointer
+              className={` cursor-pointer font-normal
               `}
             >
               <a

@@ -67,14 +67,14 @@ function Navbar({
               Reviews
             </p>
             <p
-              className={` cursor-pointer
+              className={` cursor-pointer font-normal
               `}
             >
               <a
                 href="https://cloudnotte.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#8ea2ba] font-normal"
+                className="text-[#8ea2ba]"
               >
                 School Portal
               </a>
