@@ -7,7 +7,7 @@ function MessageModal(props) {
 
   return (
     <section
-      className={`w-full h-screen bg-[#00000065] fixed inset-0 z-30 flex items-center  justify-center ${
+      className={`w-full h-screen bg-[#00000065] fixed overflow-hidden scrollbar-hide inset-0 z-50 flex items-center  justify-center ${
         props.displayMessageModal ? "flex" : "hidden"
       } `}
       onClick={() => {

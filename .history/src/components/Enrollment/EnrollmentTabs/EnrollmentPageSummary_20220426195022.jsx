@@ -30,8 +30,8 @@ function EnrollmentPageSummary({
 
   return (
     <div
-      className={`${display === 1 ? "block" : "hidden"} ${
-        displayMessageModal ? "overflow-hidden" : "overflow-auto"
+      className={`${
+        display === 1 ? "block" : "hidden"
       } px-5 md:px-10 md2:px-28 md3:px-40 w-full xs:w-[85%] sm:w-[70%] mt-10 mb-14 mx-auto `}
     >
       <p>

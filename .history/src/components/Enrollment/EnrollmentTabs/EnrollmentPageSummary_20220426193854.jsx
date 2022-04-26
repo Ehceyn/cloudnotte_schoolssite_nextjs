@@ -30,8 +30,8 @@ function EnrollmentPageSummary({
 
   return (
     <div
-      className={`${display === 1 ? "block" : "hidden"} ${
-        displayMessageModal ? "overflow-hidden" : "overflow-auto"
+      className={`${
+        display === 1 ? "block" : "hidden"
       } px-5 md:px-10 md2:px-28 md3:px-40 w-full xs:w-[85%] sm:w-[70%] mt-10 mb-14 mx-auto `}
     >
       <p>
@@ -53,10 +53,10 @@ function EnrollmentPageSummary({
       <p className="flex flex-wrap">
         Please note that receipt of this application does not guarantee
         admission into
-        <span className="text-bold text-[#5f9af2] capitalize"> {name}.</span>Do
+        <span className="text-bold text-[#5f9af2] capitalize"> {name}</span>. Do
         not apply for admission again if you have applied before. Please contact
         us at{" "}
-        <span className="text-bold text-[#5f9af2] w-[310px] sm:w-full break-words">
+        <span className="text-bold text-[#5f9af2] w-[310px] break-words">
           {email}, {phoneNumber}
         </span>{" "}
         if you need more information to continue with the application process.{" "}

@@ -11,7 +11,7 @@ function MessageModal(props) {
         props.displayMessageModal ? "flex" : "hidden"
       } `}
       onClick={() => {
-        !props.showBtn && props.onCallDisplayMessageModal();
+        props.status === "success" && props.onCallDisplayMessageModal();
       }}
     >
       <div
