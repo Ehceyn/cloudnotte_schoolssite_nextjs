@@ -43,7 +43,7 @@ function AdmittedStage({ data }) {
               width={170}
               height={80}
               className=" object-contain h-40px w-120 cursor-pointer"
-              src="https://res.cloudinary.com/zichygraphs/image/upload/v1651001093/google-play-card_jvlicn.png"
+              src="/assets/images/google-play-card.png"
               alt=""
             />
           </a>
@@ -51,7 +51,7 @@ function AdmittedStage({ data }) {
             width={170}
             height={44}
             className="object-contain h-30px w-140 cursor-pointer"
-            src="https://res.cloudinary.com/zichygraphs/image/upload/v1651000992/apple-store-card_pc2a2b.png"
+            src="/assets/images/apple-store-card.svg"
             alt=""
           />
         </article>
