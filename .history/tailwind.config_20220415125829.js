@@ -1,5 +1,4 @@
 module.exports = {
-  mode:"jit",
   content: ["./src/**/*.{js,jsx,ts,tsx}", "./pages/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {},
@@ -13,10 +12,10 @@ module.exports = {
       // => @media (min-width: 768px) { ... }
 
       md2: "1000px",
-      // => @media (min-width: 1000px) { ... }
+      // => @media (min-width: 900px) { ... }
 
       md3: "1124px",
-      // => @media (min-width: 1124px) { ... }
+      // => @media (min-width: 1034px) { ... }
 
       lg: "1024px",
       // => @media (min-width: 1024px) { ... }
