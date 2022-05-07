@@ -255,7 +255,7 @@ Best schools in ${state}, Best schools in ${country}, Best schools in ${city}, S
   );
 }
 
-export const getStaticProps = async (context) => {
+export const getServerSideProps = async (context) => {
   const apolloClient = initializeApollo();
   //.log(context, "here");
   const schoolRoutePrefix = context.params.schoolRoutePrefix;
@@ -278,39 +278,7 @@ export const getStaticProps = async (context) => {
       initializeApolloState: apolloClient.cache.extract(),
       data: data || null,
     },
-    revalidate: 10,
   };
 };
-
-export async function getStaticPaths() {
-  const apolloClient = initializeApollo();
-
-  const { loading, error, data } = await apolloClient.query({
-    query: GET_SCHOOLS,
-    variables: { afterId: "", limit: 100, filter: "" },
-  });
-
-  // if (loading) return { paths: [], fallback: true };
-  if (error) return null; //.log(JSON.stringify(error, null, 2));
-
-  const prefix = data.getSchools.map((school) => {
-    return {
-      schoolRoutePrefix: school.prefix,
-    };
-  });
-
-  const paths = prefix.map(({ schoolRoutePrefix }) => {
-    return {
-      params: { schoolRoutePrefix },
-    };
-  });
-
-  //.log(paths, "paths");
-
-  return {
-    paths: paths || [],
-    fallback: "blocking",
-  };
-}
 
 export default SchoolsPersonalPage;

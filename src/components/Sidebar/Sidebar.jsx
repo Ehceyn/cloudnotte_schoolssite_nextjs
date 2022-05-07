@@ -27,7 +27,7 @@ function Sidebar(props) {
         </article>
         <article className="bg-white pl-8 pr-8 pb-2 w-full capitalize h-fit flex flex-col justify-between">
           <Link href="/schools" passHref>
-            <div
+            <a
               className=" w-full my-3 h-[30px] items-center bg-white flex cursor-pointer"
               onClick={() => setLoader(true)}
             >
@@ -48,9 +48,9 @@ function Sidebar(props) {
               </svg>
 
               <p className="side-nav-paragraph">Home</p>
-            </div>
+            </a>
           </Link>
-          <div
+          <a
             className="  w-full my-3 h-[30px] items-center bg-white flex cursor-pointer"
             onClick={props.onCallCheckAdmissionModal}
           >
@@ -68,8 +68,8 @@ function Sidebar(props) {
             </svg>
 
             <p className="side-nav-paragraph">Check Admission status</p>
-          </div>
-          <div
+          </a>
+          <a
             className="  w-full my-3 h-[30px] items-center bg-white flex cursor-pointer"
             onClick={props.onCallEntranceExamModal}
           >
@@ -88,8 +88,8 @@ function Sidebar(props) {
             </svg>
 
             <p className="side-nav-paragraph">Take Entrance exam</p>
-          </div>
-          <div
+          </a>
+          <a
             className="  w-full my-3 h-[30px] items-center bg-white flex cursor-pointer"
             onClick={props.onCallGetStudentDataModal}
           >
@@ -106,8 +106,8 @@ function Sidebar(props) {
               />
             </svg>
             <p className="side-nav-paragraph">Print Admission slip</p>
-          </div>
-          <div
+          </a>
+          <a
             className="  w-full my-3 h-[30px] items-center bg-white flex cursor-pointer"
             onClick={props.onCallEntranceExamModal}
           >
@@ -130,8 +130,8 @@ function Sidebar(props) {
             >
               <p className="side-nav-paragraph">Login School Portal</p>
             </a>
-          </div>{" "}
-          <div
+          </a>{" "}
+          <a
             className="  w-full my-3 h-[30px] items-center bg-white flex cursor-pointer"
             onClick={props.onCallEntranceExamModal}
           >
@@ -154,9 +154,9 @@ function Sidebar(props) {
             >
               <p className="side-nav-paragraph">About us</p>
             </a>
-          </div>{" "}
+          </a>{" "}
         </article>
-        <div className="bg-white pl-8 pr-8 pb-5 w-full capitalize h-[100px] flex flex-col justify-end">
+        <a className="bg-white pl-8 pr-8 pb-5 w-full capitalize h-[100px] flex flex-col justify-end">
           <Link href="/schools/register" passHref>
             <article onClick={() => setLoader(true)}>
               <Button
@@ -169,7 +169,7 @@ function Sidebar(props) {
               </Button>
             </article>
           </Link>
-        </div>
+        </a>
         {/* <Loader display={loader} message="Please wait..." /> */}
       </div>
     </>

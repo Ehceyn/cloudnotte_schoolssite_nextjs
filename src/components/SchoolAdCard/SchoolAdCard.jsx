@@ -56,7 +56,7 @@ function SchoolAdCard({
 
   return (
     <>
-      <section className=" border mt-8 md:rounded-lg">
+      <li className=" border mt-8 md:rounded-lg">
         <Link
           href="/schools/[schoolRoutePrefix]"
           as={`/schools/${prefix}`}
@@ -238,7 +238,7 @@ function SchoolAdCard({
             as={`/schools/${prefix}/apply`}
             passHref
           >
-            <article
+            <a
               className="cursor-pointer flex items-center"
               onClick={() => setLoader(true)}
             >
@@ -249,11 +249,11 @@ function SchoolAdCard({
                 <GiGraduateCap className="w-5 h-5 mr-1" />
                 Enroll For Admission
               </CardButton>
-            </article>
+            </a>
           </Link>
         </div>
         <Loader display={loader} message="Please wait..." />
-      </section>
+      </li>
     </>
   );
 }

@@ -95,7 +95,7 @@ function SearchbarFixed(props) {
             onChange={handleChange}
             value={input.searchInputs}
           />
-          <div
+          <ul
             className={`absolute z-10 inset-x-0 top-[38px] ${
               displaySearchResultsDiv ? null : "hidden"
             } shadow-sm px-5 py-1 bg-white rounded-b-3xl overflow-y-scroll h-fit max-h-96 `}
@@ -103,7 +103,7 @@ function SearchbarFixed(props) {
             {loading && <p className="text-xs text-center">loading results</p>}
             {data?.getSchools.map((school) => {
               return (
-                <div key={school.id}>
+                <li key={school.id}>
                   <Link
                     href="/schools/[schoolRoutePrefix]"
                     as={`/schools/${school.prefix}`}
@@ -198,10 +198,10 @@ function SearchbarFixed(props) {
                     </article>
                   </Link>
                   <hr />
-                </div>
+                </li>
               );
             })}
-          </div>
+          </ul>
         </label>
         <span
           onClick={props.onCallChangeLocationModal}

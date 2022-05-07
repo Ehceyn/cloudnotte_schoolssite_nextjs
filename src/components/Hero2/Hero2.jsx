@@ -81,7 +81,7 @@ function Hero2() {
             />
 
             {/* SEARCH RESULTS DIV */}
-            <div
+            <ul
               className={`absolute z-10 inset-x-0 top-[38px] w-[inherit] ${
                 displaySearchResultsDiv ? null : "hidden"
               } shadow-sm h-fit max-h-96 px-5 py-1 bg-white rounded-b-3xl overflow-y-scroll`}
@@ -91,7 +91,7 @@ function Hero2() {
               )}
               {data?.getSchools.map((school) => {
                 return (
-                  <div key={school.id}>
+                  <li key={school.id}>
                     <Link
                       href="/schools/[schoolRoutePrefix]"
                       as={`/schools/${school.prefix}`}
@@ -186,16 +186,16 @@ function Hero2() {
                       </article>
                     </Link>
                     <hr />
-                  </div>
+                  </li>
                 );
               })}
-            </div>
+            </ul>
           </label>
         </div>
 
-        <p className="mt-2 mx-5 font-medium text-slate-300 cursor-pointer text-center">
+        <h2 className="mt-2 mx-5 font-medium text-slate-300 cursor-pointer text-center">
           Find best schools in {router.query.country}
-        </p>
+        </h2>
       </section>
     </>
   );

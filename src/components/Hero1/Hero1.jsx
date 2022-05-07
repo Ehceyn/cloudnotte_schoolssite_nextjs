@@ -81,7 +81,7 @@ function Hero_1(props) {
             />
 
             {/* SEARCH RESULTS DIV */}
-            <div
+            <ul
               className={`absolute z-10 inset-x-0 top-[38px] w-[inherit] ${
                 displaySearchResultsDiv ? null : "hidden"
               } shadow-sm h-fit max-h-96 px-5 py-1 bg-white rounded-b-3xl overflow-y-scroll`}
@@ -91,7 +91,7 @@ function Hero_1(props) {
               )}
               {data?.getSchools.map((school) => {
                 return (
-                  <div key={school.id}>
+                  <li key={school.id}>
                     <Link
                       href="/schools/[schoolRoutePrefix]"
                       as={`/schools/${school.prefix}`}
@@ -186,10 +186,10 @@ function Hero_1(props) {
                       </article>
                     </Link>
                     <hr />
-                  </div>
+                  </li>
                 );
               })}
-            </div>
+            </ul>
           </label>
         </div>
 

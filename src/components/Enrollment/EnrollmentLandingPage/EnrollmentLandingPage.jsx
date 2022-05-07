@@ -157,14 +157,14 @@ function EnrollmentLandingPage({
             as={`/schools/${prefix}`}
             passHref
           >
-            <article className="">
+            <a className="">
               <div className="hidden md3:block">
                 <Button py="py-4" bg="bg-[#5f9af2]">
                   <GiGraduateCap className="w-7 h-7 mr-1" />
                   About us
                 </Button>
               </div>
-            </article>
+            </a>
           </Link>
         </div>
       </div>

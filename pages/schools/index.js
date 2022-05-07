@@ -131,26 +131,30 @@ Best schools in ${states.map((state) => {
             {/* <SchoolsLocation /> */}
 
             {/*MAP THE RETURNED SCHOOLS AND DISPLAY THEM  */}
-            {schools.getSchools.map((school) => {
-              return (
-                <SchoolAdCard
-                  key={school.id}
-                  id={school.id}
-                  name={school.name}
-                  country={school.country}
-                  state={school.state}
-                  city={school.city}
-                  logoUrl={school.logoUrl}
-                  prefix={school.prefix}
-                  type={school.type}
-                  isSmartSchool={school.isSmartSchool}
-                  longDescription={school.admissionInfo.longDescription}
-                  shortDescription={school.admissionInfo.shortDescription}
-                  assetsUrl={school.admissionInfo.assetsUrl}
-                  textColor={colors[Math.floor(Math.random() * colors.length)]}
-                />
-              );
-            })}
+            <ul>
+              {schools.getSchools.map((school) => {
+                return (
+                  <SchoolAdCard
+                    key={school.id}
+                    id={school.id}
+                    name={school.name}
+                    country={school.country}
+                    state={school.state}
+                    city={school.city}
+                    logoUrl={school.logoUrl}
+                    prefix={school.prefix}
+                    type={school.type}
+                    isSmartSchool={school.isSmartSchool}
+                    longDescription={school.admissionInfo.longDescription}
+                    shortDescription={school.admissionInfo.shortDescription}
+                    assetsUrl={school.admissionInfo.assetsUrl}
+                    textColor={
+                      colors[Math.floor(Math.random() * colors.length)]
+                    }
+                  />
+                );
+              })}
+            </ul>
           </div>
 
           <div className="bg-white fixed right-0 h-full w-1/4 2xl:w-1/3  border-l hidden md2:flex">

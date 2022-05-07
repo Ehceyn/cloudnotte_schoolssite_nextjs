@@ -36,7 +36,9 @@ function EnrollmentPageSummary({
     >
       <p>
         Welcome to the first stage of the{" "}
-        <span className="text-bold text-[#5f9af2] capitalize">{name}</span>{" "}
+        <span className="text-bold text-[#5f9af2] capitalize">
+          {name.toLowerCase()}
+        </span>{" "}
         admission enrollment system. Available Class/Programmes are:{" "}
         <span className="text-bold text-[#5f9af2]">
           {admissionProgrammes?.map((programme, index) => {
@@ -52,8 +54,8 @@ function EnrollmentPageSummary({
       <br />
       <p className="flex flex-wrap">
         Please note that receipt of this application does not guarantee
-        admission into
-        <span className="text-bold text-[#5f9af2] capitalize"> {name}.</span>Do
+        admission into{" "}
+        <span className="text-bold text-[#5f9af2] capitalize">{name}.</span>Do
         not apply for admission again if you have applied before. Please contact
         us at{" "}
         <span className="text-bold text-[#5f9af2] w-[310px] sm:w-full break-words">
@@ -74,7 +76,7 @@ function EnrollmentPageSummary({
       />
       <article className="flex w-full py-14 justify-center">
         <div className="flex flex-col sm:flex-row">
-          <div
+          <a
             className="w-full mr-1"
             onClick={() => {
               admissionProgrammes.length === 0
@@ -90,7 +92,7 @@ function EnrollmentPageSummary({
               <GiGraduateCap className="w-5 h-5 mr-1" />
               Start application
             </Button2>
-          </div>
+          </a>
           <div
             className="w-full"
             onClick={() => {

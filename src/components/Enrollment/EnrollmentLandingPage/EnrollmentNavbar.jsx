@@ -15,36 +15,36 @@ function EnrollmentNavbar() {
   return (
     <>
       <div className="bg-[#5f9af2] text-[#E7F0FB] h-10 sm:h-20 w-full flex items-center px-3 md:px-10 md2:px-28 md3:px-40">
-        <article className="flex w-full justify-between sm:justify-start">
-          <p
+        <ul className="flex w-full justify-between sm:justify-start ">
+          <li
             className={`text-[#E7F0FB] hidden font-medium mr-2 sm:mr-7 cursor-pointer text-[0.82em] sm:text-base ${
               tab === 1 ? "font-[800]" : "font-medium"
             }`}
           >
             Summary
-          </p>
-          <p
+          </li>
+          <li
             className={`text-[#E7F0FB] font-medium mr-2 sm:mr-7 cursor-pointer text-[0.82em] sm:text-base ${
               tab === 2 ? "font-[800]" : "font-medium"
             }`}
           >
             Student&apos;s details
-          </p>
-          <p
+          </li>
+          <li
             className={`text-[#E7F0FB] font-medium mr-2 sm:mr-7 cursor-pointer text-[0.82em] sm:text-base ${
               tab === 3 ? "font-[800]" : "font-medium"
             }`}
           >
             Parent&apos;s details
-          </p>
-          <p
+          </li>
+          <li
             className={`text-[#E7F0FB] font-medium mr-2 sm:mr-7 cursor-pointer text-[0.82em] sm:text-base ${
               tab === 4 ? "font-[800]" : "font-medium"
             }`}
           >
             Academic details
-          </p>
-        </article>
+          </li>
+        </ul>
       </div>
     </>
   );
