@@ -68,6 +68,7 @@ Best schools in ${router.query.state}, Best schools in ${router.query.country}y}
         url={`https://cloudnotte.com/schools/location/${router.query.country}/${router.query.state}`}
         image={`https://res.cloudinary.com/ugomatt/image/upload/v1647277984/cloudnotte_icon_soq.png`}
       />
+
       <section className="   h-full">
         <div className="w-full h-full flex justify-between relative  ">
           <div className=" fixed grow justify-end bg-white left-0 h-full w-1/4 2xl:w-1/3 border-r hidden md2:flex">
