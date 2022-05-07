@@ -76,11 +76,11 @@ function Home({ data }) {
           {countries.map((country) => {
             return (
               <a
-                key={country}
+                key={country.name}
                 className="bg-white hidden pl-8 pr-8 pb-5 w-full capitalize h-[100px] flex flex-col justify-end"
               >
-                <Link href={`/schools/location/${country}`} passHref>
-                  <a>{country}</a>
+                <Link href={`/schools/location/${country.name}`} passHref>
+                  <a>{country.name}</a>
                 </Link>
               </a>
             );
