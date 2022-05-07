@@ -17,6 +17,7 @@ import SEO from "../../../../src/components/SEO";
 import Image from "next/image";
 import { states } from "../../../../src/exApi/states";
 import { countries } from "../../../../src/exApi/countries";
+import Link from "next/link";
 
 function Home({ data }) {
   const [displayEntranceExamModal, setDisplayEntranceExamModal] =
@@ -70,6 +71,22 @@ function Home({ data }) {
         url={`https://cloudnotte.com/schools/location/${router.query.country}`}
         image={`https://res.cloudinary.com/ugomatt/image/upload/v1647277984/cloudnotte_icon_soq.png`}
       />
+      <>
+        <ul>
+          {countries.map((country) => {
+            return (
+              <a
+                key={country}
+                className="bg-white hidden pl-8 pr-8 pb-5 w-full capitalize h-[100px] flex flex-col justify-end"
+              >
+                <Link href={`/schools/location/${country}`} passHref>
+                  <a>{country}</a>
+                </Link>
+              </a>
+            );
+          })}
+        </ul>
+      </>
       <section className="   h-full">
         <div className="w-full h-full flex justify-between relative  ">
           <div className=" fixed grow justify-end bg-white left-0 h-full w-1/4 2xl:w-1/3 border-r hidden md2:flex">
