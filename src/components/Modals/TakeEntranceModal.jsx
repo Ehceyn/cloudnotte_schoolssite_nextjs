@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import { MdPersonOutline } from "react-icons/md";
 import Button from "./Button";
 import Loader from "../Loader";
@@ -23,22 +24,6 @@ function TakeEntranceModal(props) {
     admissionNo: "",
   };
 
-  // FORMIK ONSUBMIT
-  const onSubmit = (values) => {
-    if (values.admissionNo !== "" && formik.isValid) {
-      //log("values: ", values.admissionNo);
-      window.open(
-        `https://cloudnotte.com/admission/${values.admissionNo}/cbt`,
-        "_blank"
-      ) ||
-        window.location.replace(
-          `https://cloudnotte.com/admission/${values.admissionNo}/cbt`
-        );
-    } else {
-      null;
-    }
-  };
-
   // Yup validation
   const validationSchema = Yup.object({
     admissionNo: Yup.string().required("This field is required"),
@@ -47,7 +32,6 @@ function TakeEntranceModal(props) {
   // USING FORMIK PACKAGE FOR FORM HANDLING
   const formik = useFormik({
     initialValues,
-    onSubmit,
     validationSchema,
   });
 
@@ -61,7 +45,6 @@ function TakeEntranceModal(props) {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          formik.handleSubmit(e);
         }}
       >
         <div
@@ -115,27 +98,55 @@ function TakeEntranceModal(props) {
               </p>
             )}
           </div>
-          <article
-            className="w-full flex items-center justify-center"
-            onClick={() =>
-              formik.values.admissionNo !== "" &&
-              formik.isValid &&
-              setLoader(true)
-            }
-          >
-            <Button
-              borderRaduis="rounded-full"
-              px="px-5 w-full sm:w-[200px]"
-              py="py-3"
-              bg={`${
-                formik.isValid
-                  ? "bg-[#5f9af2] text-[#E7F0FB]"
-                  : "cursor-not-allowed bg-[#293b57] text-[#476697]"
-              }`}
+          {formik.isValid && formik.values.admissionNo !== "" ? (
+            <a
+              href={`https://cloudnotte.com/admission/${formik.values.admissionNo}/cbt`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full flex items-center justify-center"
+              onClick={() =>
+                formik.values.admissionNo !== "" &&
+                formik.isValid &&
+                setLoader(true)
+              }
             >
-              Take Entrance Exam
-            </Button>
-          </article>
+              <Button
+                borderRaduis="rounded-full"
+                px="px-5 w-full sm:w-[200px]"
+                py="py-3"
+                bg={`${
+                  formik.isValid
+                    ? "bg-[#5f9af2] text-[#E7F0FB]"
+                    : "cursor-not-allowed bg-[#293b57] text-[#476697]"
+                }`}
+              >
+                {" "}
+                Take Entrance Exam
+              </Button>
+            </a>
+          ) : (
+            <a
+              className="w-full flex items-center justify-center"
+              onClick={() =>
+                formik.values.admissionNo !== "" &&
+                formik.isValid &&
+                setLoader(true)
+              }
+            >
+              <Button
+                borderRaduis="rounded-full"
+                px="px-5 w-full sm:w-[200px]"
+                py="py-3"
+                bg={`${
+                  formik.isValid
+                    ? "bg-[#5f9af2] text-[#E7F0FB]"
+                    : "cursor-not-allowed bg-[#293b57] text-[#476697]"
+                }`}
+              >
+                Take Entrance Exam
+              </Button>
+            </a>
+          )}
         </div>
       </form>
       <Loader

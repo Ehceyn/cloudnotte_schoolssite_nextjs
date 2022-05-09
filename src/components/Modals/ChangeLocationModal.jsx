@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import Button from "./Button";
 import { useRouter } from "next/router";
 import { useFormik } from "formik";
@@ -49,16 +50,6 @@ function ChangeLocationModal(props) {
   };
 
   // FORMIK ONSUBMIT
-  const onSubmit = (values) => {
-    if (values.country !== "" && formik.isValid) {
-      //log("values: ", values.state);
-      if (values.state !== "") {
-        router.push(`/schools/location/${values.country}/${values.state}`);
-      } else {
-        router.push(`/schools/location/${values.country}`);
-      }
-    }
-  };
 
   // Yup validation
   const validationSchema = Yup.object({
@@ -68,7 +59,6 @@ function ChangeLocationModal(props) {
   // USING FORMIK PACKAGE FOR FORM HANDLING
   const formik = useFormik({
     initialValues,
-    onSubmit,
     validationSchema,
   });
 
@@ -183,29 +173,93 @@ function ChangeLocationModal(props) {
               </select>
             </article> */}
           </div>
-          <article
-            className="w-full flex items-center justify-center"
-            onClick={() =>
-              formik.values.country !== "" &&
-              formik.isValid &&
-              selectedCountry &&
-              setLoader(true)
-            }
-          >
-            <Button
-              borderRaduis="rounded-full"
-              px="px-5 w-full sm:w-[200px]"
-              py="py-3"
-              bg={`${
-                formik.isValid && selectedCountry
-                  ? "bg-[#5f9af2] text-[#E7F0FB]"
-                  : "cursor-not-allowed bg-[#293b57] text-[#476697]"
-              }`}
+          {formik.isValid ? (
+            formik.values.state === "" ? (
+              <Link
+                href="/schools/location/[country]"
+                as={`/schools/location/${formik.values.country}`}
+                passHref
+              >
+                <a
+                  className="w-full flex items-center justify-center"
+                  onClick={() =>
+                    formik.values.country !== "" &&
+                    formik.isValid &&
+                    selectedCountry &&
+                    setLoader(true)
+                  }
+                >
+                  <Button
+                    borderRaduis="rounded-full"
+                    px="px-5 w-full sm:w-[200px]"
+                    py="py-3"
+                    bg={`${
+                      formik.isValid && selectedCountry
+                        ? "bg-[#5f9af2] text-[#E7F0FB]"
+                        : "cursor-not-allowed bg-[#293b57] text-[#476697]"
+                    }`}
+                  >
+                    {" "}
+                    Proceed
+                  </Button>
+                </a>
+              </Link>
+            ) : (
+              <Link
+                href="/schools/location/[country]/[state]"
+                as={`/schools/location/${formik.values.country}/${formik.values.state}`}
+                passHref
+              >
+                <a
+                  className="w-full flex items-center justify-center"
+                  onClick={() =>
+                    formik.values.country !== "" &&
+                    formik.isValid &&
+                    selectedCountry &&
+                    setLoader(true)
+                  }
+                >
+                  <Button
+                    borderRaduis="rounded-full"
+                    px="px-5 w-full sm:w-[200px]"
+                    py="py-3"
+                    bg={`${
+                      formik.isValid && selectedCountry
+                        ? "bg-[#5f9af2] text-[#E7F0FB]"
+                        : "cursor-not-allowed bg-[#293b57] text-[#476697]"
+                    }`}
+                  >
+                    {" "}
+                    Proceed
+                  </Button>
+                </a>
+              </Link>
+            )
+          ) : (
+            <a
+              className="w-full flex items-center justify-center"
+              onClick={() =>
+                formik.values.country !== "" &&
+                formik.isValid &&
+                selectedCountry &&
+                setLoader(true)
+              }
             >
-              {" "}
-              Proceed
-            </Button>
-          </article>
+              <Button
+                borderRaduis="rounded-full"
+                px="px-5 w-full sm:w-[200px]"
+                py="py-3"
+                bg={`${
+                  formik.isValid && selectedCountry
+                    ? "bg-[#5f9af2] text-[#E7F0FB]"
+                    : "cursor-not-allowed bg-[#293b57] text-[#476697]"
+                }`}
+              >
+                {" "}
+                Proceed
+              </Button>
+            </a>
+          )}
         </div>
       </form>
       <Loader

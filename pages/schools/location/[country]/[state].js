@@ -69,9 +69,9 @@ Best schools in ${router.query.state}, Best schools in ${router.query.country}y}
         image={`https://res.cloudinary.com/ugomatt/image/upload/v1647277984/cloudnotte_icon_soq.png`}
       />
 
-      <section className="   h-full">
+      <section className="h-full">
         <div className="w-full h-full flex justify-between relative  ">
-          <div className=" fixed grow justify-end bg-white left-0 h-full w-1/4 2xl:w-1/3 border-r hidden md2:flex">
+          <div className="bg-white fixed  left-0 h-full w-1/4 border-r hidden md2:flex">
             <Sidebar
               onCallEntranceExamModal={() =>
                 setDisplayEntranceExamModal(!displayEntranceExamModal)
@@ -86,7 +86,7 @@ Best schools in ${router.query.state}, Best schools in ${router.query.country}y}
           </div>
 
           <div
-            className={`bg-white relative inset-0 mb-14 mx-auto h-auto w-full md:w-3/4 md2:w-1/2 mt-5 max-w-[600px] md:px-6`}
+            className={`bg-white relative inset-0 mb-14 mx-auto h-auto w-full md:w-3/4 md2:w-1/2 mt-5 max-w-[800px] md:px-6`}
           >
             <Hero3
               onCallChangeLocationModal={() =>

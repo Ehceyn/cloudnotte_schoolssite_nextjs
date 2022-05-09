@@ -195,18 +195,20 @@ Best schools in ${state}, Best schools in ${country}, Best schools in ${city}, S
                         <RiWhatsappFill className="w-7 h-7 sm:w-14 sm:h-14 fill-[#02a556]" />
                       </a>
                     </article>
-                    <article
-                      className="border rounded-sm px-1 sm:px-2 py-1 sm:py-2 ml-2 h-fit"
-                      onClick={() => {
-                        setDisplayAudioModal(!displayAudioModal);
-                      }}
-                    >
-                      {displayAudioModal ? (
-                        <BsFillPauseFill className="w-7 h-7 sm:w-14 sm:h-14 fill-[#8EA2BA]" />
-                      ) : (
-                        <BsFillPlayFill className="w-7 h-7 sm:w-14 sm:h-14 fill-[#8EA2BA]" />
-                      )}
-                    </article>
+                    {anthemUrl && (
+                      <article
+                        className="border rounded-sm px-1 sm:px-2 py-1 sm:py-2 ml-2 h-fit"
+                        onClick={() => {
+                          setDisplayAudioModal(!displayAudioModal);
+                        }}
+                      >
+                        {displayAudioModal ? (
+                          <BsFillPauseFill className="w-7 h-7 sm:w-14 sm:h-14 fill-[#8EA2BA]" />
+                        ) : (
+                          <BsFillPlayFill className="w-7 h-7 sm:w-14 sm:h-14 fill-[#8EA2BA]" />
+                        )}
+                      </article>
+                    )}
                   </div>
                 </article>
               </div>

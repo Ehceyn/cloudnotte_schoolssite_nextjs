@@ -24,16 +24,6 @@ function GetStudentDataModal(props) {
     admissionNo: "",
   };
 
-  // FORMIK ONSUBMIT
-  const onSubmit = (values) => {
-    if (values.admissionNo !== "" && formik.isValid) {
-      //log("values: ", values.admissionNo);
-      router.push(`/schools/students_info/${values.admissionNo}`);
-    } else {
-      null;
-    }
-  };
-
   // Yup validation
   const validationSchema = Yup.object({
     admissionNo: Yup.string().required("This field is required"),
@@ -42,7 +32,7 @@ function GetStudentDataModal(props) {
   // USING FORMIK PACKAGE FOR FORM HANDLING
   const formik = useFormik({
     initialValues,
-    onSubmit,
+
     validationSchema,
   });
 
@@ -56,7 +46,6 @@ function GetStudentDataModal(props) {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          formik.handleSubmit(e);
         }}
       >
         <div
@@ -96,27 +85,57 @@ function GetStudentDataModal(props) {
               </p>
             )}
           </div>
-          <article
-            className="w-full flex items-center justify-center"
-            onClick={() =>
-              formik.values.admissionNo !== "" &&
-              formik.isValid &&
-              setLoader(true)
-            }
-          >
-            <Button
-              borderRaduis="rounded-full"
-              px="px-5 w-full sm:w-[200px]"
-              py="py-3"
-              bg={`${
-                formik.isValid
-                  ? "bg-[#5f9af2] text-[#E7F0FB]"
-                  : "cursor-not-allowed bg-[#293b57] text-[#476697]"
-              }`}
+          {formik.isValid && formik.values.admissionNo !== "" ? (
+            <Link
+              href="/schools/students_info/[studentId]"
+              as={`/schools/students_info/${formik.values.admissionNo}`}
+              passHref
             >
-              Proceed{" "}
-            </Button>
-          </article>
+              <a
+                className="w-full flex items-center justify-center"
+                onClick={() =>
+                  formik.values.admissionNo !== "" &&
+                  formik.isValid &&
+                  setLoader(true)
+                }
+              >
+                <Button
+                  borderRaduis="rounded-full"
+                  px="px-5 w-full sm:w-[200px]"
+                  py="py-3"
+                  bg={`${
+                    formik.isValid
+                      ? "bg-[#5f9af2] text-[#E7F0FB]"
+                      : "cursor-not-allowed bg-[#293b57] text-[#476697]"
+                  }`}
+                >
+                  Proceed
+                </Button>
+              </a>
+            </Link>
+          ) : (
+            <a
+              className="w-full flex items-center justify-center"
+              onClick={() =>
+                formik.values.admissionNo !== "" &&
+                formik.isValid &&
+                setLoader(true)
+              }
+            >
+              <Button
+                borderRaduis="rounded-full"
+                px="px-5 w-full sm:w-[200px]"
+                py="py-3"
+                bg={`${
+                  formik.isValid
+                    ? "bg-[#5f9af2] text-[#E7F0FB]"
+                    : "cursor-not-allowed bg-[#293b57] text-[#476697]"
+                }`}
+              >
+                Proceed
+              </Button>
+            </a>
+          )}
         </div>
       </form>
       <Loader display={loader} message="Checking Admission Information" />

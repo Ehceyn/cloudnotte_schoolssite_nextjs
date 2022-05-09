@@ -126,25 +126,27 @@ function Navbar({
                 </a>
               </Button2>
             </div>
-            <div
-              onClick={() => {
-                onCallAudioModal();
-              }}
-            >
-              <Button2
-                customStyle=""
-                bg="bg-[#E7F0FB]"
-                color="text-[#8EA2BA]"
-                py="py-[10px] "
-                px="px-3 mr-3"
+            {anthemUrl && (
+              <div
+                onClick={() => {
+                  onCallAudioModal();
+                }}
               >
-                {displayAudioModal ? (
-                  <BsFillPauseFill className="w-6 h-6  fill-[#8EA2BA]" />
-                ) : (
-                  <BsFillPlayFill className="w-6 h-6  fill-[#8EA2BA]" />
-                )}
-              </Button2>
-            </div>
+                <Button2
+                  customStyle=""
+                  bg="bg-[#E7F0FB]"
+                  color="text-[#8EA2BA]"
+                  py="py-[10px] "
+                  px="px-3 mr-3"
+                >
+                  {displayAudioModal ? (
+                    <BsFillPauseFill className="w-6 h-6  fill-[#8EA2BA]" />
+                  ) : (
+                    <BsFillPlayFill className="w-6 h-6  fill-[#8EA2BA]" />
+                  )}
+                </Button2>
+              </div>
+            )}
           </article>
         </div>
       </section>

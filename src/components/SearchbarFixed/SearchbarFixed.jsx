@@ -67,7 +67,7 @@ function SearchbarFixed(props) {
   return (
     <section className="">
       <div
-        className={`fixed z-20 px-3 md2:px-24  top-0 left-0 right-0 flex items-center justify-center transition-all duration-500 mt-0  w-full py-2 sm:py-4 px-auto border-b bg-[#F8FBFF] ${
+        className={`fixed z-20 px-3 md2:px-24  top-0 left-0 right-0 flex items-center justify-center transition-all duration-150 mt-0  w-full py-2 sm:py-4 px-auto border-b bg-[#F8FBFF] ${
           props.display === false ? "hidden" : "flex"
         } ${show ? "null" : " -translate-y-full"}`}
       >

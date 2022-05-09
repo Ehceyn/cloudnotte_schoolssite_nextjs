@@ -106,7 +106,7 @@ Best schools in ${states.map((state) => {
       />{" "}
       <section className="   h-full">
         <div className="w-full h-full flex justify-between relative  ">
-          <div className=" fixed grow justify-end bg-white left-0 h-full w-1/4 2xl:w-1/3 border-r hidden md2:flex">
+          <div className="bg-white fixed  left-0 h-full w-1/4 border-r hidden md2:flex">
             <Sidebar
               onCallEntranceExamModal={() =>
                 setDisplayEntranceExamModal(!displayEntranceExamModal)

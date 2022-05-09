@@ -34,7 +34,7 @@ function BottomNavbar(props) {
     <div
       className={`fixed md2:hidden z-[20] bottom-0 right-0 left-0 ${
         show ? "translate-y--[100%] h-fit " : "translate-y-[100%] h-0"
-      } flex transition-all duration-500 shrink mb-0`}
+      } flex transition-all duration-150 shrink mb-0`}
     >
       <div
         className={`bg-[#F8FBFF] border ${
