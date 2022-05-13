@@ -56,7 +56,7 @@ function RightBar({ schools }) {
                       as={`/schools/${smartSchool.prefix}`}
                       passHref
                     >
-                      <div className=" w-full my-3 h-fit items-start bg-white flex cursor-pointer">
+                      <a className=" w-full my-3 h-fit items-start bg-white flex cursor-pointer">
                         <article className=" mr-3 h-[65px] w-[65px] min-h-[65px] min-w-[65px] object-contain rounded-full relative">
                           <span
                             title="Tech School"
@@ -145,7 +145,7 @@ function RightBar({ schools }) {
                             {smartSchool.country.toLowerCase()}
                           </p>
                         </article>
-                      </div>
+                      </a>
                     </Link>
                   </li>
                 );

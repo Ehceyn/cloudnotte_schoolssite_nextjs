@@ -42,7 +42,7 @@ function BottomNavbar(props) {
         } border-[#E7F0FB]  py-1 px-3 sm:py-5 w-full rounded-t-2xl capitalize h-fit flex items-center justify-between`}
       >
         <Link href="/schools" passHref>
-          <div
+          <a
             className="  flex flex-col mr-2 overflow-hidden w-fit sm:w-fit items-center  justify-center cursor-pointer "
             onClick={() => setLoader(true)}
           >
@@ -57,7 +57,7 @@ function BottomNavbar(props) {
             <p className="side-nav-paragraph text-[10px]  sm:text-base pt-1 sm:pt-0 ">
               Home
             </p>
-          </div>
+          </a>
         </Link>
         <div
           className="  flex flex-col mr-2  justify-center cursor-pointer sm:w-fit items-center"
@@ -267,12 +267,14 @@ function BottomNavbar(props) {
             onClick={() => setLoader(true)}
           >
             <Link href="/schools/register" passHref>
-              <button
-                className="bg-[#5f9af2] hover:brightness-90 text-white font-bold py-3 px-5 rounded-full"
-                onClick={props.onDisplayRegisterSchoolPage}
-              >
-                List Your School
-              </button>
+              <a>
+                <button
+                  className="bg-[#5f9af2] hover:brightness-90 text-white font-bold py-3 px-5 rounded-full"
+                  onClick={props.onDisplayRegisterSchoolPage}
+                >
+                  List Your School
+                </button>
+              </a>
             </Link>
           </div>
         </div>

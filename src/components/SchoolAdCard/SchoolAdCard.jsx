@@ -62,7 +62,7 @@ function SchoolAdCard({
           as={`/schools/${prefix}`}
           passHref
         >
-          <div className="cursor-pointer" onClick={() => setLoader(true)}>
+          <a className="cursor-pointer" onClick={() => setLoader(true)}>
             <div className="flex px-3 xs:px-5 py-5">
               <article className="h-[85px] w-[85px] relative min-h-[85px] min-w-[85px] object-contain rounded-full">
                 <span
@@ -211,7 +211,7 @@ function SchoolAdCard({
                 )}
               </Slider>
             </div>
-          </div>
+          </a>
         </Link>
 
         <div className=" flex flex-col px-4 xs:px-7 pt-0 pb-4 flex-wrap w-full justify-between">

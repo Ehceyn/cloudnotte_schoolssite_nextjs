@@ -109,7 +109,7 @@ function SearchbarFixed(props) {
                     as={`/schools/${school.prefix}`}
                     passHref
                   >
-                    <article className="flex py-3 items-center cursor-pointer">
+                    <a className="flex py-3 items-center cursor-pointer">
                       <article className="relative w-6 h-6 object-contain">
                         <span
                           title="Tech School"
@@ -195,7 +195,7 @@ function SearchbarFixed(props) {
                           {school.country.toLowerCase()}
                         </p>
                       </article>
-                    </article>
+                    </a>
                   </Link>
                   <hr />
                 </li>
