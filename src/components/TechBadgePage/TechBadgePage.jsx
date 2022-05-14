@@ -23,37 +23,37 @@ function TechBadgePage() {
         </svg>
       </div>
       <div className="flex justify-center px-3 sm:px-5">
-        <p className="text-center text-xl font-bold ">
+        <h2 className="text-center text-xl font-bold ">
           To get your school tech badge on School Search Engine. Follow the
           steps
-        </p>
+        </h2>
       </div>
-      <div className="flex flex-col items-start mx-5 sm:mx-5 sm:ml-14 mt-4 ">
-        <article className="flex ">
+      <ul className="flex flex-col items-start mx-5 sm:mx-5 sm:ml-14 mt-4 ">
+        <li className="flex">
           <p>1.</p>
           <p className=" ml-1 mb-2">
             Your school should be using 80% of cloudnotte modules{" "}
           </p>
-        </article>
-        <article className="flex ">
+        </li>
+        <li className="flex">
           <p>2.</p>
           <p className=" ml-1 mb-2">
             Ensure your school is actively using cloudnotte{" "}
           </p>
-        </article>
-        <article className="flex ">
+        </li>
+        <li className="flex">
           <p>3.</p>
           <p className=" ml-1 mb-2">
             Complete school growth course as an admin from your account.{" "}
           </p>
-        </article>{" "}
-        <article className="flex ">
+        </li>{" "}
+        <li className="flex">
           <p>4.</p>
           <p className=" ml-1 mb-2">
             And... That&apos;s it! Your school is a Tech School
           </p>
-        </article>
-      </div>
+        </li>
+      </ul>
       <div className="flex justify-center w-full my-4">
         <button className="bg-[#5f9af2] hover:brightness-90 text-white font-bold py-2 px-4 rounded-[5px]">
           <a
