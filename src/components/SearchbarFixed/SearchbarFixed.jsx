@@ -206,7 +206,7 @@ function SearchbarFixed(props) {
         <span
           onClick={props.onCallChangeLocationModal}
           className="cursor-pointer"
-          title="Change Location"
+          title="Search by location"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -187,7 +187,7 @@ function Hero_1(props) {
           className="mt-2 font-medium text-slate-300 cursor-pointer text-center"
           onClick={props.onCallChangeLocationModal}
         >
-          Change Location
+          Search by location
         </p>
       </section>
     </>
