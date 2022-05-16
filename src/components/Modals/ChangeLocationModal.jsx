@@ -109,7 +109,10 @@ function ChangeLocationModal(props) {
           <article className="py-3 flex items-center">
             <button
               className="group border mr-5 border-[#5f9af2] rounded-full py-1 px-5 text-[#5f9af2] cursor-pointer"
-              onClick={() => formik.setFieldValue("country", "")}
+              onClick={() => {
+                formik.setFieldValue("country", "");
+                !formik.values.country && props.onCallChangeLocationModal();
+              }}
             >
               <p className="transform transition duration-300 text-[#5f9af2] group-hover:-translate-x-2 font-bold">
                 &larr;

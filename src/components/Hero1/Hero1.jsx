@@ -194,10 +194,10 @@ function Hero_1(props) {
         </div>
 
         <p
-          className="mt-2 font-medium text-slate-300 cursor-pointer text-center"
+          className="mt-2 font-medium text-white bg-[#0000003f] hover:bg-[#00000085] rounded-full py-1 px-3 cursor-pointer text-center"
           onClick={props.onCallChangeLocationModal}
         >
-          Search by location
+          Search by location&nbsp;&nbsp;&raquo;
         </p>
       </section>
     </>
