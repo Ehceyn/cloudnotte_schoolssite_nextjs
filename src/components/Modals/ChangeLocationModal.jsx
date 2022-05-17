@@ -129,21 +129,19 @@ function ChangeLocationModal(props) {
               return (
                 <h2 key={country.name + index} className="">
                   <Link href={`/schools/location/${country.name}`} passHref>
-                    <a className="text-[#8ea2ba] ">
-                      {country.name}
-                      {states
-                        .filter((i) => i.country_name === country.name)
-                        .map((state, index) => {
-                          <h2 key={state.name + index} className="">
-                            <Link
-                              href={`/schools/location/${country.name}/${state.name}`}
-                              passHref
-                            >
-                              <a className="text-[#8ea2ba] ">{state.name}</a>
-                            </Link>
-                          </h2>;
-                        })}
-                    </a>
+                    <a className="text-[#8ea2ba] ">{country.name}</a>
+                  </Link>
+                </h2>
+              );
+            })}
+            {states.map((state, index) => {
+              return (
+                <h2 key={state.name + index} className="">
+                  <Link
+                    href={`/schools/location/${state.country_name}/${state.name}`}
+                    passHref
+                  >
+                    <a className="text-[#8ea2ba] ">{state.name}</a>
                   </Link>
                 </h2>
               );
