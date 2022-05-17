@@ -34,7 +34,7 @@ function ChangeLocationModal(props) {
               d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
             />
           </svg>
-          <p className="font-bold">Change my location</p>
+          <p className="font-bold">Change search location</p>
         </article>
         <div className="flex flex-col sm:flex-row justify-center items-center mb-6">
           <article className="sm:mr-5 mb-5 sm:mb-0">

@@ -15,9 +15,9 @@ function SchoolsLocation(props) {
         </h2>
         <button
           onClick={props.onCallChangeLocationModal}
-          className="text-xs min-w-[118px] font-bold text-[#F44336] cursor-pointer"
+          className="text-xs sm:text-sm whitespace-nowrap font-bold text-[#F44336] cursor-pointer"
         >
-          Change my location
+          Change search location
         </button>
       </section>
     </>

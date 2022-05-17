@@ -152,6 +152,7 @@ function ChangeLocationModal(props) {
             className={`${
               formik.values.country ? "flex" : "hidden"
             } py-1 px-3 mb-3 bg-[#5f9af2] hover:brightness-90 cursor-pointer rounded-full w-fit`}
+            onClick={props.onCallChangeLocationModal}
           >
             <h2 className=" text-[#fff]">
               <Link
@@ -206,20 +207,26 @@ function ChangeLocationModal(props) {
                 return (
                   <button
                     type="button"
-                    className="group flex justify-between items-center text-[#0c121a] h-fit mb-3 p-3  border hover:border-[#5f9af2] cursor-pointer rounded-md break-words"
+                    className="group flex justify-between items-center text-[#0c121a] h-fit mb-3 p-3  border active:border-[#5f9af2] hover:border-[#5f9af2] cursor-pointer rounded-md break-words"
                     key={state.name}
                     value={state.name}
                     onClick={(e) => {
                       formik.setFieldValue("state", e.currentTarget.value);
+                      props.onCallChangeLocationModal();
                     }}
                   >
-                    <a
-                      className="text-[#8ea2ba] group-hover:text-[#5f9af2]"
-                      key={state.name}
+                    <Link
+                      href={`/schools/location/${state.country_name}/${state.name}`}
+                      passHref
                     >
-                      {state.name}
-                    </a>
-                    <p className="text-[20px] group-hover:text-[#5f9af2] hover:font-bold">
+                      <a
+                        className="text-[#8ea2ba] group-active:text-[#5f9af2] group-hover:text-[#5f9af2]"
+                        key={state.name}
+                      >
+                        {state.name}
+                      </a>
+                    </Link>
+                    <p className="text-[20px] group-active:text-[#5f9af2] group-hover:text-[#5f9af2] hover:font-bold">
                       &gt;
                     </p>
                   </button>
