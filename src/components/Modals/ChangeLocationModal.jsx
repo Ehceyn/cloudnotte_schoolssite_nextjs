@@ -207,7 +207,7 @@ function ChangeLocationModal(props) {
                 return (
                   <button
                     type="button"
-                    className="group flex justify-between items-center text-[#0c121a] h-fit mb-3 p-3  border active:border-[#5f9af2] hover:border-[#5f9af2] cursor-pointer rounded-md break-words"
+                    className=""
                     key={state.name}
                     value={state.name}
                     onClick={(e) => {
@@ -220,15 +220,15 @@ function ChangeLocationModal(props) {
                       passHref
                     >
                       <a
-                        className="text-[#8ea2ba] group-active:text-[#5f9af2] group-hover:text-[#5f9af2]"
+                        className="text-[#8ea2ba] active:text-[#5f9af2] hover:text-[#5f9af2] group flex justify-between items-center h-fit mb-3 p-3  border active:border-[#5f9af2] hover:border-[#5f9af2] cursor-pointer rounded-md break-words"
                         key={state.name}
                       >
                         {state.name}
+                        <p className="text-[20px] group-active:text-[#5f9af2] group-hover:text-[#5f9af2] hover:font-bold">
+                          &gt;
+                        </p>
                       </a>
                     </Link>
-                    <p className="text-[20px] group-active:text-[#5f9af2] group-hover:text-[#5f9af2] hover:font-bold">
-                      &gt;
-                    </p>
                   </button>
                 );
               })}
