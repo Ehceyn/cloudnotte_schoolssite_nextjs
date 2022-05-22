@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
 
-import { countries } from "../../src/exApi/countries.js";
-import { states } from "../../src/exApi/states.js";
+import { countries } from "../../exApi/countries.js";
+import { states } from "../../exApi/states.js";
 
 export default function links() {
   return (
