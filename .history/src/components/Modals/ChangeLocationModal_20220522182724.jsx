@@ -124,6 +124,29 @@ function ChangeLocationModal(props) {
                 : "Countries"}
             </h2>
           </article>
+          <article className="py-3 hidden">
+            {countries.map((country, index) => {
+              return (
+                <h2 key={country.name + index} className="">
+                  <Link href={`/schools/location/${country.name}`} passHref>
+                    <a className="text-[#8ea2ba] ">{country.name}</a>
+                  </Link>
+                </h2>
+              );
+            })}
+            {states.map((state, index) => {
+              return (
+                <h2 key={state.name + index} className="">
+                  <Link
+                    href={`/schools/location/${state.country_name}/${state.name}`}
+                    passHref
+                  >
+                    <a className="text-[#8ea2ba] ">{state.name}</a>
+                  </Link>
+                </h2>
+              );
+            })}
+          </article>
 
           <div
             className={`${
