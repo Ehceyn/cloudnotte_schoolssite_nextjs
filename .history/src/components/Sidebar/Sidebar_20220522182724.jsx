@@ -156,7 +156,7 @@ function Sidebar(props) {
             </a>
           </a>{" "}
         </article>
-        <div className="bg-white pl-8 pr-8 pb-5 w-full capitalize h-[100px] flex flex-col justify-end">
+        <a className="bg-white pl-8 pr-8 pb-5 w-full capitalize h-[100px] flex flex-col justify-end">
           <Link href="/schools/register" passHref>
             <a onClick={() => setLoader(true)}>
               <Button
@@ -169,7 +169,7 @@ function Sidebar(props) {
               </Button>
             </a>
           </Link>
-        </div>
+        </a>
         {/* <Loader display={loader} message="Please wait..." /> */}
       </div>
     </>
