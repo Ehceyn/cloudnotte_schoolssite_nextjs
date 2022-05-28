@@ -11,10 +11,8 @@ import GetStudentDataModal from "../../src/components/Modals/GetStudentDataModal
 import SearchbarFixed from "../../src/components/SearchbarFixed/SearchbarFixed";
 import { initializeApollo } from "../../lib/apolloClient";
 import { GET_SCHOOLS } from "../../graphql/user/queries/getSchools";
-import TechBadgePage from "../../src/components/TechBadgePage/TechBadgePage";
+import RegisterSchoolPage from "../../src/components/RegisterSchoolPage/RegisterSchoolPage";
 import SEO from "../../src/components/SEO";
-import { authLeft } from "../../animations/animations";
-import { motion } from "framer-motion";
 
 function Home({ data }) {
   const [displayEntranceExamModal, setDisplayEntranceExamModal] =
@@ -26,7 +24,6 @@ function Home({ data }) {
   const [displayCheckAdmissionModal, setDisplayCheckAdmissionModal] =
     useState(false);
   const [searchbarFixed, setSearchbarFixed] = useState(false);
-
   const [location, setLocation] = useState(null);
 
   //LISTENS FOR THE EVENTS IN THE ARRAY BELOW AND CALLS HANDLESCROLL FUNCTION
@@ -53,17 +50,13 @@ function Home({ data }) {
   const schools = data;
   //.log(schools, "here --------<-");
 
+  // COLORS TO MAP
+  const colors = ["#ffd833", "#fc2d44", "#28a265", "#70a4f3"];
+
   return (
     <div>
-      <SEO title="Get A Tech Badge" />
-      <motion.section
-        variants={authLeft}
-        animate="animate"
-        initial="initial"
-        exit="exit"
-        className="bg-white w-full h-full"
-      >
-        {" "}
+      <SEO title="Register School" />
+      <section className="  h-full">
         <div className="w-full h-full flex justify-between relative  ">
           <div className="bg-white fixed  left-0 h-full w-1/4 border-r hidden md2:flex">
             <Sidebar
@@ -79,10 +72,13 @@ function Home({ data }) {
             />
           </div>
 
-          <TechBadgePage />
+          <RegisterSchoolPage />
 
           <div className="bg-white fixed right-0 h-full w-1/4  border-l hidden md2:flex">
-            <RightBar schools={schools.getSchools} />
+            <RightBar
+              schools={schools.getSchools}
+              textColor={colors[Math.floor(Math.random() * colors.length)]}
+            />
           </div>
         </div>
         <BottomNavbar
@@ -95,8 +91,12 @@ function Home({ data }) {
           onCallGetStudentDataModal={() =>
             setDisplayGetStudentDataModal(!displayGetStudentDataModal)
           }
+          onDisplayRegisterSchoolPage={() => setDisplayRegisterSchoolPage(true)}
+          onDisplayHomePage={() => setDisplayRegisterSchoolPage(false)}
         />
+
         <SearchbarFixed display={searchbarFixed} />
+
         {/* ========================================== MODALS ===================================== */}
         {/* Change your location */}
         <ChangeLocationModal
@@ -126,7 +126,7 @@ function Home({ data }) {
             setDisplayGetStudentDataModal(!displayGetStudentDataModal)
           }
         />
-      </motion.section>
+      </section>
     </div>
   );
 }
@@ -145,5 +145,7 @@ export const getStaticProps = async () => {
     props: { initializeApolloState: apolloClient.cache.extract(), data },
   };
 };
+
+//
 
 export default Home;

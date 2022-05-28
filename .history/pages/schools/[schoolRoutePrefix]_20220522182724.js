@@ -23,8 +23,6 @@ import AudioModal from "../../src/components/Modals/AudioModal";
 import MessageModal from "../../src/components/Modals/MessageModal";
 import { useRouter } from "next/router";
 import Loader from "../../src/components/Loader";
-import { authLeft } from "../../animations/animations";
-import { motion } from "framer-motion";
 
 function SchoolsPersonalPage({
   data: {
@@ -90,14 +88,7 @@ Best schools in ${state}, Best schools in ${country}, Best schools in ${city}, S
         url={`https://cloudnotte.com/schools/${prefix}`}
         image={logoUrl}
       />
-      <motion.section
-        variants={authLeft}
-        animate="animate"
-        initial="initial"
-        exit="exit"
-        className="bg-white w-full h-full"
-      >
-        {" "}
+      <section>
         <SchoolPersonalPageTabsProvider
           initialState={initialState}
           reducer={reducer}
@@ -261,7 +252,7 @@ Best schools in ${state}, Best schools in ${country}, Best schools in ${city}, S
         />
         {/* Loader */}
         <Loader display={loader} message="Please wait..." />
-      </motion.section>
+      </section>
     </>
   );
 }

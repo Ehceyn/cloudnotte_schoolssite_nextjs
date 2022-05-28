@@ -13,8 +13,6 @@ import { initializeApollo } from "../../lib/apolloClient";
 import { GET_SCHOOLS } from "../../graphql/user/queries/getSchools";
 import TechBadgePage from "../../src/components/TechBadgePage/TechBadgePage";
 import SEO from "../../src/components/SEO";
-import { authLeft } from "../../animations/animations";
-import { motion } from "framer-motion";
 
 function Home({ data }) {
   const [displayEntranceExamModal, setDisplayEntranceExamModal] =
@@ -56,14 +54,7 @@ function Home({ data }) {
   return (
     <div>
       <SEO title="Get A Tech Badge" />
-      <motion.section
-        variants={authLeft}
-        animate="animate"
-        initial="initial"
-        exit="exit"
-        className="bg-white w-full h-full"
-      >
-        {" "}
+      <section className="  h-full">
         <div className="w-full h-full flex justify-between relative  ">
           <div className="bg-white fixed  left-0 h-full w-1/4 border-r hidden md2:flex">
             <Sidebar
@@ -96,7 +87,9 @@ function Home({ data }) {
             setDisplayGetStudentDataModal(!displayGetStudentDataModal)
           }
         />
+
         <SearchbarFixed display={searchbarFixed} />
+
         {/* ========================================== MODALS ===================================== */}
         {/* Change your location */}
         <ChangeLocationModal
@@ -126,7 +119,7 @@ function Home({ data }) {
             setDisplayGetStudentDataModal(!displayGetStudentDataModal)
           }
         />
-      </motion.section>
+      </section>
     </div>
   );
 }
