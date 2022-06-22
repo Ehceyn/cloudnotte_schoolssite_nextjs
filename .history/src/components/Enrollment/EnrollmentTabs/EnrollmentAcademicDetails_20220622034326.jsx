@@ -13,8 +13,6 @@ import { useDocUploadStateValue } from "../../../StateProviders/DocUploadProvide
 import { useRouter } from "next/router";
 import styles from "../../../../styles/MiniLoader.module.css";
 import MessageModal from "../../Modals/MessageModal";
-import { motion } from "framer-motion";
-import { authLeft } from "../../../../animations/animations";
 
 function EnrollmentAcademicDetails({
   admissionProgrammes,

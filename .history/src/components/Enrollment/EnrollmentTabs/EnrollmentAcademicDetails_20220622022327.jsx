@@ -13,8 +13,6 @@ import { useDocUploadStateValue } from "../../../StateProviders/DocUploadProvide
 import { useRouter } from "next/router";
 import styles from "../../../../styles/MiniLoader.module.css";
 import MessageModal from "../../Modals/MessageModal";
-import { motion } from "framer-motion";
-import { authLeft } from "../../../../animations/animations";
 
 function EnrollmentAcademicDetails({
   admissionProgrammes,
@@ -288,11 +286,7 @@ function EnrollmentAcademicDetails({
   }
 
   return (
-    <motion.section
-      variants={authLeft}
-      animate="animate"
-      initial="initial"
-      exit="exit"
+    <section
       className={`${
         display === 4 ? "flex" : "hidden"
       } px-5 md:px-10 md2:px-28 md3:px-40 text-justify w-full mt-6 sm:mt-10 mb-14 mx-auto text-[0.8em] sm:text-base`}
@@ -306,7 +300,7 @@ function EnrollmentAcademicDetails({
           className="flex flex-col sm:flex-row w-full"
           onSubmit={(e) => {
             e.preventDefault();
-            console.log("called submit");
+
             // push the academic details values into the form store
             pushToStore(formik.values);
             //.log(formik.values, "Oboy see values");
@@ -356,45 +350,33 @@ function EnrollmentAcademicDetails({
             myObj.programmeId = formdata[2].programmeId;
             myObj.documents = docData;
 
-            //Check If the form is valid and other conditions are met
-            formik.isValid
-              ? allDocs
-                ? Object.keys(uploadMessage).length === allDocs?.length
-                  ? checkForFeeAndSubmit()
-                  : alert(
-                      "Incomplete documents. Complete the uploads to proceed"
-                    )
-                : checkForFeeAndSubmit()
-              : alert("Please select a programme");
+            // If there is a fee, make payment
 
-            function checkForFeeAndSubmit() {
-              // If there is a fee, make payment
-              fee > 0 &&
-                makePayment(
-                  myObj,
-                  data?.createNewAdmissionApplication.applicationNumber
-                );
-              //.log(data, "uni data");
-              formik.resetForm();
+            fee > 0 &&
+              makePayment(
+                myObj,
+                data?.createNewAdmissionApplication.applicationNumber
+              );
+            //.log(data, "uni data");
+            formik.resetForm();
 
-              // if there is no fee, submit form
-              fee <= 0 &&
-                submitApplicationToDB({
-                  variables: { submitVar: myObj },
+            // if there is no fee, submit form
+            fee <= 0 &&
+              submitApplicationToDB({
+                variables: { submitVar: myObj },
 
-                  onCompleted: (data) => {
-                    // CALL THE CREATE_NEW_ADMISSION_APPLICATION MUTATION
-                    //.log(data, "lo data");
-                    setDisplayMessageModal(true);
-                    setFormSubmitStatus("success");
-                  },
-                  onError: (error) => {
-                    //.log(error);
-                    setDisplayMessageModal(true);
-                    setFormSubmitStatus("error");
-                  },
-                });
-            }
+                onCompleted: (data) => {
+                  // CALL THE CREATE_NEW_ADMISSION_APPLICATION MUTATION
+                  //.log(data, "lo data");
+                  setDisplayMessageModal(true);
+                  setFormSubmitStatus("success");
+                },
+                onError: (error) => {
+                  //.log(error);
+                  setDisplayMessageModal(true);
+                  setFormSubmitStatus("error");
+                },
+              });
           }}
         >
           <MessageModal
@@ -420,10 +402,12 @@ function EnrollmentAcademicDetails({
                       formik.handleChange(e);
                     }}
                     onBlur={formik.handleBlur}
-                    value={formik.values.selectClass}
-                    defaultValue={"Select class/program of entry"}
+                    values={formik.values.selectClass}
                     required
                   >
+                    <option disabled="disabled" selected="selected">
+                      Select class/program of entry{" "}
+                    </option>
                     {admissionProgrammes.map((eachClass, index) => {
                       return (
                         <option
@@ -491,7 +475,7 @@ function EnrollmentAcademicDetails({
                     id="healthIssues"
                     name="healthIssues"
                     className="shadow-sm pl-7 border border-[#CFDBEA] text-gray-900 text-sm rounded-[5px] outline-none focus:ring-[#5f9af2] focus:border-[#5f9af2] block w-full p-2.5 bg-[#F8FBFF]   "
-                    placeholder="Any health challenges? Please specify it here (optional)"
+                    placeholder="Any health challenges? Please specify it here"
                     rows="3"
                     onChange={formik.handleChange}
                     value={formik.values.healthIssues}
@@ -505,7 +489,7 @@ function EnrollmentAcademicDetails({
                   {allDocs?.map((doc, index) => {
                     //.log(allDocs, "dohhc");
                     return (
-                      <div className="mb-6 w-full " key={doc.name + classId}>
+                      <div className="mb-6 w-full " key={Math.random()}>
                         <label htmlFor={doc.name}>
                           <input
                             type="file"
@@ -576,9 +560,7 @@ function EnrollmentAcademicDetails({
                       </div>
                     );
                   })}
-                  {!allDocs && (
-                    <p className="text-center">No document required</p>
-                  )}
+                  {!allDocs && "No document required"}
                 </div>
               </div>
             </div>
@@ -605,11 +587,9 @@ function EnrollmentAcademicDetails({
                   py="py-3 px-1"
                   bg={`${
                     formik.isValid
-                      ? allDocs
-                        ? Object.keys(uploadMessage).length === allDocs?.length
-                          ? "bg-[#5f9af2] text-[#E7F0FB]"
-                          : "cursor-not-allowed bg-[#293b57] text-[#476697]"
-                        : "bg-[#5f9af2] text-[#E7F0FB]"
+                      ? allDocs && uploadMessage !== {}
+                        ? "bg-[#5f9af2] text-[#E7F0FB]"
+                        : ""
                       : "cursor-not-allowed bg-[#293b57] text-[#476697]"
                   }`}
                 >
@@ -620,7 +600,7 @@ function EnrollmentAcademicDetails({
           </div>
         </form>
       </div>
-    </motion.section>
+    </section>
   );
 }
 

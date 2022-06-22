@@ -4,8 +4,6 @@ import { GiGraduateCap } from "react-icons/gi";
 import { useEnrollmentTabsValue } from "../../../StateProviders/EnrollmentTabsProvider";
 import CheckAdmissionModal from "../../Modals/CheckAdmissionModal";
 import MessageModal from "../../Modals/MessageModal";
-import { motion } from "framer-motion";
-import { authLeft } from "../../../../animations/animations";
 
 function EnrollmentPageSummary({
   display,

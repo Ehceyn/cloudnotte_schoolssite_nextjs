@@ -80,6 +80,7 @@ function EnrollmentPage({
         animate="animate"
         initial="initial"
         exit="exit"
+        className="bg-white w-full h-full"
       >
         <FormDetailsProvider
           initialState={formInitialState}

@@ -10,8 +10,6 @@ import Loader from "../../Loader";
 import styles from "../../../../styles/MiniLoader.module.css";
 import { countries } from "../../../exApi/countries";
 import { states } from "../../../exApi/states";
-import { motion } from "framer-motion";
-import { authLeft } from "../../../../animations/animations";
 
 function EnrollmentPageParentDetails({ display }) {
   const [tab, dispatch] = useEnrollmentTabsValue();
@@ -166,11 +164,7 @@ function EnrollmentPageParentDetails({ display }) {
   //.log(formik, "The  formik");
 
   return (
-    <motion.section
-      variants={authLeft}
-      animate="animate"
-      initial="initial"
-      exit="exit"
+    <section
       className={`${
         display === 3 ? "flex" : "hidden"
       } px-5 md:px-10 md2:px-28 md3:px-40 text-justify w-full mt-6 sm:mt-10 mb-14 mx-auto text-[0.8em] sm:text-base`}
@@ -374,10 +368,10 @@ function EnrollmentPageParentDetails({ display }) {
                     setSelectedCountry(e.target.value);
                   }}
                   value={formik.values.country}
+                  defaultValue="Country"
                   required
                   onBlur={formik.handleBlur}
                 >
-                  <option selected={true}>Country</option>
                   {countries.map((country) => {
                     return <option key={country.name}>{country.name}</option>;
                   })}
@@ -399,10 +393,10 @@ function EnrollmentPageParentDetails({ display }) {
                   className="shadow-sm h-12 pl-7 border border-[#CFDBEA] text-gray-900 text-sm rounded-[5px] outline-none focus:ring-[#5f9af2] focus:border-[#5f9af2] block w-full p-2.5 bg-[#F8FBFF] "
                   onChange={formik.handleChange}
                   value={formik.values.state}
+                  defaultValue="State"
                   required
                   onBlur={formik.handleBlur}
                 >
-                  <option selected={true}>State</option>
                   {states
                     .filter((i) => i.country_name === selectedCountry)
                     ?.map((state) => {
@@ -484,7 +478,7 @@ function EnrollmentPageParentDetails({ display }) {
           </div>
         </form>
       </div>
-    </motion.section>
+    </section>
   );
 }
 

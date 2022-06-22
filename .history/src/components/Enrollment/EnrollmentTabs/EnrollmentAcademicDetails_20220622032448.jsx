@@ -13,8 +13,6 @@ import { useDocUploadStateValue } from "../../../StateProviders/DocUploadProvide
 import { useRouter } from "next/router";
 import styles from "../../../../styles/MiniLoader.module.css";
 import MessageModal from "../../Modals/MessageModal";
-import { motion } from "framer-motion";
-import { authLeft } from "../../../../animations/animations";
 
 function EnrollmentAcademicDetails({
   admissionProgrammes,
@@ -288,11 +286,7 @@ function EnrollmentAcademicDetails({
   }
 
   return (
-    <motion.section
-      variants={authLeft}
-      animate="animate"
-      initial="initial"
-      exit="exit"
+    <section
       className={`${
         display === 4 ? "flex" : "hidden"
       } px-5 md:px-10 md2:px-28 md3:px-40 text-justify w-full mt-6 sm:mt-10 mb-14 mx-auto text-[0.8em] sm:text-base`}
@@ -620,7 +614,7 @@ function EnrollmentAcademicDetails({
           </div>
         </form>
       </div>
-    </motion.section>
+    </section>
   );
 }
 

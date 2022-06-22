@@ -19,8 +19,6 @@ import { DocUploadProvider } from "../../../src/StateProviders/DocUploadProvider
 import { useRouter } from "next/router";
 import Loader from "../../../src/components/Loader";
 import SEO from "../../../src/components/SEO";
-import { motion } from "framer-motion";
-import { authLeft } from "../../../animations/animations";
 
 function EnrollmentPage({
   data: {
@@ -75,50 +73,37 @@ function EnrollmentPage({
   return (
     <>
       <SEO title={`Apply for admission into ${name.toUpperCase()}`} />
-      <motion.section
-        variants={authLeft}
-        animate="animate"
-        initial="initial"
-        exit="exit"
+      <FormDetailsProvider
+        initialState={formInitialState}
+        reducer={formReducer}
       >
-        <FormDetailsProvider
-          initialState={formInitialState}
-          reducer={formReducer}
-        >
-          <DocUploadProvider
-            initialState={docInitialState}
-            reducer={docReducer}
-          >
-            <EnrollmentTabsProvider
-              initialState={initialState}
-              reducer={reducer}
-            >
-              <EnrollmentLandingPage
-                id={id}
-                name={name}
-                country={country}
-                state={state}
-                type={type}
-                categories={categories}
-                motto={motto}
-                logoUrl={logoUrl}
-                prefix={prefix}
-                isSmartSchool={isSmartSchool}
-              />
-              <EnrollmentTabs
-                admissionProgrammes={admissionProgrammes}
-                schoolId={id}
-                prefix={prefix}
-                name={name}
-                email={email}
-                phoneNumber={phoneNumber}
-                admissionSubAccountId={admissionSubAccountId}
-                logoUrl={logoUrl}
-              />
-            </EnrollmentTabsProvider>
-          </DocUploadProvider>
-        </FormDetailsProvider>
-      </motion.section>
+        <DocUploadProvider initialState={docInitialState} reducer={docReducer}>
+          <EnrollmentTabsProvider initialState={initialState} reducer={reducer}>
+            <EnrollmentLandingPage
+              id={id}
+              name={name}
+              country={country}
+              state={state}
+              type={type}
+              categories={categories}
+              motto={motto}
+              logoUrl={logoUrl}
+              prefix={prefix}
+              isSmartSchool={isSmartSchool}
+            />
+            <EnrollmentTabs
+              admissionProgrammes={admissionProgrammes}
+              schoolId={id}
+              prefix={prefix}
+              name={name}
+              email={email}
+              phoneNumber={phoneNumber}
+              admissionSubAccountId={admissionSubAccountId}
+              logoUrl={logoUrl}
+            />
+          </EnrollmentTabsProvider>
+        </DocUploadProvider>
+      </FormDetailsProvider>
       <Loader display={loader} message="Please wait..." />
     </>
   );

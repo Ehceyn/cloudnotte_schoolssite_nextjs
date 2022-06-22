@@ -10,8 +10,6 @@ import Loader from "../../Loader";
 import styles from "../../../../styles/MiniLoader.module.css";
 import { countries } from "../../../exApi/countries";
 import { states } from "../../../exApi/states";
-import { motion } from "framer-motion";
-import { authLeft } from "../../../../animations/animations";
 
 function EnrollmentPageParentDetails({ display }) {
   const [tab, dispatch] = useEnrollmentTabsValue();
@@ -166,11 +164,7 @@ function EnrollmentPageParentDetails({ display }) {
   //.log(formik, "The  formik");
 
   return (
-    <motion.section
-      variants={authLeft}
-      animate="animate"
-      initial="initial"
-      exit="exit"
+    <section
       className={`${
         display === 3 ? "flex" : "hidden"
       } px-5 md:px-10 md2:px-28 md3:px-40 text-justify w-full mt-6 sm:mt-10 mb-14 mx-auto text-[0.8em] sm:text-base`}
@@ -484,7 +478,7 @@ function EnrollmentPageParentDetails({ display }) {
           </div>
         </form>
       </div>
-    </motion.section>
+    </section>
   );
 }
 
