@@ -79,7 +79,7 @@ function ChangeLocationModal(props) {
         }}
       >
         <div
-          className="h-[100vh] w-[100vw] md:h-[70vh] md:min-w-[70vw] md:w-[70vw] mx-auto overflow-scroll md:border md:rounded-2xl bg-white px-6 py-6 transition-all duration-300"
+          className="h-[100vh] w-[100vw] md:h-[70vh] md:min-w-[70vw] md:w-[70vw] mx-auto overflow-scroll overflow-x-hidden md:border md:rounded-2xl bg-white px-6 py-6 transition-all duration-300"
           onClick={(e) => e.stopPropagation()}
         >
           <article className="w-full flex justify-center mb-4">

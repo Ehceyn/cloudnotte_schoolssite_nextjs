@@ -79,7 +79,7 @@ function ChangeLocationModal(props) {
         }}
       >
         <div
-          className="h-[100vh] w-[100vw] md:h-[70vh] md:min-w-[70vw] md:w-[70vw] mx-auto overflow-scroll md:border md:rounded-2xl bg-white px-6 py-6 transition-all duration-300"
+          className="h-[100vh] w-[100vw] md:h-[70vh] md:min-w-[70vw] md:w-[70vw] mx-auto overflow-scroll overflow-x-hidden md:border md:rounded-2xl bg-white px-6 py-6 transition-all duration-300"
           onClick={(e) => e.stopPropagation()}
         >
           <article className="w-full flex justify-center mb-4">
@@ -123,29 +123,6 @@ function ChangeLocationModal(props) {
                 ? `States in ${formik.values.country}`
                 : "Countries"}
             </h2>
-          </article>
-          <article className="py-3 hidden">
-            {countries.map((country, index) => {
-              return (
-                <h2 key={country.name + index} className="">
-                  <Link href={`/schools/location/${country.name}`} passHref>
-                    <a className="text-[#8ea2ba] ">{country.name}</a>
-                  </Link>
-                </h2>
-              );
-            })}
-            {states.map((state, index) => {
-              return (
-                <h2 key={state.name + index} className="">
-                  <Link
-                    href={`/schools/location/${state.country_name}/${state.name}`}
-                    passHref
-                  >
-                    <a className="text-[#8ea2ba] ">{state.name}</a>
-                  </Link>
-                </h2>
-              );
-            })}
           </article>
 
           <div

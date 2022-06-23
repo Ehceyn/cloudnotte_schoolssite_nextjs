@@ -128,7 +128,7 @@ function ChangeLocationModal(props) {
           <div
             className={`${
               formik.values.country ? "flex" : "hidden"
-            } py-1 px-5 mb-3 bg-[#5f9af2] hover:brightness-90 cursor-pointer rounded-full w-fit`}
+            } py-1 px-3 mb-3 bg-[#5f9af2] hover:brightness-90 p-3 cursor-pointer rounded-full w-fit`}
             onClick={props.onCallChangeLocationModal}
           >
             <h2 className=" text-[#fff]">

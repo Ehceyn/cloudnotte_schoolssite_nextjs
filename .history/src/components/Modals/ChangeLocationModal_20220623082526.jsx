@@ -79,7 +79,7 @@ function ChangeLocationModal(props) {
         }}
       >
         <div
-          className="h-[100vh] w-[100vw] md:h-[70vh] md:min-w-[70vw] md:w-[70vw] mx-auto md:border overflow-scroll md:overflow-hidden md:rounded-2xl bg-white px-6 py-6 transition-all duration-300"
+          className="h-[100vh] w-[100vw] md:h-[70vh] md:min-w-[70vw] md:w-[70vw] mx-auto overflow-scroll overflow-x-hidden md:border md:rounded-2xl bg-white mx-6 py-6 transition-all duration-300"
           onClick={(e) => e.stopPropagation()}
         >
           <article className="w-full flex justify-center mb-4">
@@ -128,7 +128,7 @@ function ChangeLocationModal(props) {
           <div
             className={`${
               formik.values.country ? "flex" : "hidden"
-            } py-1 px-5 mb-3 bg-[#5f9af2] hover:brightness-90 cursor-pointer rounded-full w-fit`}
+            } py-1 px-3 mb-3 bg-[#5f9af2] hover:brightness-90 cursor-pointer rounded-full w-fit`}
             onClick={props.onCallChangeLocationModal}
           >
             <h2 className=" text-[#fff]">
@@ -146,7 +146,7 @@ function ChangeLocationModal(props) {
           <div
             className={`${
               !formik.values.country ? "grid" : "hidden"
-            } grid-cols-1 md:grid-cols-3 gap-3 w-full sm:mr-5 sm:mb-0 md:h-[50vh] overflow-scroll`}
+            } grid-cols-1 md:grid-cols-3 gap-3 w-full sm:mr-5 sm:mb-0`}
           >
             {countries.map((country) => {
               return (
