@@ -63,44 +63,7 @@ function Home({ data }) {
     <section className="">
       <SEO
         title="Find good schools nearby"
-        keywords={`Best school in ${states.map((state) => {
-          return "Best school in " + state.name;
-        })}, Best school in Nigeria, ${countries.map((country) => {
-          return "Best school in " + country.name;
-        })}, Best school in ${schools?.getSchools.map((school) => {
-          return "Best school in " + school.city;
-        })},
-Best schools in ${states.map((state) => {
-          return state.name;
-        })}, Best schools in ${countries.map((country) => {
-          return "Best schools in " + country.name;
-        })}, Best schools in ${schools?.getSchools.map((school) => {
-          return "Best schools in " + school.city;
-        })}, Schools in ${states.map((state) => {
-          return "Best schools in " + state.name;
-        })}, Schools in ${countries.map((country) => {
-          return "Schools in " + country.name;
-        })}, Schools in ${schools?.getSchools.map((school) => {
-          return "Schools in " + school.city;
-        })}, School in ${states.map((state) => {
-          return "Schools in " + state.name;
-        })}, School in ${countries.map((country) => {
-          return "School in " + country.name;
-        })}, School in ${schools?.getSchools.map((school) => {
-          return "School in " + school.city;
-        })}, private schools in ${schools?.getSchools.map((school) => {
-          return "School in " + school.city;
-        })}, private schools in ${states.map((state) => {
-          return "private schools in" + state.name;
-        })}, private schools in ${countries.map((country) => {
-          return "private schools in" + country.name;
-        })},  Best private schools in ${schools?.getSchools.map((school) => {
-          return "Best private schools in" + school.city;
-        })}, Best private schools in ${states.map((state) => {
-          return "Best private schools in" + state.name;
-        })}, Best private schools in ${countries.map((country) => {
-          return "Best private schools in" + country.name;
-        })}, Smart schools, cloudnotte schools, admission-ongoing, schools admitting, schools nearby, school with best facities, secured schools.
+        keywords={`Best school, Best schools, Smart schools, cloudnotte schools, admission-ongoing, schools admitting, schools nearby, school with best facities, secured schools.
 `}
         description="Cloudnotte schools - Find schools nearby"
         image="https://res.cloudinary.com/ugomatt/image/upload/v1647363425/cloudnotte_cover_ymomcf.jpg"
