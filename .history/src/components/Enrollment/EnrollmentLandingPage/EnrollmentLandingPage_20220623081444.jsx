@@ -15,7 +15,7 @@ function EnrollmentLandingPage({
   isSmartSchool,
 }) {
   const [navbarFixed, setNavbarFixed] = useState(false);
-  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
     ["load", "scroll", "resize"].forEach((e) =>
@@ -67,16 +67,15 @@ function EnrollmentLandingPage({
 
               <span
                 className={`${
-                  imageLoaded ? "flex" : "hidden"
+                  imageError ? "hidden" : "flex"
                 } items-center justify-center w-[70px] h-[70px] sm:w-[150px] sm:h-[150px] object-contain bg-white rounded-full`}
               >
                 <Image
                   width={130}
                   height={130}
-                  onLoad={() => setImageLoaded(true)}
                   onError={() => {
                     //.log("error");
-                    setImageLoaded(false);
+                    setImageError(false);
                   }}
                   objectFit="cover"
                   src={`${
@@ -88,7 +87,7 @@ function EnrollmentLandingPage({
                   alt=""
                 />
               </span>
-              {imageLoaded ? null : (
+              {!imageError ? null : (
                 <span
                   className={`flex items-center justify-center min-w-full min-h-full bg-[#fff] rounded-full w-[70px] h-[70px] sm:w-[150px] sm:h-[150px] object-contain border-white`}
                   style={{
@@ -158,14 +157,14 @@ function EnrollmentLandingPage({
             as={`/schools/${prefix}`}
             passHref
           >
-            <article className="">
+            <a className="">
               <div className="hidden md3:block">
                 <Button py="py-4" bg="bg-[#5f9af2]">
                   <GiGraduateCap className="w-7 h-7 mr-1" />
                   About us
                 </Button>
               </div>
-            </article>
+            </a>
           </Link>
         </div>
       </div>

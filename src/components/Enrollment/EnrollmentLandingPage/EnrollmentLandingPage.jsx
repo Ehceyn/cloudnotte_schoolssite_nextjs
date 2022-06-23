@@ -71,8 +71,8 @@ function EnrollmentLandingPage({
                 } items-center justify-center w-[70px] h-[70px] sm:w-[150px] sm:h-[150px] object-contain bg-white rounded-full`}
               >
                 <Image
-                  width={130}
-                  height={130}
+                  width={140}
+                  height={140}
                   onError={() => {
                     //.log("error");
                     setImageError(false);
