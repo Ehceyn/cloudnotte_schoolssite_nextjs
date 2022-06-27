@@ -175,7 +175,7 @@ function ChangeLocationModal(props) {
           <div
             className={`${
               formik.values.country ? "grid" : "hidden"
-            } grid-cols-1 md:grid-cols-3 gap-3 w-full sm:mr-5 sm:mb-0 md:h-[44vh] overflow-scroll`}
+            } grid-cols-1 md:grid-cols-3 gap-3 w-full sm:mr-5 sm:mb-0 md:h-[45vh] overflow-scroll`}
           >
             {states
               .filter((i) => i.country_name === formik.values.country)
