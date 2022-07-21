@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import AdmissionStatusLandingPage from "../../../src/components/AdmissionStatus/AdmissionStatusLandingPage/AdmissionStatusLandingPage";
 import AdmissionStatusInformation from "../../../src/components/AdmissionStatus/AdmissionStatusInformation/AdmissionStatusInformation";
 import { AdmissionStatusTabsProvider } from "../../../src/StateProviders/AdmissionStatusTabsProvider";
@@ -8,9 +8,15 @@ import reducer, {
 import { GET_ADMISSION_APPLICANT } from "../../../graphql/user/queries/getAdmissionApplicant";
 import { initializeApollo } from "../../../lib/apolloClient";
 import SEO from "../../../src/components/SEO";
+import { useReactToPrint } from "react-to-print";
 
 function AdmissionStatusPage({ data }) {
-  // console.log(data, "data here");
+  // //.log(data, "data here");
+  // Print Page
+  const componentRef = useRef(null);
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
 
   return (
     <>
@@ -19,8 +25,14 @@ function AdmissionStatusPage({ data }) {
         initialState={initialState}
         reducer={reducer}
       >
-        <section className="flex flex-col bg-white w-[320px] xs:w-[400px] sm:w-[500px] md:w-[672px] max-w-2xl mx-auto">
-          <AdmissionStatusLandingPage data={data.getAdmissionApplicant} />
+        <section
+          ref={componentRef}
+          className="flex flex-col bg-white w-[320px] xs:w-[400px] sm:w-[500px] print:w-[672px] md:w-[672px] max-w-2xl mx-auto"
+        >
+          <AdmissionStatusLandingPage
+            data={data.getAdmissionApplicant}
+            onCallHandlePrint={handlePrint}
+          />
           <AdmissionStatusInformation data={data.getAdmissionApplicant} />
         </section>
       </AdmissionStatusTabsProvider>
@@ -40,7 +52,7 @@ export async function getServerSideProps({ params }) {
     query: GET_ADMISSION_APPLICANT,
     variables: { applicationNumber: applicationNumber },
   });
-  if (error) return console.log(JSON.stringify(error, null, 2));
+  // if (error) return; //.log(JSON.stringify(error, null, 2));
 
   if (!data) {
     return {

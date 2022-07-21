@@ -1,10 +1,10 @@
 export const initialState = 1;
 
-console.log(initialState);
+//.log(initialState);
 
 function reducer(state = initialState, action) {
-  console.log(action);
-  console.log("ITem" + action.item);
+  //.log(action);
+  //.log("ITem" + action.item);
 
   switch (action.type) {
     case "TOGGLE_ENROLLMENT_TAB":

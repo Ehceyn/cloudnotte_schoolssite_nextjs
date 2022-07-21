@@ -8,7 +8,7 @@ import PendingStage from "./PendingStage";
 function AdmissionStatusInformationUpdateTabs({ data }) {
   const [tab, dispatch] = useAdmissionStatusTabsValue();
 
-  console.log("datab: ", data);
+  //.log("datab: ", data);
 
   return (
     <>

@@ -1,15 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { Button2 } from "./Button";
-import { BsFillSuitHeartFill, BsFillPlayFill } from "react-icons/bs";
+import {
+  BsFillSuitHeartFill,
+  BsFillPlayFill,
+  BsFillPauseFill,
+} from "react-icons/bs";
 import { IoIosCall } from "react-icons/io";
 import { RiWhatsappFill } from "react-icons/ri";
 import { useSchoolPersonalPageTabsValue } from "../../../StateProviders/SchoolPersonalPageTabsProvider";
+import AudioModal from "../../Modals/AudioModal";
 
-function Navbar({ phoneNumber, anthemUrl, name }) {
+function Navbar({
+  phoneNumber,
+  anthemUrl,
+  name,
+  onCallAudioModal,
+  displayAudioModal,
+  prefix,
+}) {
   const [tab, dispatch] = useSchoolPersonalPageTabsValue();
 
+  //.log(onCallAudioModal, "onCallAudioModal");
+
   const changeTab = (id) => {
-    console.log("tab: " + id);
+    //.log("tab: " + id);
     dispatch({
       type: "TOGGLE_TAB",
       item: id,
@@ -18,12 +32,13 @@ function Navbar({ phoneNumber, anthemUrl, name }) {
 
   return (
     <>
+      <AudioModal audio={anthemUrl} />
       <section className="">
         <div className="flex w-full justify-between items-center px-5 py-5">
           <article className="capitalize flex w-full sm:w-fit justify-between">
             <p
               className={`text-base cursor-pointer mr-2 sm:mr-6 ${
-                tab === 1 ? "font-[700]" : "font-medium"
+                tab === 1 ? "font-bold" : "font-normal"
               }`}
               onClick={() => {
                 changeTab(1);
@@ -33,7 +48,7 @@ function Navbar({ phoneNumber, anthemUrl, name }) {
             </p>
             <p
               className={`text-base cursor-pointer mr-2 sm:mr-6 ${
-                tab === 2 ? "font-[700]" : "font-medium"
+                tab === 2 ? "font-bold" : "font-normal"
               }`}
               onClick={() => {
                 changeTab(2);
@@ -43,7 +58,7 @@ function Navbar({ phoneNumber, anthemUrl, name }) {
             </p>
             <p
               className={`text-base font-medium cursor-pointer mr-2 sm:mr-6 ${
-                tab === 3 ? "font-[700]" : "font-medium"
+                tab === 3 ? "font-bold" : "font-normal"
               }`}
               onClick={() => {
                 changeTab(3);
@@ -52,14 +67,14 @@ function Navbar({ phoneNumber, anthemUrl, name }) {
               Reviews
             </p>
             <p
-              className={`text-base cursor-pointer font-medium
+              className={` cursor-pointer
               `}
             >
               <a
                 href="https://cloudnotte.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#8ea2ba]"
+                className="text-[#8ea2ba] font-normal"
               >
                 School Portal
               </a>
@@ -97,25 +112,41 @@ function Navbar({ phoneNumber, anthemUrl, name }) {
                 px="px-3 mr-3"
               >
                 <a
-                  href={`https://api.whatsapp.com/send?phone=${phoneNumber}&text=Hi%20${name},%20I%20came%20across%20your%20school%20on%20Schools.cloudnotte.com.%20I'd%20like%20to%20make%20more%20enquiries`}
+                  href={`https://api.whatsapp.com/send?phone=${
+                    phoneNumber.charAt(0) === "0"
+                      ? phoneNumber.slice(1)
+                      : phoneNumber
+                  }&text=Hi%20${name},%20I%20came%20across%20your%20school%20on%20Cloudnotte%20School%20Search%20Engine%20(www.cloudnotte.com/schools/${prefix})%20I'd%20like%20to%20make%20more%20enquiries`}
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="text-[#8EA2BA] flex"
                 >
-                  <RiWhatsappFill className="w-6 h-6 fill-[#02a556]" />
+                  Whatsapp{" "}
+                  <RiWhatsappFill className="ml-2 w-6 h-6 fill-[#02a556]" />
                 </a>
               </Button2>
             </div>
-            <div>
-              <Button2
-                customStyle=""
-                bg="bg-[#E7F0FB]"
-                color="text-[#8EA2BA]"
-                py="py-[10px] "
-                px="px-3 mr-3"
+            {anthemUrl && (
+              <div
+                onClick={() => {
+                  onCallAudioModal();
+                }}
               >
-                <BsFillPlayFill className="w-6 h-6  fill-[#8EA2BA]" />
-              </Button2>
-            </div>
+                <Button2
+                  customStyle=""
+                  bg="bg-[#E7F0FB]"
+                  color="text-[#8EA2BA]"
+                  py="py-[10px] "
+                  px="px-3 mr-3"
+                >
+                  {displayAudioModal ? (
+                    <BsFillPauseFill className="w-6 h-6  fill-[#8EA2BA]" />
+                  ) : (
+                    <BsFillPlayFill className="w-6 h-6  fill-[#8EA2BA]" />
+                  )}
+                </Button2>
+              </div>
+            )}
           </article>
         </div>
       </section>

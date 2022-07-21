@@ -2,7 +2,7 @@ import { data } from "autoprefixer";
 import React from "react";
 
 function StudentsAcademicInfo({ data }) {
-  console.log(data, "academic");
+  //.log(data, "academic");
 
   return (
     <section className="w-full">
@@ -15,7 +15,11 @@ function StudentsAcademicInfo({ data }) {
         <article className=" flex flex-col w-full justify-center">
           <article className="w-full  mb-3">
             <p className="text-sm font-bold">Class/Programme</p>
-            <p>{data.class.name ? data.class.name : "N/A"}</p>
+            <p>
+              {data.admissionProgramme.name
+                ? data.admissionProgramme.name
+                : "N/A"}
+            </p>
           </article>
           <article className="w-full  mb-3">
             <p className="text-sm font-bold">Name of Previous School</p>

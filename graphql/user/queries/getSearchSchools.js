@@ -13,6 +13,7 @@ export const GET_SEARCH_SCHOOLS = gql`
       city
       prefix
       logoUrl
+      isSmartSchool
     }
   }
 `;

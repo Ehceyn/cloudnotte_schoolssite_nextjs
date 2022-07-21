@@ -39,6 +39,7 @@ export const GET_ADMISSION_APPLICANT = gql`
         logoUrl
         state
         country
+        isSmartSchool
       }
       class {
         id
@@ -66,6 +67,10 @@ export const GET_ADMISSION_APPLICANT = gql`
       timeAdded
       admissionStatus
       admissionReason
+      admissionProgramme {
+        id
+        name
+      }
     }
   }
 `;

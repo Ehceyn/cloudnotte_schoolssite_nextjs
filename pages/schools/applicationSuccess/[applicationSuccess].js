@@ -15,10 +15,10 @@ function EntranceExamStage({ data }) {
   // Function to copy text
   function copyText(e) {
     const value = copytextRef.current;
-    console.log(copytextRef);
+    //.log(copytextRef);
     value.select();
     document.execCommand("copy", true, value.value);
-    console.log(value, "value");
+    //.log(value, "value");
   }
 
   return (
@@ -42,7 +42,7 @@ function EntranceExamStage({ data }) {
                   theData.studentDetails.passportUrl !== "" &&
                   theData.studentDetails.passportUrl.includes("http") === true
                     ? theData.studentDetails.passportUrl
-                    : "/assets/images/school-profile-img.png"
+                    : "https://res.cloudinary.com/ugomatt/image/upload/v1650132345/profile_head_nwwxuu.png"
                 }
                 className="w-[60px] h-[60px] sm:w-[120px] sm:h-[120px] object-contain bg-gray-400 rounded-[50%] sm:border ]"
                 alt=""
@@ -144,7 +144,7 @@ export async function getServerSideProps({ params }) {
     query: GET_ADMISSION_APPLICANT,
     variables: { applicationNumber: applicationNumber },
   });
-  if (error) return console.log(JSON.stringify(error, null, 2));
+  if (error) return; //.log(JSON.stringify(error, null, 2));
 
   if (!data) {
     return {

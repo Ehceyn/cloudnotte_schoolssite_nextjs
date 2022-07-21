@@ -10,11 +10,14 @@ function SchoolPersonalPageTabs(props) {
   const [mountedTab, setMountedTab] = useState(<SchoolPersonalPageHome />);
 
   const changeMounted = (tab) => {
-    console.log("tabb: " + tab);
+    //.log("tabb: " + tab);
     switch (tab) {
       case 1:
         setMountedTab(
-          <SchoolPersonalPageHome longDescription={props.longDescription} />
+          <SchoolPersonalPageHome
+            longDescription={props.longDescription}
+            name={props.name}
+          />
         );
         break;
       case 2:
@@ -34,6 +37,7 @@ function SchoolPersonalPageTabs(props) {
       case 3:
         setMountedTab(
           <SchoolPersonalPageReview
+            schoolId={props.schoolId}
             onCallReviewSchoolModal={props.onCallReviewSchoolModal}
           />
         );
@@ -51,7 +55,7 @@ function SchoolPersonalPageTabs(props) {
 
   return (
     <>
-      <div className="w-[85%] md2:w-[70%] mx-auto">
+      <div className="w-[85%] font-bold md2:w-[70%] mx-auto">
         <QuickLinks
           onCallEntranceExamModal={props.onCallEntranceExamModal}
           onCallCheckAdmissionModal={props.onCallCheckAdmissionModal}

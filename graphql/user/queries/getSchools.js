@@ -1,10 +1,16 @@
 import { gql } from "@apollo/client";
 
 export const GET_SCHOOLS = gql`
-  query GetSchools($afterId: String!, $limit: Int!, $filter: String) {
+  query GetSchools(
+    $afterId: String!
+    $limit: Int!
+    $filter: String
+    $country: String
+    $state: String
+  ) {
     getSchools(
       pagination: { afterId: $afterId, limit: $limit }
-      filter: { searchText: $filter }
+      filter: { searchText: $filter, country: $country, state: $state }
     ) {
       id
       name

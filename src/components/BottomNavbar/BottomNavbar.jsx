@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import Loader from "../Loader";
 
 function BottomNavbar(props) {
   const [show, setShow] = useState(false);
   const [scrollPos, setScrollPos] = useState(0);
   const [moreNavItems, setMoreNavItems] = useState(false);
+  const [loader, setLoader] = useState(false);
 
   // Show Bottom Navbar only on scroll up
   useEffect(() => {
@@ -20,26 +22,33 @@ function BottomNavbar(props) {
     const position = document.body.getBoundingClientRect().top;
     setScrollPos(position);
     setShow(position > scrollPos);
-    console.log(show);
-    console.log(scrollPos);
+    //.log(show);
+    //.log(scrollPos);
   };
+
+  setTimeout(() => {
+    setLoader(false);
+  }, 3000);
 
   return (
     <div
-      className={`fixed md2:hidden z-[31] bottom-0 right-0 left-0 ${
+      className={`fixed md2:hidden z-[20] bottom-0 right-0 left-0 ${
         show ? "translate-y--[100%] h-fit " : "translate-y-[100%] h-0"
-      } flex transition-all duration-500 shrink mb-0`}
+      } flex transition-all duration-150 shrink mb-0`}
     >
       <div
         className={`bg-[#F8FBFF] border ${
           moreNavItems ? "hidden" : null
-        } border-[#E7F0FB]  py-2 px-3 sm:py-5 w-full rounded-t-2xl capitalize h-fit flex items-center justify-between`}
+        } border-[#E7F0FB]  py-1 px-3 sm:py-5 w-full rounded-t-2xl capitalize h-fit flex items-center justify-between`}
       >
         <Link href="/schools" passHref>
-          <div className="  flex flex-col mr-2 overflow-hidde w-fit sm:w-fit items-center  justify-center cursor-pointer ">
+          <a
+            className="  flex flex-col mr-2 overflow-hidden w-fit sm:w-fit items-center  justify-center cursor-pointer "
+            onClick={() => setLoader(true)}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className=" w-7 h-7 sm:w-9 sm:h-9"
+              className=" w-5 h-5 sm:w-9 sm:h-9"
               viewBox="0 0 20 20"
               fill="#5f9af2"
             >
@@ -48,7 +57,7 @@ function BottomNavbar(props) {
             <p className="side-nav-paragraph text-[10px]  sm:text-base pt-1 sm:pt-0 ">
               Home
             </p>
-          </div>
+          </a>
         </Link>
         <div
           className="  flex flex-col mr-2  justify-center cursor-pointer sm:w-fit items-center"
@@ -56,7 +65,7 @@ function BottomNavbar(props) {
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className=" w-7 h-7 sm:w-9 sm:h-9"
+            className=" w-5 h-5 sm:w-9 sm:h-9"
             viewBox="0 0 20 20"
             fill="#5f9af2"
           >
@@ -77,7 +86,7 @@ function BottomNavbar(props) {
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className=" w-7 h-7 sm:w-9 sm:h-9"
+            className=" w-5 h-5 sm:w-9 sm:h-9"
             viewBox="0 0 20 20"
             fill="#5f9af2"
           >
@@ -100,7 +109,7 @@ function BottomNavbar(props) {
           <div className="  flex flex-col mr-2 justify-center cursor-pointer sm:w-fit sm: items-center ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className=" w-7 h-7 sm:w-9 sm:h-9"
+              className=" w-5 h-5 sm:w-9 sm:h-9"
               viewBox="0 0 20 20"
               fill="#5f9af2"
             >
@@ -123,7 +132,7 @@ function BottomNavbar(props) {
         }  py-4 px-4 sm:py-5 w-full rounded-t-2xl capitalize h-fit flex flex-col`}
       >
         <div className="flex w-full justify-between mb-6">
-          <p className="font-semibold flex">
+          <p className="  font-bold flex">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-7 w-7 mr-2"
@@ -158,7 +167,7 @@ function BottomNavbar(props) {
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 mr-2"
                 viewBox="0 0 20 20"
-                fill="#5F9AF2"
+                fill="#5f9af2"
               >
                 <path
                   fillRule="evenodd"
@@ -173,7 +182,7 @@ function BottomNavbar(props) {
             <p className="flex justify-center ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className=" w-7 h-7 sm:w-9 sm:h-9"
+                className=" w-5 h-5 sm:w-9 sm:h-9"
                 viewBox="0 0 20 20"
                 fill="#5f9af2"
               >
@@ -187,13 +196,13 @@ function BottomNavbar(props) {
             </p>
           </article>{" "} */}
           <Link href="/schools/tech_school_badge" passHref>
-            <article className="border-b py-5">
+            <article className="border-b py-5" onClick={() => setLoader(true)}>
               <p className="flex justify-center ">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6 mr-2"
                   viewBox="0 0 20 20"
-                  fill="#5F9AF2"
+                  fill="#5f9af2"
                 >
                   <path
                     fillRule="evenodd"
@@ -217,7 +226,7 @@ function BottomNavbar(props) {
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6 mr-2"
                   viewBox="0 0 20 20"
-                  fill="#5F9AF2"
+                  fill="#5f9af2"
                 >
                   <path
                     fillRule="evenodd"
@@ -241,7 +250,7 @@ function BottomNavbar(props) {
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6 mr-2"
                   viewBox="0 0 20 20"
-                  fill="#5F9AF2"
+                  fill="#5f9af2"
                 >
                   <path
                     fillRule="evenodd"
@@ -253,18 +262,24 @@ function BottomNavbar(props) {
               </p>
             </article>
           </a>
-          <div className="flex justify-center my-5">
+          <div
+            className="flex justify-center my-5"
+            onClick={() => setLoader(true)}
+          >
             <Link href="/schools/register" passHref>
-              <button
-                className="bg-[#5F9AF2] hover:brightness-90 text-white font-bold py-3 px-5 rounded-full"
-                onClick={props.onDisplayRegisterSchoolPage}
-              >
-                List Your School
-              </button>
+              <a>
+                <button
+                  className="bg-[#5f9af2] hover:brightness-90 text-white font-bold py-3 px-5 rounded-full"
+                  onClick={props.onDisplayRegisterSchoolPage}
+                >
+                  List Your School
+                </button>
+              </a>
             </Link>
           </div>
         </div>
       </div>
+      <Loader display={loader} message="Please wait..." />
     </div>
   );
 }

@@ -28,7 +28,7 @@ export async function getServerSideProps({ params }) {
     query: GET_ADMISSION_APPLICANT,
     variables: { applicationNumber: applicationNumber },
   });
-  if (error) return console.log(JSON.stringify(error, null, 2));
+  if (error) return; //.log(JSON.stringify(error, null, 2));
 
   if (!data) {
     return {
