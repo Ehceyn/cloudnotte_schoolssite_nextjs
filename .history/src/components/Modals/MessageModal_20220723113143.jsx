@@ -51,7 +51,7 @@ function MessageModal(props) {
             </svg>
           )}
         </div>
-        <h1 className={`font-bold font-base text-center `}>{props.heading}</h1>
+        <h1 className={` font-base text-center `}>{props.heading}</h1>
         <p className="text-center w-72 xs:w-80 break-words">{props.message}</p>
 
         <article

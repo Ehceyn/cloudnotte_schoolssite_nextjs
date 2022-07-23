@@ -15,7 +15,8 @@ function createApolloClient() {
   return new ApolloClient({
     ssrMode: typeof window === "undefined",
     link: new HttpLink({
-      uri: "https://api.cloudnotte.com/graphql/query", // Server URL (must be absolute)
+      uri: "https://cloudnotte-api.herokuapp.com/graphql/query
+      ", // Server URL (must be absolute)
       credentials: "same-origin", // Additional fetch() options like `credentials` or `headers`
     }),
     cache: new InMemoryCache(),

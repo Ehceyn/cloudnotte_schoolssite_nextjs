@@ -234,7 +234,7 @@ function EnrollmentAcademicDetails({
     const base64Payload = btoa(JSON.stringify(details));
 
     FlutterwaveCheckout({
-      public_key: process.env.NEXT_PUBLIC_FLUTTERWAVE_API,
+      public_key: "FLWPUBK_TEST-241406ed25076dcda77bf464e54a4985-X",
       tx_ref: new Date().getTime(),
       amount: fee,
       currency: "NGN",
@@ -328,6 +328,15 @@ function EnrollmentAcademicDetails({
               documents: [],
             };
 
+            function g() {
+              // format this date 05-Apr-2001 to 2001-04-05 convert to ISO
+              let date = formdata.studentDetails.dateOfBirth;
+              let dateArray = date.split("-");
+              let newDate = `${dateArray[2]}-${dateArray[1]}-${dateArray[0]}`;
+              let newDateISO = new Date(newDate).toISOString();
+              //.log(newDateISO, "new date iso");
+            }
+
             Object.keys(formdata[0]).forEach((key) => {
               if (key !== "Passport") {
                 if (key !== "dateOfBirth") {
@@ -335,7 +344,7 @@ function EnrollmentAcademicDetails({
                 } else {
                   // format the date of birth
                   const unformattedDate = formdata[0][key];
-
+                  console.log(unformattedDate, "unformattedDate");
                   const formattedDate = unformattedDate
                     .split("-")
                     .reverse()
@@ -344,6 +353,7 @@ function EnrollmentAcademicDetails({
                     formattedDate
                   ).toISOString();
 
+                  console.log(formattedDateISO, "formattedDateISO");
                   myObj.studentDetails[key] = formattedDateISO;
                   //.log(myObj.studentDetails[key], "date of birth");
                 }
@@ -360,7 +370,7 @@ function EnrollmentAcademicDetails({
             myObj.previousSchoolLeaveReason =
               formdata[2].previousSchoolLeaveReason;
             myObj.programmeId = formdata[2].programmeId;
-            myObj.documents = docData || [];
+            myObj.documents = docData;
 
             //Check If the form is valid and other conditions are met
             formik.isValid
@@ -397,10 +407,11 @@ function EnrollmentAcademicDetails({
                       "We have sent your application details to you via email. Kindly check your mailbox"
                     );
                     setFormSubmitHeading(
-                      `Application submitted successfully to  ${name}`
+                      `Your application has been submitted successfully to  ${name}`
                     );
                   },
                   onError: (error) => {
+                    console.log(error);
                     setDisplayMessageModal(true);
                     setFormSubmitStatus("error");
                     setFormSubmitMessage(

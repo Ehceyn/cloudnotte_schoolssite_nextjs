@@ -327,7 +327,6 @@ function EnrollmentAcademicDetails({
               programmeId: "",
               documents: [],
             };
-
             Object.keys(formdata[0]).forEach((key) => {
               if (key !== "Passport") {
                 if (key !== "dateOfBirth") {
@@ -335,16 +334,11 @@ function EnrollmentAcademicDetails({
                 } else {
                   // format the date of birth
                   const unformattedDate = formdata[0][key];
+                  const formattedDate =
+                    unformattedDate.split("/").reverse().join("-") +
+                    "T00:00:00Z";
 
-                  const formattedDate = unformattedDate
-                    .split("-")
-                    .reverse()
-                    .join("-");
-                  const formattedDateISO = new Date(
-                    formattedDate
-                  ).toISOString();
-
-                  myObj.studentDetails[key] = formattedDateISO;
+                  myObj.studentDetails[key] = formattedDate;
                   //.log(myObj.studentDetails[key], "date of birth");
                 }
               }
@@ -360,7 +354,7 @@ function EnrollmentAcademicDetails({
             myObj.previousSchoolLeaveReason =
               formdata[2].previousSchoolLeaveReason;
             myObj.programmeId = formdata[2].programmeId;
-            myObj.documents = docData || [];
+            myObj.documents = docData;
 
             //Check If the form is valid and other conditions are met
             formik.isValid
@@ -397,10 +391,11 @@ function EnrollmentAcademicDetails({
                       "We have sent your application details to you via email. Kindly check your mailbox"
                     );
                     setFormSubmitHeading(
-                      `Application submitted successfully to  ${name}`
+                      `Your application has been submitted successfully to  ${name}`
                     );
                   },
                   onError: (error) => {
+                    console.log(error);
                     setDisplayMessageModal(true);
                     setFormSubmitStatus("error");
                     setFormSubmitMessage(

@@ -8,14 +8,14 @@ export const APOLLO_STATE_PROP_NAME = "__APOLLO_STATE__";
 
 let apolloClient;
 
-// https://cloudnotte-api.herokuapp.com/graphql/query (Test api)
+// https://cloudnotte-api.herokuapp.com/graphql/playground (Test api)
 // https://api.cloudnotte.com/graphql/query (Production api)
 
 function createApolloClient() {
   return new ApolloClient({
     ssrMode: typeof window === "undefined",
     link: new HttpLink({
-      uri: "https://api.cloudnotte.com/graphql/query", // Server URL (must be absolute)
+      uri: "https://cloudnotte-api.herokuapp.com/graphql/playground", // Server URL (must be absolute)
       credentials: "same-origin", // Additional fetch() options like `credentials` or `headers`
     }),
     cache: new InMemoryCache(),
